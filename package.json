@@ -1,0 +1,14 @@
+{
+  "name": "elev8",
+  "version": "1.0.0",
+  "description": "Elev8 Home Services Website",
+  "main": "index.js",
+  "scripts": {
+  	"sass": "node-sass --watch assets/scss/main.scss assets/css/style.css"
+},
+  "author": "Elev8 Home Services LLC",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^8.0.0"
+  }
+}
