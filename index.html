@@ -25,7 +25,7 @@
     <meta property="twitter:image" content="https://i.imgur.com/AuINjvO.png">
     <meta name="description" content="Elev8 - Services ">
     <!-- Favicons Icon 
-    	<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />-->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />-->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Title -->
@@ -58,33 +58,32 @@ ul.ui-autocomplete {
     }
     .login-button{
 
-    	margin-top:10px;
-    	margin-bottom:30px;
+        margin-top:10px;
+        margin-bottom:30px;
 
     }
     p{
 
-    	color:black;
+        color:black;
     }
     .testimonial{
-    	min-height:235px;
+        min-height:235px;
     }
     .autocomplete-container{
-    	padding:15px;
-    	border-left:3px solid gold;
-    	border-right:3px solid gold;
-    	border-bottom:3px solid gold;
-    	max-height:20%;
-    	overflow-y: scroll;
-    	text-align: left;
-    	border-radius:20px;
+        padding:15px;
+
+        max-height:20%;
+        overflow-y: scroll;
+        text-align: left;
+        background-color: white;
+
 
     }
     .autocomplete-list{
-    	margin-bottom:10px;
+        margin-bottom:10px;
     }
     #autocomplete-results{
-    	display: none;
+        display: none;
     }
 </style>
 </head>
@@ -108,41 +107,34 @@ ul.ui-autocomplete {
                 </div>
                 <!-- Profile
 
-			<div class="dz-media media-45 rounded-circle">
-				<a href="profile.html"><img src="https://i.imgur.com/7F6QVaL.jpg"  style="max-width:70px;max-height:70px;border-radius:50% !important"class="rounded-circle circle" alt="author-image"></a>
-			</div>-->
+            <div class="dz-media media-45 rounded-circle">
+                <a href="profile.html"><img src="https://i.imgur.com/7F6QVaL.jpg"  style="max-width:70px;max-height:70px;border-radius:50% !important"class="rounded-circle circle" alt="author-image"></a>
+            </div>-->
             </div>
         </div>
         <!-- Banner End -->
         <!-- Page Content -->
         <div class="page-content">
-
             <div class="content-inner pt-0">
                 <div class="container fb">
-                	<h1 style="margin-top:10%">What Can We Elev8?</h1>
+                    <h1 style="margin-top:10%">What Can We Elev8?</h1>
                     <!-- Search -->
                     <form class="m-b30">
-
-                        <div class="input-group" style="margin-bottom:0px !important">
-                            <input type="autocomplete" placeholder="Search services here..." id="search" onclick="mapAutocomplete()" style="padding-left:15px !important;height:55px" class="form-control ps-0 bs-0" id="services-input">
-
-                            <span class="input-group-text">
-                                <a href="javascript:void(0);" class="search-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M20.5605 18.4395L16.7528 14.6318C17.5395 13.446 18 12.0262 18 10.5C18 6.3645 14.6355 3 10.5 3C6.3645 3 3 6.3645 3 10.5C3 14.6355 6.3645 18 10.5 18C12.0262 18 13.446 17.5395 14.6318 16.7528L18.4395 20.5605C19.0245 21.1462 19.9755 21.1462 20.5605 20.5605C21.1462 19.9748 21.1462 19.0252 20.5605 18.4395ZM5.25 10.5C5.25 7.605 7.605 5.25 10.5 5.25C13.395 5.25 15.75 7.605 15.75 10.5C15.75 13.395 13.395 15.75 10.5 15.75C7.605 15.75 5.25 13.395 5.25 10.5Z" fill="#B9B9B9" />
-                                    </svg>
-                                </a>
-                            </span>
-
-                        </div>
-                       <center> <div class="ms-2 autocomplete-container"id="autocomplete-results"></div></center>
+                        <div class="serach-area">
+                            <div class="input-group search-input" style="margin-bottom:0px">
+                                <input type="text" placeholder="Search services here..." id="search" onclick="mapAutocomplete()" class="form-control style-1 main-in">
+                                <a href="javascript:void(0);" class="btn-close"><i class="fa-solid fa-xmark"></i></a>
+                            </div>
+                            <center>
+                                <div class="ms-2 autocomplete-container" id="autocomplete-results"></div>
+                            </center>
                     </form>
                     <!-- Dashboard Area -->
                     <div class="dashboard-area" id="dashboard-area">
                         <!-- Features -->
                         <div class="m-b10">
                             <div class="title-bar">
-                                <h5 class="dz-title">Recommended Services</h5>
+                                <h5 class="dz-title" style="margin-top:10px">Recommended Services</h5>
                                 <div class="swiper-defult-pagination pagination-dots style-1 p-0"></div>
                             </div>
                             <div class="swiper-btn-center-lr">
@@ -206,13 +198,11 @@ ul.ui-autocomplete {
                                             <div class="card job-post">
                                                 <div class="card-body">
                                                     <div class="media media-80" style="width:100px">
-                                                       <p>View More ></p>
+                                                        <p>View More ></p>
                                                     </div>
-                                                   
                                                 </div>
                                             </div>
                                         </div>
-                                   
                                     </div>
                                 </div>
                             </div>
@@ -225,12 +215,12 @@ ul.ui-autocomplete {
                                 <div class="card card-bx card-content bg-primary">
                                     <div class="card-body">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
-											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-												<rect x="0" y="0" width="24" height="24"/>
-												<path d="M5.84026576,8 L18.1597342,8 C19.1999115,8 20.0664437,8.79732479 20.1528258,9.83390904 L20.8194924,17.833909 C20.9112219,18.9346631 20.0932459,19.901362 18.9924919,19.9930915 C18.9372479,19.9976952 18.8818364,20 18.8264009,20 L5.1735991,20 C4.0690296,20 3.1735991,19.1045695 3.1735991,18 C3.1735991,17.9445645 3.17590391,17.889153 3.18050758,17.833909 L3.84717425,9.83390904 C3.93355627,8.79732479 4.80008849,8 5.84026576,8 Z M10.5,10 C10.2238576,10 10,10.2238576 10,10.5 L10,11.5 C10,11.7761424 10.2238576,12 10.5,12 L13.5,12 C13.7761424,12 14,11.7761424 14,11.5 L14,10.5 C14,10.2238576 13.7761424,10 13.5,10 L10.5,10 Z" fill="#fff"/>
-												<path d="M10,8 L8,8 L8,7 C8,5.34314575 9.34314575,4 11,4 L13,4 C14.6568542,4 16,5.34314575 16,7 L16,8 L14,8 L14,7 C14,6.44771525 13.5522847,6 13,6 L11,6 C10.4477153,6 10,6.44771525 10,7 L10,8 Z" fill="#fff" fill-rule="nonzero" opacity="0.3"/>
-											</g>
-										</svg>
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24"/>
+                                                <path d="M5.84026576,8 L18.1597342,8 C19.1999115,8 20.0664437,8.79732479 20.1528258,9.83390904 L20.8194924,17.833909 C20.9112219,18.9346631 20.0932459,19.901362 18.9924919,19.9930915 C18.9372479,19.9976952 18.8818364,20 18.8264009,20 L5.1735991,20 C4.0690296,20 3.1735991,19.1045695 3.1735991,18 C3.1735991,17.9445645 3.17590391,17.889153 3.18050758,17.833909 L3.84717425,9.83390904 C3.93355627,8.79732479 4.80008849,8 5.84026576,8 Z M10.5,10 C10.2238576,10 10,10.2238576 10,10.5 L10,11.5 C10,11.7761424 10.2238576,12 10.5,12 L13.5,12 C13.7761424,12 14,11.7761424 14,11.5 L14,10.5 C14,10.2238576 13.7761424,10 13.5,10 L10.5,10 Z" fill="#fff"/>
+                                                <path d="M10,8 L8,8 L8,7 C8,5.34314575 9.34314575,4 11,4 L13,4 C14.6568542,4 16,5.34314575 16,7 L16,8 L14,8 L14,7 C14,6.44771525 13.5522847,6 13,6 L11,6 C10.4477153,6 10,6.44771525 10,7 L10,8 Z" fill="#fff" fill-rule="nonzero" opacity="0.3"/>
+                                            </g>
+                                        </svg>
                                         <div class="card-info">
                                             <h4 class="title">0</h4>
                                             <p>Current Jobs</p>
@@ -241,13 +231,13 @@ ul.ui-autocomplete {
                             <div class="col">
                                 <div class="card card-bx card-content bg-secondary">
                                     <div class="card-body">
-										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 24 24" version=	"1.1" class="svg-main-icon">
-											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-												<rect x="0" y="0" width="24" height="24"/>
-												<path d="M12,2 C13.8385982,2 15.5193947,3.03878936 16.3416408,4.68328157 L19,10 C20.365323,12.730646 19.25851,16.0510849 16.527864,17.4164079 C15.7602901,17.8001948 14.9139019,18 14.0557281,18 L9.94427191,18 C6.8913169,18 4.41640786,15.525091 4.41640786,12.472136 C4.41640786,11.6139622 4.61621302,10.767574 5,10 L7.65835921,4.68328157 C8.48060532,3.03878936 10.1614018,2 12,2 Z M7.55,13.6 C9.00633458,14.6922509 10.4936654,15.25 12,15.25 C13.5063346,15.25 14.9936654,14.6922509 16.45,13.6 L15.55,12.4 C14.3396679,13.3077491 13.1603321,13.75 12,13.75 C10.8396679,13.75 9.66033208,13.3077491 8.45,12.4 L7.55,13.6 Z" fill="#fff"/>
-												<path d="M6.15999985,21.0604779 L8.15999985,17.5963763 C8.43614222,17.1180837 9.04773263,16.9542085 9.52602525,17.2303509 C10.0043179,17.5064933 10.168193,18.1180837 9.89205065,18.5963763 L7.89205065,22.0604779 C7.61590828,22.5387706 7.00431787,22.7026457 6.52602525,22.4265033 C6.04773263,22.150361 5.88385747,21.5387706 6.15999985,21.0604779 Z M17.8320512,21.0301278 C18.1081936,21.5084204 17.9443184,22.1200108 17.4660258,22.3961532 C16.9877332,22.6722956 16.3761428,22.5084204 16.1000004,22.0301278 L14.1000004,18.5660262 C13.823858,18.0877335 13.9877332,17.4761431 14.4660258,17.2000008 C14.9443184,16.9238584 15.5559088,17.0877335 15.8320512,17.5660262 L17.8320512,21.0301278 Z" fill="#fff" opacity="0.3"/>
-											</g>
-										</svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 24 24" version=  "1.1" class="svg-main-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24"/>
+                                                <path d="M12,2 C13.8385982,2 15.5193947,3.03878936 16.3416408,4.68328157 L19,10 C20.365323,12.730646 19.25851,16.0510849 16.527864,17.4164079 C15.7602901,17.8001948 14.9139019,18 14.0557281,18 L9.94427191,18 C6.8913169,18 4.41640786,15.525091 4.41640786,12.472136 C4.41640786,11.6139622 4.61621302,10.767574 5,10 L7.65835921,4.68328157 C8.48060532,3.03878936 10.1614018,2 12,2 Z M7.55,13.6 C9.00633458,14.6922509 10.4936654,15.25 12,15.25 C13.5063346,15.25 14.9936654,14.6922509 16.45,13.6 L15.55,12.4 C14.3396679,13.3077491 13.1603321,13.75 12,13.75 C10.8396679,13.75 9.66033208,13.3077491 8.45,12.4 L7.55,13.6 Z" fill="#fff"/>
+                                                <path d="M6.15999985,21.0604779 L8.15999985,17.5963763 C8.43614222,17.1180837 9.04773263,16.9542085 9.52602525,17.2303509 C10.0043179,17.5064933 10.168193,18.1180837 9.89205065,18.5963763 L7.89205065,22.0604779 C7.61590828,22.5387706 7.00431787,22.7026457 6.52602525,22.4265033 C6.04773263,22.150361 5.88385747,21.5387706 6.15999985,21.0604779 Z M17.8320512,21.0301278 C18.1081936,21.5084204 17.9443184,22.1200108 17.4660258,22.3961532 C16.9877332,22.6722956 16.3761428,22.5084204 16.1000004,22.0301278 L14.1000004,18.5660262 C13.823858,18.0877335 13.9877332,17.4761431 14.4660258,17.2000008 C14.9443184,16.9238584 15.5559088,17.0877335 15.8320512,17.5660262 L17.8320512,21.0301278 Z" fill="#fff" opacity="0.3"/>
+                                            </g>
+                                        </svg>
  
                                         <div class="card-info">
                                             <h4 class="title" id="past">0</h4>
@@ -462,17 +452,13 @@ ul.ui-autocomplete {
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <br>
-                                        <p class="ms-3" style="text-decoration: underline;">Learn More</p>
+                                    <p class="ms-3" style="text-decoration: underline;">Learn More</p>
                                 </div>
                             </div>
                         </div>
-
-
                         <!-- How it works End -->
-
                         <!-- interior services -->
                         <div class="m-b10">
                             <div class="title-bar">
@@ -486,7 +472,7 @@ ul.ui-autocomplete {
                                             <div class="card job-post">
                                                 <div class="card-body">
                                                     <div class="media media-80">
-                                                        <img src="https://i0.wp.com/movingtips.wpengine.com/wp-content/uploads/2020/08/home-cleaning-service.jpg?fit=400%2C684&ssl=1"/>
+                                                        <img src="https://i0.wp.com/movingtips.wpengine.com/wp-content/uploads/2020/08/home-cleaning-service.jpg?fit=400%2C684&ssl=1" />
                                                     </div>
                                                     <div class="card-info">
                                                         <h6 class="title"><a href="javascript:void(0);">One-time Cleaning</a></h6>
@@ -594,9 +580,8 @@ ul.ui-autocomplete {
                                             <div class="card job-post">
                                                 <div class="card-body">
                                                     <div class="media media-80" style="width:100px">
-                                                       <p>View More ></p>
+                                                        <p>View More ></p>
                                                     </div>
-                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -605,9 +590,7 @@ ul.ui-autocomplete {
                             </div>
                         </div>
                         <!-- interior services End -->
-
-
-                         <!-- exterior services -->
+                        <!-- exterior services -->
                         <div class="m-b10">
                             <div class="title-bar">
                                 <h5 class="dz-title">Exterior Services</h5>
@@ -620,7 +603,7 @@ ul.ui-autocomplete {
                                             <div class="card job-post">
                                                 <div class="card-body">
                                                     <div class="media media-80">
-                                                        <img src="https://www.kguard.com/wp-content/uploads/KGuard-Blog-Post-Parts-and-Accessories-Involved-in-Gutter-Installation.png"/>
+                                                        <img src="https://www.kguard.com/wp-content/uploads/KGuard-Blog-Post-Parts-and-Accessories-Involved-in-Gutter-Installation.png" />
                                                     </div>
                                                     <div class="card-info">
                                                         <h6 class="title"><a href="javascript:void(0);">Gutter Installation and Cleaning</a></h6>
@@ -638,7 +621,7 @@ ul.ui-autocomplete {
                                             <div class="card job-post">
                                                 <div class="card-body">
                                                     <div class="media media-80">
-                                                    	<img src="https://www.familyhandyman.com/wp-content/uploads/2022/06/Removing-vinyl-siding-FH07APR_477_06_050-JVedit.jpg"/>
+                                                        <img src="https://www.familyhandyman.com/wp-content/uploads/2022/06/Removing-vinyl-siding-FH07APR_477_06_050-JVedit.jpg" />
                                                     </div>
                                                     <div class="card-info">
                                                         <h6 class="title"><a href="javascript:void(0);">Siding Repair and Replacement</a></h6>
@@ -728,9 +711,8 @@ ul.ui-autocomplete {
                                             <div class="card job-post">
                                                 <div class="card-body">
                                                     <div class="media media-80" style="width:100px">
-                                                       <p>View More ></p>
+                                                        <p>View More ></p>
                                                     </div>
-                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -739,8 +721,7 @@ ul.ui-autocomplete {
                             </div>
                         </div>
                         <!-- exterior services End -->
-
-                                                <!-- How it works -->
+                        <!-- How it works -->
                         <div class="m-b10">
                             <div class="title-bar">
                                 <h5 class="dz-title">Elev8 Experiences</h5>
@@ -794,23 +775,17 @@ ul.ui-autocomplete {
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-                                   
                                 </div>
                             </div>
                         </div>
-
-
                         <!-- Testimonials End -->
-
-
                         <!-- Recent Jobs 
                     <div class="title-bar">
                         <h5 class="dz-title">Popular Companies</h5>
                         <a class="btn btn-sm text-primary" href="search.html">More</a>
                     </div>
-					<div class="list item-list recent-jobs-list">
+                    <div class="list item-list recent-jobs-list">
                         <ul>
                             <li>
                                 <div class="item-content">
@@ -952,491 +927,492 @@ ul.ui-autocomplete {
     <script src="assets/js/dz.carousel.js"></script><!-- Swiper -->
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script><!-- Swiper -->
     <script>
-    	var categories;
+    var categories;
+
     function mapAutocomplete() {
-    	console.log("searching")
+        console.log("searching")
         $(document).ready(function() {
             categories = [{
-            "name": "Pressure Washing",
-            "subcategories": [
-                "Driveway",
-                "Patio",
-                "Pool Deck",
-                "Sidewalk",
-                "Fence",
-                "House Exterior",
-                "Roof",
-                "Boat Dock"
-            ]
-        },
-        {
-            "name": "Fencing",
-            "subcategories": [
-                "Wooden Fence Installation",
-                "Wooden Fence Repair",
-                "Vinyl Fence Installation",
-                "Vinyl Fence Repair",
-                "Chain Link Fence Installation",
-                "Chain Link Fence Repair",
-                "Wrought Iron Fence Installation",
-                "Wrought Iron Fence Repair",
-                "Aluminum Fence Installation",
-                "Aluminum Fence Repair",
-                "Farm and Ranch Fence Installation",
-                "Farm and Ranch Fence Repair",
-                "Pool Fence Installation",
-                "Pool Fence Repair",
-                "Fence Staining and Painting",
-                "Fence Power Washing"
-            ]
-        },
-        {
-            "name": "Solar",
-            "subcategories": [
-                "Solar Panel Installation",
-                "Solar Panel Repair",
-                "Solar Inverter Installation",
-                "Solar Inverter Repair",
-                "Solar Battery Installation",
-                "Solar Battery Repair",
-                "Off-Grid Solar System Installation",
-                "Off-Grid Solar System Repair",
-                "Grid-Tied Solar System Installation",
-                "Grid-Tied Solar System Repair",
-                "Solar Pool Heater Installation",
-                "Solar Pool Heater Repair",
-                "Solar Water Heater Installation",
-                "Solar Water Heater Repair"
-            ]
-        },
-        {
-            "name": "Irrigation",
-            "subcategories": [
-                "Irrigation System Installation",
-                "Irrigation System Repair",
-                "Sprinkler System Installation",
-                "Sprinkler System Repair",
-                "Drip Irrigation Installation",
-                "Drip Irrigation Repair",
-                "Lawn Sprinkler System Installation",
-                "Lawn Sprinkler System Repair",
-                "Backflow Preventer Installation",
-                "Backflow Preventer Testing",
-                "Winterization",
-                "Spring Start-Up",
-                "Rain Sensor Installation"
-            ]
-        },
-        {
-            "name": "Door Services",
-            "subcategories": [
-                "Door Installation",
-                "Door Repair",
-                "Sliding Door Repair",
-                "Sliding Door Installation",
-                "Shower Door Repair",
-                "Shower Door Installation",
-                "Storm Door Installation",
-                "Storm Door Repair",
-                "Screen Door Installation",
-                "Screen Door Repair",
-                "Security Door Installation",
-                "Security Door Repair",
-                "French Door Installation",
-                "French Door Repair"
-            ]
-        }, {
-            "name": "Living Room",
-            "subcategories": [
-                "Sofa, Couch, and Upholstery Cleaning",
-                "Carpet Cleaning",
-                "Blinds and Shades Installation",
-                "TV Mounting",
-                "Art and Picture Hanging",
-                "Lighting Installation",
-                "Furniture Moving and Rearranging",
-                "Curtain and Drapes Installation"
-            ]
-        }, {
-            "name": "Garage",
-            "subcategories": [
-                "Garage Door Installation",
-                "Garage Door Repair",
-                "Garage Organization and Shelving",
-                "Garage Flooring",
-                "Garage Lighting",
-                "Garage Heating and Cooling",
-                "Garage Conversion",
-                "Car Lift Installation",
-                "Vehicle Maintenance",
-                "General Garage Repairs"
-            ]
-        },
-        {
-            "name": "TV and Stereo",
-            "subcategories": [
-                "TV Installation",
-                "TV Mounting",
-                "Home Theater Setup",
-                "Stereo and Surround Sound Installation",
-                "Speaker Installation",
-                "Cable and Wire Management",
-                "Remote Control Programming",
-                "TV Repair",
-                "Stereo and Sound System Repair"
-            ]
-        },
-        {
-            "name": "Kitchen",
-            "subcategories": [
-                "Cabinet Installation and Repair",
-                "Countertop Installation and Repair",
-                "Sink and Faucet Installation and Repair",
-                "Flooring Installation and Repair",
-                "Lighting Installation and Repair",
-                "Appliance Installation and Repair",
-                "Backsplash Installation and Repair",
-                "Kitchen Island Installation",
-                "Pantry Organization and Installation"
-            ]
-        },
-        {
-            "name": "Interior Design",
-            "subcategories": [
-                "Residential Design",
-                "Commercial Design",
-                "Color Consulting",
-                "Furniture Selection and Placement",
-                "Lighting Design",
-                "Window Treatments and Coverings",
-                "Wallpaper and Paint Selection",
-                "Flooring Selection",
-                "Accessories and Decor",
-                "Space Planning"
-            ]
-        },
+                    "name": "Pressure Washing",
+                    "subcategories": [
+                        "Driveway",
+                        "Patio",
+                        "Pool Deck",
+                        "Sidewalk",
+                        "Fence",
+                        "House Exterior",
+                        "Roof",
+                        "Boat Dock"
+                    ]
+                },
+                {
+                    "name": "Fencing",
+                    "subcategories": [
+                        "Wooden Fence Installation",
+                        "Wooden Fence Repair",
+                        "Vinyl Fence Installation",
+                        "Vinyl Fence Repair",
+                        "Chain Link Fence Installation",
+                        "Chain Link Fence Repair",
+                        "Wrought Iron Fence Installation",
+                        "Wrought Iron Fence Repair",
+                        "Aluminum Fence Installation",
+                        "Aluminum Fence Repair",
+                        "Farm and Ranch Fence Installation",
+                        "Farm and Ranch Fence Repair",
+                        "Pool Fence Installation",
+                        "Pool Fence Repair",
+                        "Fence Staining and Painting",
+                        "Fence Power Washing"
+                    ]
+                },
+                {
+                    "name": "Solar",
+                    "subcategories": [
+                        "Solar Panel Installation",
+                        "Solar Panel Repair",
+                        "Solar Inverter Installation",
+                        "Solar Inverter Repair",
+                        "Solar Battery Installation",
+                        "Solar Battery Repair",
+                        "Off-Grid Solar System Installation",
+                        "Off-Grid Solar System Repair",
+                        "Grid-Tied Solar System Installation",
+                        "Grid-Tied Solar System Repair",
+                        "Solar Pool Heater Installation",
+                        "Solar Pool Heater Repair",
+                        "Solar Water Heater Installation",
+                        "Solar Water Heater Repair"
+                    ]
+                },
+                {
+                    "name": "Irrigation",
+                    "subcategories": [
+                        "Irrigation System Installation",
+                        "Irrigation System Repair",
+                        "Sprinkler System Installation",
+                        "Sprinkler System Repair",
+                        "Drip Irrigation Installation",
+                        "Drip Irrigation Repair",
+                        "Lawn Sprinkler System Installation",
+                        "Lawn Sprinkler System Repair",
+                        "Backflow Preventer Installation",
+                        "Backflow Preventer Testing",
+                        "Winterization",
+                        "Spring Start-Up",
+                        "Rain Sensor Installation"
+                    ]
+                },
+                {
+                    "name": "Door Services",
+                    "subcategories": [
+                        "Door Installation",
+                        "Door Repair",
+                        "Sliding Door Repair",
+                        "Sliding Door Installation",
+                        "Shower Door Repair",
+                        "Shower Door Installation",
+                        "Storm Door Installation",
+                        "Storm Door Repair",
+                        "Screen Door Installation",
+                        "Screen Door Repair",
+                        "Security Door Installation",
+                        "Security Door Repair",
+                        "French Door Installation",
+                        "French Door Repair"
+                    ]
+                }, {
+                    "name": "Living Room",
+                    "subcategories": [
+                        "Sofa, Couch, and Upholstery Cleaning",
+                        "Carpet Cleaning",
+                        "Blinds and Shades Installation",
+                        "TV Mounting",
+                        "Art and Picture Hanging",
+                        "Lighting Installation",
+                        "Furniture Moving and Rearranging",
+                        "Curtain and Drapes Installation"
+                    ]
+                }, {
+                    "name": "Garage",
+                    "subcategories": [
+                        "Garage Door Installation",
+                        "Garage Door Repair",
+                        "Garage Organization and Shelving",
+                        "Garage Flooring",
+                        "Garage Lighting",
+                        "Garage Heating and Cooling",
+                        "Garage Conversion",
+                        "Car Lift Installation",
+                        "Vehicle Maintenance",
+                        "General Garage Repairs"
+                    ]
+                },
+                {
+                    "name": "TV and Stereo",
+                    "subcategories": [
+                        "TV Installation",
+                        "TV Mounting",
+                        "Home Theater Setup",
+                        "Stereo and Surround Sound Installation",
+                        "Speaker Installation",
+                        "Cable and Wire Management",
+                        "Remote Control Programming",
+                        "TV Repair",
+                        "Stereo and Sound System Repair"
+                    ]
+                },
+                {
+                    "name": "Kitchen",
+                    "subcategories": [
+                        "Cabinet Installation and Repair",
+                        "Countertop Installation and Repair",
+                        "Sink and Faucet Installation and Repair",
+                        "Flooring Installation and Repair",
+                        "Lighting Installation and Repair",
+                        "Appliance Installation and Repair",
+                        "Backsplash Installation and Repair",
+                        "Kitchen Island Installation",
+                        "Pantry Organization and Installation"
+                    ]
+                },
+                {
+                    "name": "Interior Design",
+                    "subcategories": [
+                        "Residential Design",
+                        "Commercial Design",
+                        "Color Consulting",
+                        "Furniture Selection and Placement",
+                        "Lighting Design",
+                        "Window Treatments and Coverings",
+                        "Wallpaper and Paint Selection",
+                        "Flooring Selection",
+                        "Accessories and Decor",
+                        "Space Planning"
+                    ]
+                },
 
 
-        {
-            "name": "Flooring",
-            "subcategories": [
-                "Vinyl",
-                "Tile",
-                "Epoxy",
-                "Laminate",
-                "Hardwood",
-                "Carpet",
-                "Terrazzo"
-            ]
-        },
-        {
-            "name": "Landscaping",
-            "subcategories": [
-                "Lawn care",
-                "Garden design",
-                "Hardscaping",
-                "Tree care",
-                "Irrigation",
-                "Landscape maintenance",
-                "Landscaping installation",
-                "Outdoor living spaces",
-                "Water features",
-                "Landscape lighting",
-                "Pool Landscaping",
-                "Xeriscaping",
-                "Artificial Turf",
-                "Sod Installation",
-                "Mulching",
-                "Planting",
-                "Tree Trimming",
-                "Stump Grinding",
-                "Weed Control",
-                "Pest Control",
-                "Fertilization",
-                "Seasonal Cleanups"
-            ]
-        },
-        {
-            "name": "Handyman",
-            "subcategories": [
-                "Painting and Staining",
-                "Drywall Repair and Installation",
-                "Furniture Assembly",
-                "General Home Repairs",
-                "Window Repair and Installation",
-                "Door Repair and Installation",
-                "Caulking and Weatherstripping",
-                "Tile and Grout Installation and Repair",
-            ]
-        },
-        {
-            "name": "Lighting",
-            "subcategories": [
-                "Light Fixture Installation",
-                "Light Fixture Repair",
-                "LED Lighting Installation",
-                "LED Lighting Repair",
-                "Outdoor Lighting Installation",
-                "Outdoor Lighting Repair",
-                "Landscape Lighting Installation",
-                "Landscape Lighting Repair",
-                "Chandelier Installation",
-                "Chandelier Repair",
-                "Ceiling Fan Installation",
-                "Ceiling Fan Repair",
-                "Dimmer Switch Installation",
-                "Dimmer Switch Repair",
-                "Lighting Control System Installation",
-                "Lighting Control System Repair"
-            ]
-        },
-        {
-            "name": "Cleaning",
-            "subcategories": [
-                "House Cleaning",
-                "Carpet Cleaning",
-                "Upholstery Cleaning",
-                "Window Cleaning",
-                "Deep Cleaning",
-                "Move-In/Move-Out Cleaning",
-                "Commercial Cleaning",
-                "Disinfecting and Sanitizing",
-                "Maid Services",
-                "Window Cleaning",
-                "Airbnb Cleaning"
-            ]
-        },
+                {
+                    "name": "Flooring",
+                    "subcategories": [
+                        "Vinyl",
+                        "Tile",
+                        "Epoxy",
+                        "Laminate",
+                        "Hardwood",
+                        "Carpet",
+                        "Terrazzo"
+                    ]
+                },
+                {
+                    "name": "Landscaping",
+                    "subcategories": [
+                        "Lawn care",
+                        "Garden design",
+                        "Hardscaping",
+                        "Tree care",
+                        "Irrigation",
+                        "Landscape maintenance",
+                        "Landscaping installation",
+                        "Outdoor living spaces",
+                        "Water features",
+                        "Landscape lighting",
+                        "Pool Landscaping",
+                        "Xeriscaping",
+                        "Artificial Turf",
+                        "Sod Installation",
+                        "Mulching",
+                        "Planting",
+                        "Tree Trimming",
+                        "Stump Grinding",
+                        "Weed Control",
+                        "Pest Control",
+                        "Fertilization",
+                        "Seasonal Cleanups"
+                    ]
+                },
+                {
+                    "name": "Handyman",
+                    "subcategories": [
+                        "Painting and Staining",
+                        "Drywall Repair and Installation",
+                        "Furniture Assembly",
+                        "General Home Repairs",
+                        "Window Repair and Installation",
+                        "Door Repair and Installation",
+                        "Caulking and Weatherstripping",
+                        "Tile and Grout Installation and Repair",
+                    ]
+                },
+                {
+                    "name": "Lighting",
+                    "subcategories": [
+                        "Light Fixture Installation",
+                        "Light Fixture Repair",
+                        "LED Lighting Installation",
+                        "LED Lighting Repair",
+                        "Outdoor Lighting Installation",
+                        "Outdoor Lighting Repair",
+                        "Landscape Lighting Installation",
+                        "Landscape Lighting Repair",
+                        "Chandelier Installation",
+                        "Chandelier Repair",
+                        "Ceiling Fan Installation",
+                        "Ceiling Fan Repair",
+                        "Dimmer Switch Installation",
+                        "Dimmer Switch Repair",
+                        "Lighting Control System Installation",
+                        "Lighting Control System Repair"
+                    ]
+                },
+                {
+                    "name": "Cleaning",
+                    "subcategories": [
+                        "House Cleaning",
+                        "Carpet Cleaning",
+                        "Upholstery Cleaning",
+                        "Window Cleaning",
+                        "Deep Cleaning",
+                        "Move-In/Move-Out Cleaning",
+                        "Commercial Cleaning",
+                        "Disinfecting and Sanitizing",
+                        "Maid Services",
+                        "Window Cleaning",
+                        "Airbnb Cleaning"
+                    ]
+                },
 
-        {
-            "name": "Roofing",
-            "subcategories": [
-                "Roof repair",
-                "Roof replacement",
-                "Roof installation",
-                "Gutter installation and repair",
-                "Skylight installation and repair",
-                "Roof cleaning and maintenance",
-                "Chimney repair and maintenance",
-                "Emergency roof repair",
-                "Flat Roofing",
-                "Metal Roofing",
-                "Tile Roofing",
-                "Shingle Roofing"
-            ]
-        },
-        {
-            "name": "Air Conditioning",
-            "subcategories": [
-                "AC Repair",
-                "AC Installation",
-                "AC Maintenance",
-                "Duct Cleaning",
-                "Thermostat Installation",
-                "Indoor Air Quality",
-                "Commercial AC Services",
-                "Emergency AC Services",
-                "Heat Pump Services"
-            ]
-        },
-        {
-            "name": "Plumbing",
-            "subcategories": [
-                "Water Heater Repair and Installation",
-                "Drain Cleaning",
-                "Toilet Repair and Installation",
-                "Faucet Repair and Installation",
-                "Garbage Disposal Repair and Installation",
-                "Sump Pump Repair and Installation",
-                "Leak Detection and Repair",
-                "Backflow Prevention",
-                "Hydro Jetting",
-                "Gas Line Services"
-            ]
-        },
-        {
-            "name": "Electrical",
-            "subcategories": [
-                "Electrical Repairs",
-                "Electrical Panel Upgrades",
-                "Electrical Installations",
-                "Lighting Installations and Repairs",
-                "Ceiling Fan Installations",
-                "Generators",
-                "Surge Protection",
-                "Electrical Inspections",
-                "Emergency Electrical Services"
-            ]
-        },
-        {
-            "name": "Pest Control",
-            "subcategories": [
-                "Termite Inspection and Treatment",
-                "Bed Bug Treatment",
-                "Ant Control",
-                "Rodent Control",
-                "Mosquito Control",
-                "Spider Control",
-                "Flea and Tick Treatment",
-                "Wildlife Control",
-                "Bee and Wasp Removal"
-            ]
-        },
-        {
-            "name": "Pool Services",
-            "subcategories": [
-                "Pool Cleaning",
-                "Pool Maintenance",
-                "Pool Repair",
-                "Pool Renovation",
-                "Pool Resurfacing",
-                "Pool Decking",
-                "Pool Heating",
-                "Saltwater Pool Services",
-                "Commercial Pool Services",
-                "Emergency Pool Services",
-                "Pool Leak Detection and Repair",
-                "Pool Equipment Repair and Replacement",
-                "Pool Lighting Installation and Repair"
-            ]
-        },
-        {
-            "name": "Painting",
-            "subcategories": [
-                "Interior Painting",
-                "Exterior Painting",
-                "Commercial Painting",
-                "Residential Painting",
-                "Wallpaper Installation and Removal",
-                "Color Consultation",
-                "Faux Painting",
-                "Cabinet Painting",
-                "Deck and Fence Painting or Staining",
-                "Pressure Washing",
-                "Drywall Repair and Texturing",
-                "Trim and Baseboard Painting",
-                "Epoxy Floor Coating"
-            ]
-        },
-        {
-            "name": "Smart Home",
-            "subcategories": [
-                "Smart Home Installation",
-                "Smart Thermostat Installation and Programming",
-                "Smart Lighting Installation and Programming",
-                "Smart Lock Installation and Programming",
-                "Smart Speaker and Voice Assistant Setup",
-                "Smart Appliance Installation and Programming",
-                "Smart Home Consulting and Design",
-                "Smart Home Troubleshooting and Repair"
-            ]
-        },
-        {
-            "name": "Home Security",
-            "subcategories": [
-                "Alarm System Installation",
-                "Surveillance Camera Installation",
-                "Smart Home Security System Installation",
-                "Window and Door Security",
-                "Motion Detector Installation",
-                "Security Lighting Installation",
-                "Access Control System Installation",
-                "Security System Monitoring",
-                "Security System Repair and Maintenance",
-                "Security Consultation and Design"
-            ]
-        },
-        {
-            "name": "Paving",
-            "subcategories": [
-                "Driveway Paving",
-                "Asphalt Paving",
-                "Concrete Paving",
-                "Patio Paving",
-                "Walkway Paving",
-                "Pool Deck Paving",
-                "Brick Paving",
-                "Stone Paving",
-                "Interlocking Pavers",
-                "Paver Repair and Maintenance",
-                "Paver Sealing",
-                "Paver Cleaning"
-            ]
-        }, {
-            "name": "Furniture Assembly",
-            "subcategories": [
-                "Office Furniture Assembly",
-                "Home Furniture Assembly",
-                "IKEA Furniture Assembly",
-                "Bed Assembly",
-                "Dresser Assembly",
-                "Wardrobe Assembly",
-                "Table and Chair Assembly",
-                "Bookshelf Assembly",
-                "TV Stand Assembly",
-                "Cabinet Assembly"
-            ]
-        },
-        {
-            "name": "Moving Services",
-            "subcategories": [
-                "Local Moving",
-                "Long Distance Moving",
-                "Commercial Moving",
-                "Residential Moving",
-                "Packing and Unpacking",
-                "Storage Solutions",
-                "Senior Moving Services",
-                "Furniture Moving",
-                "Piano Moving",
-                "Small Moves"
-            ]
-        },
-        {
-            "name": "Appliances",
-            "subcategories": [
-                "Refrigerator Repair",
-                "Dishwasher Repair",
-                "Oven and Stove Repair",
-                "Washing Machine Repair",
-                "Dryer Repair",
-                "Microwave Repair",
-                "Freezer Repair",
-                "Garbage Disposal Repair",
-                "Trash Compactor Repair",
-                "Range Hood Repair"
-            ]
-        },
-        {
-            "name": "Bathroom",
-            "subcategories": [
-                "Bathroom Remodeling",
-                "Shower and Bathtub Installation",
-                "Toilet Repair and Installation",
-                "Sink and Faucet Installation",
-                "Tile Installation and Repair",
-                "Grout and Caulking Services",
-                "Plumbing Services",
-                "Exhaust Fan Installation",
-                "Bathroom Lighting Installation",
-                "Bathroom Vanity Installation",
-                "Mirror Installation",
-                "Towel Rack and Hook Installation",
-                "Handicap Accessible Bathroom Installation"
-            ]
-        }
+                {
+                    "name": "Roofing",
+                    "subcategories": [
+                        "Roof repair",
+                        "Roof replacement",
+                        "Roof installation",
+                        "Gutter installation and repair",
+                        "Skylight installation and repair",
+                        "Roof cleaning and maintenance",
+                        "Chimney repair and maintenance",
+                        "Emergency roof repair",
+                        "Flat Roofing",
+                        "Metal Roofing",
+                        "Tile Roofing",
+                        "Shingle Roofing"
+                    ]
+                },
+                {
+                    "name": "Air Conditioning",
+                    "subcategories": [
+                        "AC Repair",
+                        "AC Installation",
+                        "AC Maintenance",
+                        "Duct Cleaning",
+                        "Thermostat Installation",
+                        "Indoor Air Quality",
+                        "Commercial AC Services",
+                        "Emergency AC Services",
+                        "Heat Pump Services"
+                    ]
+                },
+                {
+                    "name": "Plumbing",
+                    "subcategories": [
+                        "Water Heater Repair and Installation",
+                        "Drain Cleaning",
+                        "Toilet Repair and Installation",
+                        "Faucet Repair and Installation",
+                        "Garbage Disposal Repair and Installation",
+                        "Sump Pump Repair and Installation",
+                        "Leak Detection and Repair",
+                        "Backflow Prevention",
+                        "Hydro Jetting",
+                        "Gas Line Services"
+                    ]
+                },
+                {
+                    "name": "Electrical",
+                    "subcategories": [
+                        "Electrical Repairs",
+                        "Electrical Panel Upgrades",
+                        "Electrical Installations",
+                        "Lighting Installations and Repairs",
+                        "Ceiling Fan Installations",
+                        "Generators",
+                        "Surge Protection",
+                        "Electrical Inspections",
+                        "Emergency Electrical Services"
+                    ]
+                },
+                {
+                    "name": "Pest Control",
+                    "subcategories": [
+                        "Termite Inspection and Treatment",
+                        "Bed Bug Treatment",
+                        "Ant Control",
+                        "Rodent Control",
+                        "Mosquito Control",
+                        "Spider Control",
+                        "Flea and Tick Treatment",
+                        "Wildlife Control",
+                        "Bee and Wasp Removal"
+                    ]
+                },
+                {
+                    "name": "Pool Services",
+                    "subcategories": [
+                        "Pool Cleaning",
+                        "Pool Maintenance",
+                        "Pool Repair",
+                        "Pool Renovation",
+                        "Pool Resurfacing",
+                        "Pool Decking",
+                        "Pool Heating",
+                        "Saltwater Pool Services",
+                        "Commercial Pool Services",
+                        "Emergency Pool Services",
+                        "Pool Leak Detection and Repair",
+                        "Pool Equipment Repair and Replacement",
+                        "Pool Lighting Installation and Repair"
+                    ]
+                },
+                {
+                    "name": "Painting",
+                    "subcategories": [
+                        "Interior Painting",
+                        "Exterior Painting",
+                        "Commercial Painting",
+                        "Residential Painting",
+                        "Wallpaper Installation and Removal",
+                        "Color Consultation",
+                        "Faux Painting",
+                        "Cabinet Painting",
+                        "Deck and Fence Painting or Staining",
+                        "Pressure Washing",
+                        "Drywall Repair and Texturing",
+                        "Trim and Baseboard Painting",
+                        "Epoxy Floor Coating"
+                    ]
+                },
+                {
+                    "name": "Smart Home",
+                    "subcategories": [
+                        "Smart Home Installation",
+                        "Smart Thermostat Installation and Programming",
+                        "Smart Lighting Installation and Programming",
+                        "Smart Lock Installation and Programming",
+                        "Smart Speaker and Voice Assistant Setup",
+                        "Smart Appliance Installation and Programming",
+                        "Smart Home Consulting and Design",
+                        "Smart Home Troubleshooting and Repair"
+                    ]
+                },
+                {
+                    "name": "Home Security",
+                    "subcategories": [
+                        "Alarm System Installation",
+                        "Surveillance Camera Installation",
+                        "Smart Home Security System Installation",
+                        "Window and Door Security",
+                        "Motion Detector Installation",
+                        "Security Lighting Installation",
+                        "Access Control System Installation",
+                        "Security System Monitoring",
+                        "Security System Repair and Maintenance",
+                        "Security Consultation and Design"
+                    ]
+                },
+                {
+                    "name": "Paving",
+                    "subcategories": [
+                        "Driveway Paving",
+                        "Asphalt Paving",
+                        "Concrete Paving",
+                        "Patio Paving",
+                        "Walkway Paving",
+                        "Pool Deck Paving",
+                        "Brick Paving",
+                        "Stone Paving",
+                        "Interlocking Pavers",
+                        "Paver Repair and Maintenance",
+                        "Paver Sealing",
+                        "Paver Cleaning"
+                    ]
+                }, {
+                    "name": "Furniture Assembly",
+                    "subcategories": [
+                        "Office Furniture Assembly",
+                        "Home Furniture Assembly",
+                        "IKEA Furniture Assembly",
+                        "Bed Assembly",
+                        "Dresser Assembly",
+                        "Wardrobe Assembly",
+                        "Table and Chair Assembly",
+                        "Bookshelf Assembly",
+                        "TV Stand Assembly",
+                        "Cabinet Assembly"
+                    ]
+                },
+                {
+                    "name": "Moving Services",
+                    "subcategories": [
+                        "Local Moving",
+                        "Long Distance Moving",
+                        "Commercial Moving",
+                        "Residential Moving",
+                        "Packing and Unpacking",
+                        "Storage Solutions",
+                        "Senior Moving Services",
+                        "Furniture Moving",
+                        "Piano Moving",
+                        "Small Moves"
+                    ]
+                },
+                {
+                    "name": "Appliances",
+                    "subcategories": [
+                        "Refrigerator Repair",
+                        "Dishwasher Repair",
+                        "Oven and Stove Repair",
+                        "Washing Machine Repair",
+                        "Dryer Repair",
+                        "Microwave Repair",
+                        "Freezer Repair",
+                        "Garbage Disposal Repair",
+                        "Trash Compactor Repair",
+                        "Range Hood Repair"
+                    ]
+                },
+                {
+                    "name": "Bathroom",
+                    "subcategories": [
+                        "Bathroom Remodeling",
+                        "Shower and Bathtub Installation",
+                        "Toilet Repair and Installation",
+                        "Sink and Faucet Installation",
+                        "Tile Installation and Repair",
+                        "Grout and Caulking Services",
+                        "Plumbing Services",
+                        "Exhaust Fan Installation",
+                        "Bathroom Lighting Installation",
+                        "Bathroom Vanity Installation",
+                        "Mirror Installation",
+                        "Towel Rack and Hook Installation",
+                        "Handicap Accessible Bathroom Installation"
+                    ]
+                }
 
-    ]
+            ]
 
         });
     }
-    function searchCategories(query) {
+function searchCategories(query) {
     var results = [];
 
     categories.forEach(function(category) {
         var categoryMatches = [];
 
         category.subcategories.forEach(function(subcategory) {
-            if (subcategory.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+            if (subcategory.toLowerCase().includes(query.toLowerCase())) {
                 categoryMatches.push(subcategory);
             }
         });
@@ -1449,10 +1425,12 @@ ul.ui-autocomplete {
         }
     });
 
-    return results;
+    // Limit the number of results
+    return results.slice(0, 10);
 }
-// add a variable to keep track of whether the autocomplete results are visible
+
 var autocompleteVisible = false;
+var recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
 
 $('#search').on('input', function() {
     var query = $(this).val();
@@ -1462,11 +1440,14 @@ $('#search').on('input', function() {
 
     results.forEach(function(result) {
         var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category);
-        var subcategoryList = $('<ul>').addClass('autocomplete-list');
+        var subcategoryList = $('<ul>').addClass('autocomplete-list swiper-wrapper swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events');
 
         result.subcategories.forEach(function(subcategory) {
-            var subcategoryItem = $('<li>').addClass('autocomplete-item').text(subcategory);
-            subcategoryItem.data('category', result.category);
+            var subcategoryItem = `<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="margin-right: 10px;">
+                                        <a href="./job-detail.html?category=${window.btoa(result.category)}&subcategory=${window.btoa(subcategory)}" class="tag-btn" id="${subcategory}">${subcategory}</a>
+                                    </div>`
+            
+            //subcategoryItem.data('category', result.category);
             subcategoryList.append(subcategoryItem);
         });
 
@@ -1475,39 +1456,47 @@ $('#search').on('input', function() {
     });
 
     // add click handlers for category headers and subcategory items
-    $('.autocomplete-header').on('click', function() {
+    $('.autocomplete-header, .autocomplete-item').on('click', function() {
         var category = $(this).data('category');
+        var subcategory = $(this).hasClass('autocomplete-item') ? $(this).text() : null;
 
-        console.log('Clicked on category: ' + category)
-        location.href = "./job-detail.html?category =" + window.btoa(category);
-        console.log('Clicked on category: ' + category);
+        // store the search in recent searches
+        recentSearches.unshift({ category, subcategory });
+        localStorage.setItem('recentSearches', JSON.stringify(recentSearches.slice(0, 10)));
+
+        location.href = "./job-detail.html?category=" + window.btoa(category) + (subcategory ? '&subcategory=' + window.btoa(subcategory) : '');
     });
 
-    $('.autocomplete-item').on('click', function() {
-        var category = $(this).data('category');
-        var subcategory = $(this).text();
-        console.log('Clicked on subcategory: ' + subcategory + ' (category: ' + category + ')')
-        location.href = "./job-detail.html?category=" + window.btoa(category) +'&subcategory='+window.btoa(subcategory);
-
-        console.log('Clicked on subcategory: ' + subcategory + ' (category: ' + category + ')');
-    });
-
-    // show the autocomplete results
     $('#autocomplete-results').show();
+
     autocompleteVisible = true;
 });
 
+$('#search').on('focus', function() {
+    // show recent searches when search bar is clicked
+    if (!autocompleteVisible) {
+        $('#autocomplete-results').empty();
+        recentSearches.forEach(function(search) {
+            var categoryHeader = $('<h3>').addClass('autocomplete-header').text(search.category);
+            categoryHeader.data('category', search.category);
+            $('#autocomplete-results').append(categoryHeader);
+            if (search.subcategory) {
+                var subcategoryItem = $('<li>').addClass('autocomplete-item').text(search.subcategory);
+                subcategoryItem.data('category', search.category);
+                $('#autocomplete-results').append(subcategoryItem);
+            }
+        });
+        $('#autocomplete-results').show();
+        autocompleteVisible = true;
+    }
+});
+
 $(document).on('click', function(event) {
-    // check if the click was outside of the autocomplete results div
     if (!$(event.target).closest('#autocomplete-results').length) {
-        // hide the autocomplete results
         $('#autocomplete-results').hide();
         autocompleteVisible = false;
     }
 });
-
-
-
 
     </script>
     <script>
@@ -1571,8 +1560,6 @@ $(document).on('click', function(event) {
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </body>
 
-<<<<<<< HEAD
 </html>
-=======
+
 </html>
->>>>>>> 664ecf5e0151c86cbbbd623f5b375135627b9859
