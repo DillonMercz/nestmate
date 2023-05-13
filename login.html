@@ -67,10 +67,10 @@
 			<div class="account-area">
 				<form class="">
 					<div class="input-group">
-						<input type="text" placeholder="User Name" class="form-control">
+						<input type="text" id="Email" placeholder="Email" class="form-control">
 					</div>
 					<div class="input-group">
-						<input type="password" placeholder="Password" id="dz-password" class="form-control be-0">
+						<input type="password" placeholder="Password" id="Password" class="form-control be-0">
 						<span class="input-group-text show-pass"> 
 							<i class="fa fa-eye-slash"></i>
 							<i class="fa fa-eye"></i>
@@ -85,8 +85,9 @@
                     <span class="saprate">Or sign in with</span>
                 </div>
                 <div class="social-btn-group text-center">
-                    <a href="https://www.google.com/" target="_blank" class="social-btn"><img src="assets/images/social/google.png" alt="socila-image"></a>
-                    <a href="https://www.facebook.com/" target="_blank" class="social-btn ms-3"><img src="assets/images/social/facebook.png" alt="social-image"></a>
+<a href="#" onclick="signInWithGoogle()" class="social-btn"><img src="assets/images/social/google.png" alt="socila-image"></a>
+<a href="#" onclick="signInWithFacebook()" class="social-btn ms-3"><img src="assets/images/social/facebook.png" alt="social-image"></a>
+
                 </div>
 			</div>
 		</div>
@@ -100,75 +101,7 @@
         </div>
     </footer>
     <!-- Footer End -->
-    
-    <!-- Theme Color Settings -->
-	<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
-        <div class="offcanvas-body small">
-            <ul class="theme-color-settings">
-                <li>
-                    <input class="filled-in" id="primary_color_8" name="theme_color" type="radio" value="color-primary" />
-					<label for="primary_color_8"></label>
-                    <span>Default</span>
-                </li>
-                <li>
-					<input class="filled-in" id="primary_color_2" name="theme_color" type="radio" value="color-green" />
-					<label for="primary_color_2"></label>
-                    <span>Green</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_3" name="theme_color" type="radio" value="color-blue" />
-					<label for="primary_color_3"></label>
-                    <span>Blue</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_4" name="theme_color" type="radio" value="color-pink" />
-					<label for="primary_color_4"></label>
-                    <span>Pink</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_5" name="theme_color" type="radio" value="color-yellow" />
-					<label for="primary_color_5"></label>
-                    <span>Yellow</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_6" name="theme_color" type="radio" value="color-orange" />
-					<label for="primary_color_6"></label>
-                    <span>Orange</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_7" name="theme_color" type="radio" value="color-purple" />
-					<label for="primary_color_7"></label>
-                    <span>Purple</span>
-                </li>
-                <li>
-					<input class="filled-in" id="primary_color_1" name="theme_color" type="radio" value="color-red" />
-					<label for="primary_color_1"></label>
-                    <span>Red</span>
-                </li>
-                <li>
-					<input class="filled-in" id="primary_color_9" name="theme_color" type="radio" value="color-lightblue" />
-					<label for="primary_color_9"></label>
-                    <span>Lightblue</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_10" name="theme_color" type="radio" value="color-teal" />
-					<label for="primary_color_10"></label>
-                    <span>Teal</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_11" name="theme_color" type="radio" value="color-lime" />
-					<label for="primary_color_11"></label>
-                    <span>Lime</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_12" name="theme_color" type="radio" value="color-deeporange" />
-					<label for="primary_color_12"></label>
-                    <span>Deeporange</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-	<!-- Theme Color Settings End -->
+
 </div>
 <!--**********************************
     Scripts
@@ -177,5 +110,83 @@
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/settings.js"></script>
 <script src="assets/js/custom.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+<script>
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBd9mTGo1lM19_Kcqf_vl7-pE4Rq1AzWA8",
+  authDomain: "bookings-49c4e.firebaseapp.com",
+  projectId: "bookings-49c4e",
+  storageBucket: "bookings-49c4e.appspot.com",
+  messagingSenderId: "491340380786",
+  appId: "1:491340380786:web:50ea0578b31309494ae0eb",
+  measurementId: "G-3JJKPRCD9Y"
+};
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script>
+  // Sign in with email
+  function signInWithEmail() {
+    var email = document.getElementById("Email").value
+    var password = document.getElementById("Password").value
+
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(function (userCredential) {
+        // Signed in successfully
+        var user = userCredential.user;
+        console.log(user);
+      })
+      .catch(function (error) {
+        // Error occurred
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  }
+
+  // Sign in with Google
+  function signInWithGoogle() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().signInWithPopup(provider)
+      .then(function (result) {
+        // Signed in successfully
+        var user = result.user;
+        console.log(user);
+      })
+      .catch(function (error) {
+        // Error occurred
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  }
+
+  // Sign in with Facebook
+  function signInWithFacebook() {
+    var provider = new firebase.auth.FacebookAuthProvider();
+
+    firebase.auth().signInWithPopup(provider)
+      .then(function (result) {
+        // Signed in successfully
+        var user = result.user;
+        console.log(user);
+      })
+      .catch(function (error) {
+        // Error occurred
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  }
+ 
+</script>
+
+
 </body>
 </html>
