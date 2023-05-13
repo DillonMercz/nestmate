@@ -98,23 +98,7 @@ ul.ui-autocomplete {
             <div class="spinner"></div>
         </div>
         <!-- Preloader end-->
-        <!-- Banner -->
-        <div class="banner-wrapper author-notification">
-            <div class="container inner-wrapper">
-                <div class="dz-info">
-                    <strong><span id=greeting></span><strong>
-                            <h2 class="name mb-0" id="user-name"></h2>
-                            <div id="login-container">
-                            </div>
-                </div>
-                <!-- Profile
-
-            <div class="dz-media media-45 rounded-circle">
-                <a href="profile.html"><img src="https://i.imgur.com/7F6QVaL.jpg"  style="max-width:70px;max-height:70px;border-radius:50% !important"class="rounded-circle circle" alt="author-image"></a>
-            </div>-->
-            </div>
-        </div>
-        <!-- Banner End -->
+        
         <!-- Page Content -->
         <div class="page-content">
             <div class="content-inner pt-0">
@@ -1501,24 +1485,7 @@ $(document).on('click', function(event) {
 });
 
     </script>
-    <script>
-    // get the current hour
-    const hour = new Date().getHours();
 
-    // set the greeting based on the time of day
-    let greeting;
-    if (hour >= 0 && hour < 12) {
-        greeting = "Good Morning";
-    } else if (hour >= 12 && hour < 18) {
-        greeting = "Good Afternoon";
-    } else {
-        greeting = "Good Evening";
-    }
-
-    // display the greeting in the HTML
-    const greetingElement = document.getElementById("greeting");
-    greetingElement.innerHTML = greeting;
-    </script>
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
     <!-- Add Firebase products that you want to use -->
