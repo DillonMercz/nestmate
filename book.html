@@ -36,13 +36,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 </head>
 
 <body data-theme-color="color-yellow">
@@ -84,7 +84,6 @@
                                     Contact Details:
                                 </h1>
                             </center><br>
-                            
                             <input class="form-control" type="text" id="name" name="name" placeholder="Name" required>
                             <br>
                             <input class="form-control" type="email" id="email" name="email" placeholder="Email" required>
@@ -107,11 +106,15 @@
                             <h3 id="category"></h3>
                             <br><label for="details">Booking Subcategory:</label>
                             <h3 id="subcategory"></h3>
-                            <br><label for="quote">Estimated Quote:</label>
-                            <input class="form-control" type="text" id="quote" name="quote" placeholder="Quote will be calculated based on job details" readonly><br><br>
+                            <label for="fee">Booking Fee:</label>
+                            <h3 class="" type="text" id="fee" name="fee" data-toggle="tooltip" title="The booking fee is used to secure your booking and get the right person out there on your time frame!"></h3>
+                            <script>
+                                $(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script><br><br>
                             <button type="button" id="part-2-next" class="btn btn-primary w-100">Next</button>
                             <button type="button" id="part-2-back" class="btn btn-primary w-100">Back</button>
-                            
                         </form>
                         <form id="form-part-3" class="job-details" style="display: none;" action="handleSubmit()" method="post">
                             <center>
@@ -127,7 +130,7 @@
                             <textarea rows="5" class="form-control" id="notes" name="notes" placeholder="Please enter any additional notes"></textarea>
                             <input class="form-control" type="hidden" id="job-type" name="job-type">
                             <input class="form-control" type="hidden" id="job-details" name="job-details">
-                            <input class="form-control" type="hidden" id="estimated-quote" name="estimated-quote">
+                            <input class="form-control" type="hidden" id="booking-fee" name="booking-fee">
                             <button type="button" id="part-3-next" class="btn btn-primary w-100">Next</button>
                             <button type="button" id="part-3-back" class="btn btn-primary w-100">Back</button>
                         </form>
@@ -150,7 +153,7 @@
                                     <h3>Job Details:</h3>
                                     <p><strong>Booking Category:</strong> <span id="review-category"></span></p>
                                     <p><strong>Booking Subcategory:</strong> <span id="review-subcategory"></span></p>
-                                    <p><strong>Estimated Quote:</strong> <span id="review-quote"></span></p>
+                                    <p><strong>Booking Fee:</strong> <span id="review-fee"></span></p>
                                     <p><strong>Preferred Date:</strong> <span id="review-date"></span></p>
                                     <p><strong>Preferred Time:</strong> <span id="review-time"></span></p>
                                     <p><strong>Additional Notes:</strong> <span id="review-notes"></span></p>
@@ -159,7 +162,6 @@
                             <br><br>
                             <button type="button" id="part-4-submit" onclick="handleSubmit()" class="btn btn-primary w-100">Submit</button>
                             <button type="button" id="part-4-back" class="btn btn-primary w-100">Back</button>
-                            
                         </form>
                     </div>
                 </div>
@@ -271,11 +273,11 @@
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/dz.carousel.js"></script><!-- Swiper -->
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script><!-- Swiper -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <script>
     // DOM elements
     const part1 = document.querySelector('#form-part-1');
@@ -313,10 +315,10 @@
         // Populate hidden fields for form submission
         const jobTypeInput = document.querySelector('#job-type');
         const jobDetailsInput = document.querySelector('#job-details');
-        const estimatedQuoteInput = document.querySelector('#estimated-quote');
+        const feeInput = document.querySelector('#booking-fee');
         jobTypeInput.value = document.querySelector('#job').value;
         jobDetailsInput.value = document.querySelector('#details').value;
-        estimatedQuoteInput.value = document.querySelector('#quote').value;
+        feeInput.value = document.querySelector('#fee').value;
     });
 
     // Part 3
@@ -362,7 +364,7 @@
     const reviewZip = document.querySelector('#review-zip');
     const reviewCategory = document.querySelector('#review-category');
     const reviewSubcategory = document.querySelector('#review-subcategory');
-    const reviewQuote = document.querySelector('#review-quote');
+    const reviewQuote = document.querySelector('#review-fee');
     const reviewDate = document.querySelector('#review-date');
     const reviewTime = document.querySelector('#review-time');
     const reviewNotes = document.querySelector('#review-notes');
@@ -378,7 +380,7 @@
         // Part 2
         reviewCategory.textContent = document.querySelector('#category').textContent;
         reviewSubcategory.textContent = document.querySelector('#subcategory').textContent;
-        reviewQuote.textContent = document.querySelector('#quote').value;
+        reviewQuote.textContent = document.querySelector('#fee').innerHTML;
 
         // Part 3
         reviewDate.textContent = document.querySelector('#date').value;
@@ -414,14 +416,14 @@
 
 
     // Quote calculator
-    const detailsInput = document.querySelector('#details');
-    const quoteInput = document.querySelector('#quote');
+    //const detailsInput = document.querySelector('#details');
+    //const quoteInput = document.querySelector('#quote');
 
 
-    function calculateQuote(details) {
+    /*function calculateQuote(details) {
         // Simple quote calculation
         return `$${details.length * 0.5}`;
-    }
+    }*/
     var zip = localStorage.getItem("zip")
     document.getElementById('zip').value = zip
     // Create a new URL object with the current URL
@@ -435,6 +437,10 @@
     document.getElementById("category").innerHTML = category
     const subcategory = params.get("subcategory");
     document.getElementById("subcategory").innerHTML = subcategory
+    const fee = window.localStorage.getItem("fee")
+    document.getElementById("fee").innerHTML = "$" + fee
+
+
 
     // Select the phone input field
     const phoneInput = document.getElementById('phone');
@@ -527,7 +533,7 @@
             notes: document.getElementById('review-notes').innerHTML,
             jobCategory: document.getElementById('review-category').innerHTML,
             jobSubcategory: document.getElementById('review-subcategory').innerHTML,
-            estimatedQuote: document.getElementById('estimated-quote').value
+            fee: document.getElementById('fee').value
         };
 
         // Save the data to Firebase
