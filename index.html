@@ -1549,13 +1549,8 @@ $(document).on('click', function(event) {
         } else {
             // No user is signed in, show login button
             console.log("No User Found")
-            var loginBtn = document.createElement("button");
-            loginBtn.innerHTML = "Login";
-            loginBtn.className = "btn login-button btn-success w-100"
-            loginBtn.onclick = function() {
-                window.location.href = "./login.html";
-            }
-            document.getElementById("login-container").appendChild(loginBtn);
+            window.location.href = "./login.html";
+            
         }
     });
     </script>
