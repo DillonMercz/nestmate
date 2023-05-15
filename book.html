@@ -533,7 +533,7 @@
             notes: document.getElementById('review-notes').innerHTML,
             jobCategory: document.getElementById('review-category').innerHTML,
             jobSubcategory: document.getElementById('review-subcategory').innerHTML,
-            fee: document.getElementById('fee').value
+            fee: window.location.getItem("fee")
         };
 
         // Save the data to Firebase
