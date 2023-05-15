@@ -195,73 +195,6 @@
         </div>
     </div>
     <!-- Menubar -->
-    <!-- Theme Color Settings -->
-    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
-        <div class="offcanvas-body small">
-            <ul class="theme-color-settings">
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_8" name="theme_color" type="radio" value="color-primary" />
-                    <br><label for="primary_color_8"></label>
-                    <span>Default</span>
-                </li>
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_2" name="theme_color" type="radio" value="color-green" />
-                    <br><label for="primary_color_2"></label>
-                    <span>Green</span>
-                </li>
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_3" name="theme_color" type="radio" value="color-blue" />
-                    <br><label for="primary_color_3"></label>
-                    <span>Blue</span>
-                </li>
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_4" name="theme_color" type="radio" value="color-pink" />
-                    <br><label for="primary_color_4"></label>
-                    <span>Pink</span>
-                </li>
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_5" name="theme_color" type="radio" value="color-yellow" />
-                    <br><label for="primary_color_5"></label>
-                    <span>Yellow</span>
-                </li>
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_6" name="theme_color" type="radio" value="color-orange" />
-                    <br><label for="primary_color_6"></label>
-                    <span>Orange</span>
-                </li>
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_7" name="theme_color" type="radio" value="color-purple" />
-                    <br><label for="primary_color_7"></label>
-                    <span>Purple</span>
-                </li>
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_1" name="theme_color" type="radio" value="color-red" />
-                    <br><label for="primary_color_1"></label>
-                    <span>Red</span>
-                </li>
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_9" name="theme_color" type="radio" value="color-lightblue" />
-                    <br><label for="primary_color_9"></label>
-                    <span>Lightblue</span>
-                </li>
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_10" name="theme_color" type="radio" value="color-teal" />
-                    <br><label for="primary_color_10"></label>
-                    <span>Teal</span>
-                </li>
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_11" name="theme_color" type="radio" value="color-lime" />
-                    <br><label for="primary_color_11"></label>
-                    <span>Lime</span>
-                </li>
-                <li>
-                    <input class="form-control" class="filled-in" id="primary_color_12" name="theme_color" type="radio" value="color-deeporange" />
-                    <br><label for="primary_color_12"></label>
-                    <span>Deeporange</span>
-                </li>
-            </ul>
-        </div>
-    </div>
     <!-- Theme Color Settings End -->
     </div>
     <!--**********************************
@@ -280,6 +213,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <script>
     // DOM elements
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+    var address = document.getElementById("autocomplete").value;
+    var zipCode = document.getElementById("zip").value;
+
+    // Get values from the Job Details form
+    var category = document.getElementById("category").textContent;
+    var subcategory = document.getElementById("subcategory").textContent;
+    var fee = document.getElementById("fee").textContent;
+
+    // Get values from the Appointment Details form
+    var preferredDate = document.getElementById("date").value;
+    var preferredTime = document.getElementById("time").value;
+    var notes = document.getElementById("notes").value;
+
     const part1 = document.querySelector('#form-part-1');
     const part2 = document.querySelector('#form-part-2');
     const part3 = document.querySelector('#form-part-3');
@@ -289,11 +238,16 @@
     // Part 1
     const part1NextBtn = document.querySelector('#part-1-next');
     part1NextBtn.addEventListener('click', () => {
+        if (name != undefined || name != null || name != "" || email != undefined || email != null || email != "" || phone != undefined || phone != null || phone != "" || address != undefined || address != null || address != "" || zipCode != undefined || zipCode != null || zipCode != ""){
         part1.style.display = 'none';
         part2.style.display = 'flex';
         part2.style.flexDirection = 'column';
         part2.style.alignItems = 'center';
         part2.style.gap = '20px';
+    }
+    else{
+        
+    }
     });
 
     // Part 2
@@ -497,7 +451,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
     <script>
-        var guest
+    var guest
     // Initialize Firebase
     const firebaseConfig = {
         // Your Firebase configuration goes here
@@ -525,7 +479,7 @@
             // No user is signed in, show login button
             console.log("No User Found")
             window.location.href = "./login.html";
-            
+
         }
     });
 
