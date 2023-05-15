@@ -140,6 +140,7 @@ const firebaseConfig = {
         // Signed in successfully
         var user = userCredential.user;
         console.log(user);
+        window.location.href = "./search.html"
       })
       .catch(function (error) {
         // Error occurred
