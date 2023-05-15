@@ -2355,6 +2355,7 @@
     var price = obj["subcategories"].find(sub => sub.name === subcategory).price
     var description = obj["subcategories"].find(sub => sub.name === subcategory).description
     console.log(price)
+    window.localStorage.setItem("fee", price)
     console.log(obj)
     console.log(obj["subcategories"])
         for (var i in obj["subcategories"]) {
