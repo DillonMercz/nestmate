@@ -3,6 +3,7 @@
 
 <head>
     <!-- Meta -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
     <meta name="theme-color" content="#2196f3">
@@ -99,6 +100,14 @@ ul.ui-autocomplete {
         </div>
         <!-- Preloader end-->
         
+                <!-- Profile
+
+            <div class="dz-media media-45 rounded-circle">
+                <a href="profile.html"><img src="https://i.imgur.com/7F6QVaL.jpg"  style="max-width:70px;max-height:70px;border-radius:50% !important"class="rounded-circle circle" alt="author-image"></a>
+            </div>-->
+            </div>
+        </div>
+        <!-- Banner End -->
         <!-- Page Content -->
         <div class="page-content">
             <div class="content-inner pt-0">
@@ -886,20 +895,7 @@ ul.ui-autocomplete {
             </div>
         </div>
         <!-- Menubar -->
-        <!-- PWA Offcanvas 
-        <div class="offcanvas offcanvas-bottom pwa-offcanvas">
-            <div class="container">
-                <div class="offcanvas-body small">
-                    <img class="logo" src="https://i.imgur.com/O7lp7Gv.png" alt="">
-                    <h5 class="title">Download The Elev8 App!</h5>
-                    <p>Booking home services is easier than ever before, skip the card and book services with a click!</p>
-                    <a href="javascrpit:void(0);" class="btn btn-sm btn-secondary pwa-btn">Download App</a>
-                    <a href="javascrpit:void(0);" class="btn btn-sm pwa-close light btn-danger ms-2">Maybe later</a>
-                </div>
-            </div>
-        </div>
-        <div class="offcanvas-backdrop pwa-backdrop"></div>
-        PWA Offcanvas End -->
+        
     </div>
     <!--**********************************
     Scripts
@@ -1485,7 +1481,24 @@ $(document).on('click', function(event) {
 });
 
     </script>
+    <script>
+    // get the current hour
+    const hour = new Date().getHours();
 
+    // set the greeting based on the time of day
+    let greeting;
+    if (hour >= 0 && hour < 12) {
+        greeting = "Good Morning";
+    } else if (hour >= 12 && hour < 18) {
+        greeting = "Good Afternoon";
+    } else {
+        greeting = "Good Evening";
+    }
+
+    // display the greeting in the HTML
+    const greetingElement = document.getElementById("greeting");
+    greetingElement.innerHTML = greeting;
+    </script>
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
     <!-- Add Firebase products that you want to use -->
@@ -1516,13 +1529,8 @@ $(document).on('click', function(event) {
         } else {
             // No user is signed in, show login button
             console.log("No User Found")
-            var loginBtn = document.createElement("button");
-            loginBtn.innerHTML = "Login";
-            loginBtn.className = "btn login-button btn-success w-100"
-            loginBtn.onclick = function() {
-                window.location.href = "./login.html";
-            }
-            document.getElementById("login-container").appendChild(loginBtn);
+            window.location.href = "./login.html";
+            
         }
     });
     </script>
