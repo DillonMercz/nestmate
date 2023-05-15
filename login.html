@@ -67,6 +67,22 @@
                                 <i class="fa fa-eye-slash"></i>
                                 <i class="fa fa-eye"></i>
                             </span>
+                            <script>
+                            // Get the password input and show/hide password button
+                            const passwordInput = document.getElementById('Password');
+                            const showPassButton = document.querySelector('.show-pass');
+
+                            // Add event listener to the show/hide password button
+                            showPassButton.addEventListener('click', () => {
+                                if (passwordInput.type === 'password') {
+                                    passwordInput.type = 'text';
+                                    showPassButton.classList.add('show');
+                                } else {
+                                    passwordInput.type = 'password';
+                                    showPassButton.classList.remove('show');
+                                }
+                            });
+                            </script>
                         </div>
                         <a href="forgot-password.html" class="btn-link d-block text-center">Forgot your password?</a>
                         <div class="input-group">
