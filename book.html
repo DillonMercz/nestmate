@@ -497,6 +497,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
     <script>
+        var guest
     // Initialize Firebase
     const firebaseConfig = {
         // Your Firebase configuration goes here
@@ -515,6 +516,18 @@
     // Get a reference to the form and listen for submit events
     const form = document.querySelector('#form-part-4');
     form.addEventListener('submit', handleSubmit);
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in, show their name
+            guest = user.email;
+            document.getElementById("user-name").innerHTML = name;
+        } else {
+            // No user is signed in, show login button
+            console.log("No User Found")
+            window.location.href = "./login.html";
+            
+        }
+    });
 
     function handleSubmit(event) {
         // Prevent the default form submission behavior
@@ -533,7 +546,8 @@
             notes: document.getElementById('review-notes').innerHTML,
             jobCategory: document.getElementById('review-category').innerHTML,
             jobSubcategory: document.getElementById('review-subcategory').innerHTML,
-            fee: document.getElementById('fee').innerHTML
+            fee: document.getElementById('fee').innerHTML,
+            user: guest
         };
 
         // Save the data to Firebase
