@@ -183,7 +183,7 @@
                                     </div>
                                 </div>
                                 <br><br>
-                                <button type="button" id="part-4-submit" onclick="handleSubmit()" class="btn btn-primary w-100">Submit</button><br><br>
+                                <button type="button" id="part-4-submit" onclick="handleSubmit()" class="btn btn-primary w-100">Submit Booking</button><br><br>
                                 <button type="button" id="part-4-back" class="btn btn-primary w-100">Back</button>
                             </form>
                         </div>
@@ -459,6 +459,8 @@
                     document.getElementById("subcategory").innerHTML = subcategory
                     const fee = window.localStorage.getItem("fee")
                     document.getElementById("fee").innerHTML = "$" + fee
+                    document.getElementById("total-amount").innerHTML = " $<strong>" + fee +"</strong>"
+
 
 
 
