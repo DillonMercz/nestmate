@@ -14072,7 +14072,9 @@ ul.list-check {
         .message-content .chat-content.user .message-item .bubble {
           background: var(--primary);
           color: #FFF;
-          border-radius: 12px 12px 0 12px; }
+          border-radius: 12px 12px 0 12px; 
+          max-width: 300px !important}
+
           .message-content .chat-content.user .message-item .bubble .emoji-icon {
             display: inline-flex;
             width: 30px;

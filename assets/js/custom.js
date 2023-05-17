@@ -102,7 +102,7 @@ var Jobie = function(){
 	}
 	
 	// Chat button
-    var handleChatBox = function (){
+    /*var handleChatBox = function (){
         $('.btn-chat').on('click', function() {
 			
 			var chatInput = $('.message-area .form-control');
@@ -141,7 +141,7 @@ var Jobie = function(){
 			var clearChatInput = chatInput.val('');    
 			var clearChatInputE = $('.append-media').empty();     
         });
-    }
+    }*/
     
     // Page back btn
 	var handleGoBack = function(){
