@@ -185,24 +185,6 @@
             var ampm = current.getHours() >= 12 ? 'pm' : 'am';
             var actualTime = (current.getHours() % 12 + ':' + current.getMinutes() + ' ' + ampm);
 
-            var messageEmojiHtml = '<div class="chat-content user">' +
-                '<div class="message-item">' +
-                '<div class="bubble">' + chatEmojiArea + '</div>' +
-                '<div class="message-time">' + actualTime + '</div>' +
-                '</div>' +
-                '</div>';
-
-            if (chatEmojiArea.length > 0) {
-                $('.chat-box-area').append(messageEmojiHtml);
-            }
-
-            var messageHtml = '<div class="chat-content user">' +
-                '<div class="message-item">' +
-                '<div class="bubble">' + chatMessageValue + '</div>' +
-                '<div class="message-time">' + actualTime + '</div>' +
-                '</div>' +
-                '</div>';
-
             if (chatMessageValue.length > 0) {
                 var appendMessage = $('.chat-box-area').append(messageHtml);
                  // Add the message to the conversation's messaging history
