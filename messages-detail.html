@@ -283,39 +283,26 @@ function fetchMessages() {
     .catch((error) => {
       console.error('Error fetching conversation:', error);
     });
-//listen for changes and update UI
+
+  // Listen for new messages in real-time
   db.collection('messaging')
-  .doc(conversationId)
-  .collection('history')
-  .orderBy('time')
-  .onSnapshot((snapshot) => {
-    const addedMessages = [];
-    const updatePromises = []; // Array to store update promises
+    .doc(conversationId)
+    .collection('history')
+    .orderBy('time')
+    .onSnapshot((snapshot) => {
+      const addedMessages = [];
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          addedMessages.push(change.doc.data());
+          
 
-    snapshot.docChanges().forEach((change) => {
-      if (change.type === "added" && change.doc.data().read === false) {
-        addedMessages.push(change.doc.data());
-
-        // Create an update promise and add it to the array
-        const updatePromise = change.doc.ref.update({ read: true });
-        updatePromises.push(updatePromise);
-        addedMessages=""
-      }
-    });
-
-    // Wait for all update promises to resolve before rendering messages
-    Promise.all(updatePromises)
-      .then(() => {
-        renderMessages(addedMessages);
-      })
-      .catch((error) => {
-        console.error('Error updating messages:', error);
+        }
       });
-  }, (error) => {
-    console.error('Error fetching messages:', error);
-  });
+      renderMessages(addedMessages);
+    }, (error) => {
+      console.error('Error fetching messages:', error);
+    });
 }
-
 
 //render the messages
 function renderMessages(messages) {
@@ -362,8 +349,7 @@ function addMessageToHistory(message) {
         const newMessage = {
           sender: currentUserEmail,
           content: message,
-          time: timestamp,
-          read: false
+          time: timestamp
         };
         historyRef
           .add(newMessage)
