@@ -59,7 +59,7 @@
                         </div>
                         <div class="mid-content">
                             <div class="media media-35 rounded-circle">
-                                <img src="assets/images/message/pic2.jpg" alt="/">
+                                <img src="https://i.imgur.com/AuINjvO.png" alt="/">
                             </div>
                             <h5 class="mb-0" id="projectName"></h5>
                         </div>
@@ -158,74 +158,7 @@
             </div>
         </footer>
         <!-- Footer End -->
-        <!-- Theme Color Settings -->
-        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
-            <div class="offcanvas-body small">
-                <ul class="theme-color-settings">
-                    <li>
-                        <input class="filled-in" id="primary_color_8" name="theme_color" type="radio" value="color-primary" />
-                        <label for="primary_color_8"></label>
-                        <span>Default</span>
-                    </li>
-                    <li>
-                        <input class="filled-in" id="primary_color_2" name="theme_color" type="radio" value="color-green" />
-                        <label for="primary_color_2"></label>
-                        <span>Green</span>
-                    </li>
-                    <li>
-                        <input class="filled-in" id="primary_color_3" name="theme_color" type="radio" value="color-blue" />
-                        <label for="primary_color_3"></label>
-                        <span>Blue</span>
-                    </li>
-                    <li>
-                        <input class="filled-in" id="primary_color_4" name="theme_color" type="radio" value="color-pink" />
-                        <label for="primary_color_4"></label>
-                        <span>Pink</span>
-                    </li>
-                    <li>
-                        <input class="filled-in" id="primary_color_5" name="theme_color" type="radio" value="color-yellow" />
-                        <label for="primary_color_5"></label>
-                        <span>Yellow</span>
-                    </li>
-                    <li>
-                        <input class="filled-in" id="primary_color_6" name="theme_color" type="radio" value="color-orange" />
-                        <label for="primary_color_6"></label>
-                        <span>Orange</span>
-                    </li>
-                    <li>
-                        <input class="filled-in" id="primary_color_7" name="theme_color" type="radio" value="color-purple" />
-                        <label for="primary_color_7"></label>
-                        <span>Purple</span>
-                    </li>
-                    <li>
-                        <input class="filled-in" id="primary_color_1" name="theme_color" type="radio" value="color-red" />
-                        <label for="primary_color_1"></label>
-                        <span>Red</span>
-                    </li>
-                    <li>
-                        <input class="filled-in" id="primary_color_9" name="theme_color" type="radio" value="color-lightblue" />
-                        <label for="primary_color_9"></label>
-                        <span>Lightblue</span>
-                    </li>
-                    <li>
-                        <input class="filled-in" id="primary_color_10" name="theme_color" type="radio" value="color-teal" />
-                        <label for="primary_color_10"></label>
-                        <span>Teal</span>
-                    </li>
-                    <li>
-                        <input class="filled-in" id="primary_color_11" name="theme_color" type="radio" value="color-lime" />
-                        <label for="primary_color_11"></label>
-                        <span>Lime</span>
-                    </li>
-                    <li>
-                        <input class="filled-in" id="primary_color_12" name="theme_color" type="radio" value="color-deeporange" />
-                        <label for="primary_color_12"></label>
-                        <span>Deeporange</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- Theme Color Settings End -->
+       
     </div>
     <!--**********************************
     Scripts
@@ -238,6 +171,7 @@
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script><!-- Swiper -->
     <script>
     // Chat button
+         window.scrollTo(0, document.body.scrollHeight);
     var handleChatBox = function() {
         $('.btn-chat').on('click', function() {
 
@@ -271,6 +205,9 @@
 
             if (chatMessageValue.length > 0) {
                 var appendMessage = $('.chat-box-area').append(messageHtml);
+                 // Add the message to the conversation's messaging history
+                    addMessageToHistory(chatMessageValue);
+
             }
 
             window.scrollTo(0, document.body.scrollHeight);
@@ -285,6 +222,8 @@
     <script>
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var currentUserEmail
+
     const firebaseConfig = {
         apiKey: "AIzaSyBd9mTGo1lM19_Kcqf_vl7-pE4Rq1AzWA8",
         authDomain: "bookings-49c4e.firebaseapp.com",
@@ -302,89 +241,149 @@
     const db = firebase.firestore();
 
     // Get the current user's email (replace with your actual code to retrieve the user's email)
-    const currentUserEmail = 'dylanclayton3@gmail.com';
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in, show their name
+            currentUserEmail = user.email;
+            // Fetch messages when the page loads
+            fetchMessages();
 
-    // Function to fetch messages for the current user's email
-    function fetchMessages() {
+        } else {
+            // No user is signed in, show login button
+            console.log("No User Found")
+            window.location.href = "./login.html";
+
+        }
+    });
+
+// Function to fetch messages for the current user's email
+function fetchMessages() {
+  var conversationId = window.localStorage.getItem("conversationID");
+
+  db.collection('messaging')
+    .doc(conversationId)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        const conversationData = doc.data();
+        document.getElementById('projectName').innerHTML = conversationData.name;
+
         db.collection('messaging')
-            .where('users', 'array-contains', currentUserEmail)
-            .get()
-            .then((snapshot) => {
-                const conversations = snapshot.docs.map((doc) => {
-                    const data = doc.data();
-                    document.getElementById('projectName').innerHTML =data.name; // Log the name field
-                    return doc.id;
-                });
+          .doc(conversationId)
+          .collection('history')
+          .orderBy('time')
+          .get()
+          .then((snapshot) => {
+            const messages = snapshot.docs.map((doc) => doc.data());
+            renderMessages(messages);
+          });
+      } else {
+        console.log('Conversation not found');
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching conversation:', error);
+    });
+//listen for changes and update UI
+  db.collection('messaging')
+  .doc(conversationId)
+  .collection('history')
+  .orderBy('time')
+  .onSnapshot((snapshot) => {
+    const addedMessages = [];
+    const updatePromises = []; // Array to store update promises
 
-                const promises = conversations.map((conversationId) => {
-                    return db
-                        .collection('messaging')
-                        .doc(conversationId)
-                        .collection('history')
-                        .get()
-                        .then((snapshot) => {
-                            return snapshot.docs.map((doc) => doc.data());
-                        });
-                });
+    snapshot.docChanges().forEach((change) => {
+      if (change.type === "added" && change.doc.data().read === false) {
+        addedMessages.push(change.doc.data());
 
-                return Promise.all(promises);
-            })
-            .then((messagesArray) => {
-                const messages = messagesArray.flat();
-                renderMessages(messages);
-            })
-            .catch((error) => {
-                console.error('Error fetching messages:', error);
-            });
+        // Create an update promise and add it to the array
+        const updatePromise = change.doc.ref.update({ read: true });
+        updatePromises.push(updatePromise);
+        addedMessages=[]
+      }
+    });
+
+    // Wait for all update promises to resolve before rendering messages
+    Promise.all(updatePromises)
+      .then(() => {
+        renderMessages(addedMessages);
+      })
+      .catch((error) => {
+        console.error('Error updating messages:', error);
+      });
+  }, (error) => {
+    console.error('Error fetching messages:', error);
+  });
+}
+
+
+//render the messages
+function renderMessages(messages) {
+  const messagesContainer = document.getElementById('messages-display');
+  
+  messages.forEach((message) => {
+    const messageDiv = document.createElement('div');
+    messageDiv.textContent = `${message.sender}: ${message.content}`;
+    
+    if (message.sender === currentUserEmail) {
+      var htmlTemplate = `
+        <div class="chat-content user">
+          <div class="message-item">
+            <div class="bubble">${message.content}</div>
+          </div>
+        </div>
+      `;
+    } else {
+      var htmlTemplate = `
+        <div class="chat-content">
+          <div class="message-item">
+            <div class="bubble">${message.content}</div>
+          </div>
+        </div>
+      `;
     }
 
+    messagesContainer.insertAdjacentHTML('beforeend', htmlTemplate);
+  });
+}
 
 
-    // Function to render messages
-    function renderMessages(messages) {
-        //console.log(messages)
-        //const messagesContainer = document.getElementById('messages');
-        //messagesContainer.innerHTML = '';
+// Function to add a message to the conversation's messaging history
+function addMessageToHistory(message) {
+  db.collection('messaging')
+    .where('users', 'array-contains', currentUserEmail)
+    .get()
+    .then((snapshot) => {
+      const conversation = snapshot.docs[0];
+      if (conversation) {
+        const conversationId = conversation.id;
+        const historyRef = db.collection('messaging').doc(conversationId).collection('history');
+        const timestamp = firebase.firestore.Timestamp.fromDate(new Date()); // Get the current datetime
+        const newMessage = {
+          sender: currentUserEmail,
+          content: message,
+          time: timestamp,
+          read: false
+        };
+        historyRef
+          .add(newMessage)
+          .then(() => {
+            console.log('Message added to history successfully');
+            // You can perform additional actions after adding the message if needed
+          })
+          .catch((error) => {
+            console.error('Error adding message to history:', error);
+          });
+      } else {
+        console.error('No conversation found for the user');
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching conversation:', error);
+    });
+}
 
-        messages.forEach((message) => {
-            //console.log(`${message.sender}: ${message.content}`)
-            const messageDiv = document.createElement('div');
-            messageDiv.textContent = `${message.sender}: ${message.content}`;
-            if (message.sender == currentUserEmail) {
-                console.log(message)
-                var htmlTemplate = `
-                    <div class="chat-content user">
-                        <div class="message-item">
-                            <div class="bubble">${message.content}</div>
-     
-                        </div>
-                    </div>
-`;
-
-                const element = document.getElementById('messages-display');
-                element.innerHTML += htmlTemplate;
-            } else {
-                var htmlTemplate = `
-                  <div class="chat-content">
-                    <div class="message-item">
-                      <div class="bubble">${message.content}</div>
-                     
-                    </div>
-                  </div>
-`;
-
-                const element = document.getElementById('messages-display');
-                element.innerHTML += htmlTemplate;
-
-
-            }
-
-            //messagesContainer.appendChild(messageDiv);
-        });
-    }
-
-    // Fetch messages when the page loads
-    fetchMessages();
     </script>
 </body>
 
