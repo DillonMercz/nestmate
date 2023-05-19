@@ -171,7 +171,6 @@
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script><!-- Swiper -->
     <script>
     // Chat button
-         window.scrollTo(0, document.body.scrollHeight);
     var handleChatBox = function() {
         $('.btn-chat').on('click', function() {
 
@@ -284,9 +283,8 @@ function fetchMessages() {
     .catch((error) => {
       console.error('Error fetching conversation:', error);
     });
-
-    //listen for changes
-db.collection('messaging')
+//listen for changes and update UI
+  db.collection('messaging')
   .doc(conversationId)
   .collection('history')
   .orderBy('time')
@@ -301,6 +299,7 @@ db.collection('messaging')
         // Create an update promise and add it to the array
         const updatePromise = change.doc.ref.update({ read: true });
         updatePromises.push(updatePromise);
+        addedMessages=""
       }
     });
 
@@ -315,7 +314,6 @@ db.collection('messaging')
   }, (error) => {
     console.error('Error fetching messages:', error);
   });
-
 }
 
 
