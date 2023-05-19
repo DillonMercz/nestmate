@@ -171,6 +171,7 @@
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script><!-- Swiper -->
     <script>
     // Chat button
+         window.scrollTo(0, document.body.scrollHeight);
     var handleChatBox = function() {
         $('.btn-chat').on('click', function() {
 
@@ -283,26 +284,39 @@ function fetchMessages() {
     .catch((error) => {
       console.error('Error fetching conversation:', error);
     });
+//listen for changes and update UI
+db.collection('messaging')
+  .doc(conversationId)
+  .collection('history')
+  .orderBy('time')
+  .onSnapshot((snapshot) => {
+    const addedMessages = [];
+    const updatePromises = []; // Array to store update promises
 
-  // Listen for new messages in real-time
-  db.collection('messaging')
-    .doc(conversationId)
-    .collection('history')
-    .orderBy('time')
-    .onSnapshot((snapshot) => {
-      const addedMessages = [];
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === "added") {
-          addedMessages.push(change.doc.data());
-          
+    snapshot.docChanges().forEach((change) => {
+      if (change.type === "added" && change.doc.data().read === false) {
+        addedMessages.push(change.doc.data());
 
-        }
-      });
-      renderMessages(addedMessages);
-    }, (error) => {
-      console.error('Error fetching messages:', error);
+        // Create an update promise and add it to the array
+        const updatePromise = change.doc.ref.update({ read: true });
+        updatePromises.push(updatePromise);
+      }
     });
+
+    // Wait for all update promises to resolve before rendering messages
+    Promise.all(updatePromises)
+      .then(() => {
+        renderMessages(addedMessages);
+      })
+      .catch((error) => {
+        console.error('Error updating messages:', error);
+      });
+  }, (error) => {
+    console.error('Error fetching messages:', error);
+  });
+
 }
+
 
 //render the messages
 function renderMessages(messages) {
@@ -343,13 +357,14 @@ function addMessageToHistory(message) {
     .then((snapshot) => {
       const conversation = snapshot.docs[0];
       if (conversation) {
-        const conversationId = conversation.id;
+          var conversationId = window.localStorage.getItem("conversationID");
         const historyRef = db.collection('messaging').doc(conversationId).collection('history');
         const timestamp = firebase.firestore.Timestamp.fromDate(new Date()); // Get the current datetime
         const newMessage = {
           sender: currentUserEmail,
           content: message,
-          time: timestamp
+          time: timestamp,
+          read: false
         };
         historyRef
           .add(newMessage)
