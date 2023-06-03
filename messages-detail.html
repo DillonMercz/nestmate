@@ -346,7 +346,7 @@ function addMessageToHistory(message) {
           sender: currentUserEmail,
           content: message,
           time: timestamp,
-          read: false
+          read: false,
         };
         historyRef
           .add(newMessage)
