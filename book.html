@@ -178,7 +178,7 @@
                                     </div>
                                 </div>
                                 <br><br>
-                                <button type="button" id="part-4-submit" onclick="handleSubmit()" class="btn btn-primary w-100">Submit Booking</button><br><br>
+                               <button type="button" id="part-4-submit" onclick="handleSubmit()" class="btn btn-primary w-100" disabled>Submit Booking</button>
                                 <button type="button" id="part-4-back" class="btn btn-primary w-100">Back</button>
                             </form>
                         </div>
@@ -584,6 +584,7 @@
 
                     }
                     // Load the PayPal JavaScript SDK asynchronously
+// Load the PayPal JavaScript SDK asynchronously
 function loadPayPalSDK() {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
@@ -596,7 +597,7 @@ function loadPayPalSDK() {
 
 // Initialize the PayPal SDK and render the buttons with the desired amount
 function initializePayPalButtons() {
-    var price = window.localStorage.getItem("fee")
+  var price = window.localStorage.getItem("fee");
   paypal.Buttons({
     createOrder: function(data, actions) {
       return actions.order.create({
@@ -607,8 +608,21 @@ function initializePayPalButtons() {
           }
         }]
       });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        // Handle successful payment
+        console.log(details);
+        //document.getElementById('part-4-submit').style.display = 'block'; // Show the booking button
+        enableBookingButton()
+      });
     }
   }).render('#paypal-button-container');
+}
+// Enable the booking button
+function enableBookingButton() {
+  document.getElementById('part-4-submit').removeAttribute('disabled');
+  console.log("You may now submit your booking")
 }
 
 // Load the PayPal SDK and initialize the buttons
