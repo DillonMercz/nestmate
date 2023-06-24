@@ -596,12 +596,13 @@ function loadPayPalSDK() {
 
 // Initialize the PayPal SDK and render the buttons with the desired amount
 function initializePayPalButtons() {
+    var price = window.localStorage.getItem("fee")
   paypal.Buttons({
     createOrder: function(data, actions) {
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: document.querySelector('#fee').value.replace("$",""), // Set the desired amount here
+            value: price, // Set the desired amount here
             currency_code: 'USD'
           }
         }]
