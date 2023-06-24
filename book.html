@@ -601,7 +601,7 @@ function initializePayPalButtons() {
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: '20000.00', // Set the desired amount here
+            value: document.querySelector('#fee').value.replace("$",""), // Set the desired amount here
             currency_code: 'USD'
           }
         }]
