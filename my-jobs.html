@@ -44,6 +44,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 </head>
+<style>
+.btn-margin-right {
+    margin-right: 20px;
+}
+
+.accordion-header-text {
+    overflow-wrap: break-word;
+    max-width: 200px;
+}
+</style>
 
 <body data-theme-color="color-yellow">
     <div class="page-wraper">
@@ -149,128 +159,166 @@
     // Get a reference to the database service
     const database = firebase.firestore();
     // Get a reference to the form
-// Get a reference to the form
-const form = document.querySelector('#form-part-4');
+    // Get a reference to the form
+    const form = document.querySelector('#form-part-4');
 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        // User is signed in, show their email
-        const guest = user.email;
-        fetchUserBookings(guest);
-    } else {
-        // No user is signed in, show login button
-        console.log("No User Found")
-        window.location.href = "./login.html";
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in, show their email
+            const guest = user.email;
+            fetchUserBookings(guest);
+        } else {
+            // No user is signed in, show login button
+            console.log("No User Found")
+            window.location.href = "./login.html";
+        }
+    });
+
+    function fetchUserBookings(email) {
+        // Retrieve bookings that belong to the user
+        database.collection('bookings')
+            .where('user', '==', email)
+            .get()
+            .then((querySnapshot) => {
+                const bookingsList = document.querySelector('#bookings-list');
+
+                if (querySnapshot.empty) {
+                    // No bookings found for the user
+                    const noBookingsMessage = document.createElement('p');
+                    noBookingsMessage.textContent = "No bookings found.";
+                    bookingsList.appendChild(noBookingsMessage);
+                } else {
+                    // Clear existing bookings
+                    bookingsList.innerHTML = '';
+
+                    // Display the bookings in the UI
+                    querySnapshot.forEach((doc) => {
+                        const booking = doc.data();
+
+                        // Exclude "user" field from job details
+                        const { user, ...jobDetails } = booking;
+
+                        // Create elements for the accordion
+                        const accordion = document.createElement('div');
+                        accordion.classList.add('accordion', 'accordion-primary');
+
+                        const accordionItem = document.createElement('div');
+                        accordionItem.classList.add('accordion-item');
+
+                        const accordionHeader = document.createElement('div');
+                        accordionHeader.classList.add('accordion-header', 'collapsed');
+                        accordionHeader.setAttribute('id', doc.id);
+                        accordionHeader.setAttribute('data-bs-toggle', 'collapse');
+                        accordionHeader.setAttribute('data-bs-target', `#collapse-${doc.id}`);
+                        accordionHeader.setAttribute('aria-controls', `collapse-${doc.id}`);
+                        accordionHeader.setAttribute('aria-expanded', 'false');
+                        accordionHeader.setAttribute('role', 'button');
+
+                        const accordionHeaderIcon = document.createElement('span');
+                        accordionHeaderIcon.classList.add('accordion-header-icon');
+                        accordionHeader.appendChild(accordionHeaderIcon);
+
+                        const accordionHeaderText = document.createElement('span');
+                        accordionHeaderText.classList.add('accordion-header-text');
+                        // Example date in the format "2023-06-26"
+                        const dateStr = booking.date;
+
+                        // Convert the date string to a Date object
+                        const date = new Date(dateStr);
+
+                        // Get the month name from the Date object
+                        const monthName = date.toLocaleDateString('en-US', { month: 'long' });
+
+                        // Get the day and year from the Date object
+                        const day = date.getDate();
+                        const year = date.getFullYear();
+
+                        // Combine the month name, day, and year
+                        const formattedDate = `${monthName} ${day}, ${year}`;
+
+                        console.log(formattedDate); // Output: "June 26 at 2023"
+
+                        accordionHeaderText.textContent = `${booking.jobSubcategory} on ${formattedDate} at ${booking.time}`;
+                        accordionHeader.appendChild(accordionHeaderText);
+
+                        const accordionHeaderIndicator = document.createElement('span');
+                        accordionHeaderIndicator.classList.add('accordion-header-indicator');
+                        accordionHeader.appendChild(accordionHeaderIndicator);
+
+                        accordionItem.appendChild(accordionHeader);
+
+                        const accordionCollapse = document.createElement('div');
+                        accordionCollapse.classList.add('collapse');
+                        accordionCollapse.setAttribute('id', `collapse-${doc.id}`);
+                        accordionCollapse.setAttribute('aria-labelledby', doc.id);
+                        accordionCollapse.setAttribute('data-bs-parent', '#bookings-list');
+
+                        const accordionBody = document.createElement('div');
+                        accordionBody.classList.add('accordion-body-text');
+
+                        // Create a list to display the job details
+                        const jobDetailsList = document.createElement('ul');
+
+                        // Set the job details manually using the provided template
+                        const jobDetailsFields = {
+                            Name: booking.name,
+                            Email: booking.email,
+                            Phone: booking.phone,
+                            Address: booking.address,
+                            Zip: booking.zip,
+                            Date: booking.date,
+                            Time: booking.time,
+                            Notes: booking.notes,
+                            Category: booking.jobCategory,
+                            Subcategory: booking.jobSubcategory,
+                            Payment: booking.fee
+                        };
+
+                        for (const key in jobDetailsFields) {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `${key}: ${jobDetailsFields[key]}`;
+                            jobDetailsList.appendChild(listItem);
+                        }
+
+                        accordionBody.appendChild(jobDetailsList);
+                        accordionCollapse.appendChild(accordionBody);
+
+                        // Create buttons for editing and deleting
+                        const editButton = document.createElement('button');
+                        editButton.textContent = 'Edit';
+                        editButton.className = "btn btn-sm btn-primary w-30 btn-margin-right"
+                        editButton.setAttribute('id', `edit-${doc.id}`);
+                        editButton.addEventListener('click', () => {
+                            // Handle edit functionality
+                            console.log(`Edit button clicked for document ${doc.id}`);
+                        });
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Cancel';
+                        deleteButton.className = "btn btn-sm btn-danger w-10"
+                        deleteButton.setAttribute('id', `cancel-${doc.id}`);
+                        deleteButton.addEventListener('click', () => {
+                            // Handle delete functionality
+                            console.log(`Cancel button clicked for document ${doc.id}`);
+                        });
+
+                        // Append the buttons to the accordion body
+                        accordionBody.appendChild(editButton);
+                        accordionBody.appendChild(deleteButton);
+
+                        accordionItem.appendChild(accordionCollapse);
+
+                        accordion.appendChild(accordionItem);
+
+                        // Append the accordion to the bookings list
+                        bookingsList.appendChild(accordion);
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error("Error retrieving bookings: ", error);
+            });
     }
-});
-
-function fetchUserBookings(email) {
-    // Retrieve bookings that belong to the user
-    database.collection('bookings')
-        .where('user', '==', email)
-        .get()
-        .then((querySnapshot) => {
-            const bookingsList = document.querySelector('#bookings-list');
-
-            if (querySnapshot.empty) {
-                // No bookings found for the user
-                const noBookingsMessage = document.createElement('p');
-                noBookingsMessage.textContent = "No bookings found.";
-                bookingsList.appendChild(noBookingsMessage);
-            } else {
-                // Clear existing bookings
-                bookingsList.innerHTML = '';
-
-                // Display the bookings in the UI
-                querySnapshot.forEach((doc) => {
-                    const booking = doc.data();
-
-                    // Exclude "user" field from job details
-                    const { user, ...jobDetails } = booking;
-
-                    // Create elements for the accordion
-                    const accordion = document.createElement('div');
-                    accordion.classList.add('accordion', 'accordion-primary');
-
-                    const accordionItem = document.createElement('div');
-                    accordionItem.classList.add('accordion-item');
-
-                    const accordionHeader = document.createElement('div');
-                    accordionHeader.classList.add('accordion-header', 'collapsed');
-                    accordionHeader.setAttribute('id', doc.id);
-                    accordionHeader.setAttribute('data-bs-toggle', 'collapse');
-                    accordionHeader.setAttribute('data-bs-target', `#collapse-${doc.id}`);
-                    accordionHeader.setAttribute('aria-controls', `collapse-${doc.id}`);
-                    accordionHeader.setAttribute('aria-expanded', 'false');
-                    accordionHeader.setAttribute('role', 'button');
-
-                    const accordionHeaderIcon = document.createElement('span');
-                    accordionHeaderIcon.classList.add('accordion-header-icon');
-                    accordionHeader.appendChild(accordionHeaderIcon);
-
-                    const accordionHeaderText = document.createElement('span');
-                    accordionHeaderText.classList.add('accordion-header-text');
-                    accordionHeaderText.textContent = booking.name;
-                    accordionHeader.appendChild(accordionHeaderText);
-
-                    const accordionHeaderIndicator = document.createElement('span');
-                    accordionHeaderIndicator.classList.add('accordion-header-indicator');
-                    accordionHeader.appendChild(accordionHeaderIndicator);
-
-                    accordionItem.appendChild(accordionHeader);
-
-                    const accordionCollapse = document.createElement('div');
-                    accordionCollapse.classList.add('collapse');
-                    accordionCollapse.setAttribute('id', `collapse-${doc.id}`);
-                    accordionCollapse.setAttribute('aria-labelledby', doc.id);
-                    accordionCollapse.setAttribute('data-bs-parent', '#bookings-list');
-
-                    const accordionBody = document.createElement('div');
-                    accordionBody.classList.add('accordion-body-text');
-
-                    // Create a list to display the job details
-                    const jobDetailsList = document.createElement('ul');
-
-                    // Set the job details manually using the provided template
-                    const jobDetailsFields = {
-                        Name: booking.name,
-                        Email: booking.email,
-                        Phone: booking.phone,
-                        Address: booking.address,
-                        Zip: booking.zip,
-                        Date: booking.date,
-                        Time: booking.time,
-                        Notes: booking.notes,
-                        Category: booking.jobCategory,
-                        Subcategory: booking.jobSubcategory,
-                        Payment: booking.fee
-                    };
-
-                    // Iterate over the job details and create list items
-                    for (const key in jobDetailsFields) {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = `${key}: ${jobDetailsFields[key]}`;
-                        jobDetailsList.appendChild(listItem);
-                    }
-
-                    accordionBody.appendChild(jobDetailsList);
-                    accordionCollapse.appendChild(accordionBody);
-
-                    accordionItem.appendChild(accordionCollapse);
-
-                    accordion.appendChild(accordionItem);
-
-                    // Append the accordion to the bookings list
-                    bookingsList.appendChild(accordion);
-                });
-            }
-        })
-        .catch((error) => {
-            console.error("Error retrieving bookings: ", error);
-        });
-}
-
-
     </script>
 </body>
 
