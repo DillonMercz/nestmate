@@ -634,6 +634,19 @@
                 }
             }).render('#paypal-button-container');
         }
+         // Load the PayPal SDK and initialize the buttons
+        function initializeButtons() {
+            loadPayPalSDK()
+                .then(initializePayPalButtons)
+                .catch(function(error) {
+                    // Handle errors while loading the PayPal SDK
+                    console.log(error);
+                });
+        }
+
+        // Call the initializeButtons function to load and render the buttons
+        initializeButtons();
+        
         // Function to open the payment complete modal
         function openPaymentCompleteModal() {
             $('#paymentCompleteModal').modal('show');
@@ -652,22 +665,8 @@
             // ...
         });
 
-        // Call the enableBookingButton function after the PayPal payment is completed
-        //enableBookingButton();
 
-
-        // Load the PayPal SDK and initialize the buttons
-        function initializeButtons() {
-            loadPayPalSDK()
-                .then(initializePayPalButtons)
-                .catch(function(error) {
-                    // Handle errors while loading the PayPal SDK
-                    console.log(error);
-                });
-        }
-
-        // Call the initializeButtons function to load and render the buttons
-        initializeButtons();
+       
         </script>
 </body>
 
