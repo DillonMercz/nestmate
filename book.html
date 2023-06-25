@@ -182,11 +182,13 @@
                                 </div>
                                 <br><br>
                                 <button type="button" id="part-4-submit" onclick="handleSubmit()" class="btn btn-primary w-100" disabled>Submit Booking</button>
+                                <br>
                                 <button type="button" id="part-4-back" class="btn btn-primary w-100">Back</button>
                             </form>
                         </div>
                     </div>
                 </div>
+                <!--Succesfull Payment-->
                 <div class="modal fade" tabindex="-1" id="paymentCompleteModal" aria-labelledby="paymentCompleteModal" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -195,8 +197,20 @@
                                 <h5>Payment Successfull!</h5>
                                 <p class="m-b0">You can now submit your booking.</p>
                                 <br>
-                                <br>
                                 <button type="button" onclick="handleSubmit()" class="btn btn-primary w-100">Submit Booking</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Payment Error-->
+                <div class="modal fade" tabindex="-1" id="paymentErrorModal" aria-labelledby="paymentCompleteModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body text-center small p-4">
+                                <i class="fa fa-4x fa-exclamation-circle text-error m-b15"></i>
+                                <h5>Payment Was Unsuccessful!</h5>
+                                <p class="m-b0">Please try a different payment method or card.</p>
+                            
                             </div>
                         </div>
                     </div>
@@ -600,6 +614,37 @@
 
 
         }
+        function createNewBooking(){
+            const data = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('autocomplete').value,
+                zip: document.getElementById('zip').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                notes: document.getElementById('review-notes').innerHTML,
+                jobCategory: document.getElementById('review-category').innerHTML,
+                jobSubcategory: document.getElementById('review-subcategory').innerHTML,
+                fee: document.getElementById('fee').innerHTML,
+                user: guest
+            };
+
+            // Save the data to Firebase
+            database.collection('bookings').add(data)
+                .then((docRef) => {
+                    console.log("Document written with ID: ", docRef.id);
+                    // Show success message and reset form
+                    //document.querySelector('#form').reset();
+                    location.href = './success'
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                    alert('Form submission failed. Please try again later.');
+                });
+
+
+        }
         // Load the PayPal JavaScript SDK asynchronously
         // Load the PayPal JavaScript SDK asynchronously
         function loadPayPalSDK() {
@@ -630,6 +675,7 @@
                     console.log(error);
                     // Handle error or decline here
                     // You can display an error message to the user or take appropriate action
+                    openPaymentErrorModal()
                 },
                 onApprove: function(data, actions) {
                     return actions.order.capture().then(function(details) {
@@ -637,7 +683,8 @@
                         console.log(details);
                         //document.getElementById('part-4-submit').style.display = 'block'; // Show the booking button
                         enableBookingButton()
-                        openPaymentCompleteModal()
+                        //openPaymentCompleteModal()
+                        createNewBooking()
                     });
                 }
             }).render('#paypal-button-container');
@@ -658,6 +705,10 @@
         // Function to open the payment complete modal
         function openPaymentCompleteModal() {
             $('#paymentCompleteModal').modal('show');
+        }
+        // Function to open the payment complete modal
+        function openPaymentErrorModal() {
+            $('#paymentErrorModal').modal('show');
         }
 
         // Function to enable the submit booking button
