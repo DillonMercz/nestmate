@@ -190,7 +190,7 @@
                 </div>
                 <!-- Modal HTML -->
 
- <div class="modal fade" tabindex="-1" id="paymentCompleteModal"  aria-labelledby="exampleModal4" aria-hidden="true">
+ <div id="paymentCompleteModal" class="modal fade" tabindex="-1" id="paymentCompleteModal"  aria-labelledby="exampleModal4" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-body text-center small p-4">
@@ -202,31 +202,6 @@
                                 </div>
                             </div>
 
-
-
-
-                <div id="paymentCompleteModal" class="modal fade" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Payment Complete</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="text-center">
-                                    <i class="fas fa-check-circle fa-5x text-success"></i>
-                                    <p>You may now submit your booking.</p>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="submitBookingButton">Submit Booking</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- Button to trigger the modal -->
                 <button type="button" id="part-4-submit" onclick="openPaymentCompleteModal()" class="btn btn-primary w-100" disabled>Submit Booking</button>
                 <button type="button" style="display:none" class="btn btn-danger btn-block my-3 dzToastBtn" id="toastbtn5">Show Alert</button>
