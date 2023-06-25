@@ -630,6 +630,7 @@
                         console.log(details);
                         //document.getElementById('part-4-submit').style.display = 'block'; // Show the booking button
                         enableBookingButton()
+                        openPaymentCompleteModal()
                     });
                 }
             }).render('#paypal-button-container');
@@ -646,7 +647,7 @@
 
         // Call the initializeButtons function to load and render the buttons
         initializeButtons();
-        
+
         // Function to open the payment complete modal
         function openPaymentCompleteModal() {
             $('#paymentCompleteModal').modal('show');
