@@ -196,7 +196,7 @@
                                 <p class="m-b0">You can now submit your booking.</p>
                                 <br>
                                 <br>
-                                <button type="button" onclick="handleSubmit()" class="btn btn-primary w-100" >Submit Booking</button>
+                                <button type="button" onclick="handleSubmit()" class="btn btn-primary w-100">Submit Booking</button>
                             </div>
                         </div>
                     </div>
@@ -626,6 +626,11 @@
                         }]
                     });
                 },
+                onError: function(error) {
+                    console.log(error);
+                    // Handle error or decline here
+                    // You can display an error message to the user or take appropriate action
+                },
                 onApprove: function(data, actions) {
                     return actions.order.capture().then(function(details) {
                         // Handle successful payment
@@ -637,7 +642,7 @@
                 }
             }).render('#paypal-button-container');
         }
-         // Load the PayPal SDK and initialize the buttons
+        // Load the PayPal SDK and initialize the buttons
         function initializeButtons() {
             loadPayPalSDK()
                 .then(initializePayPalButtons)
@@ -667,9 +672,6 @@
             console.log('Booking submitted');
             // ...
         });
-
-
-       
         </script>
 </body>
 
