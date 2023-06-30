@@ -80,11 +80,14 @@ ul.ui-autocomplete {
 
 
     }
-    .autocomplete-list{
-        margin-bottom:10px;
-        overflow-x:scroll;
-        -webkit-overflow-scrolling: touch;
-    }
+.autocomplete-list{
+    overflow-x: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+.swiper-container-pointer-events {
+    touch-action: pan-x !important;
+}
     #autocomplete-results{
         display: none;
     }
@@ -1444,19 +1447,20 @@ $('#search').on('input', function() {
     results.forEach(function(result) {
         var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category);
         var subcategoryList = $('<ul>').addClass('autocomplete-list swiper-wrapper swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events');
+        subcategoryList.attr("id", result.category.replace(/ /g, "-")+"-swiper");
 
         result.subcategories.forEach(function(subcategory) {
             var subcategoryItem = `<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="margin-right: 10px;">
                                         <a href="./job-detail.html?category=${window.btoa(result.category)}&subcategory=${window.btoa(subcategory)}" class="tag-btn" id="${subcategory}">${subcategory}</a>
                                     </div>`
-            
-            //subcategoryItem.data('category', result.category);
             subcategoryList.append(subcategoryItem);
         });
 
         categoryHeader.data('category', result.category);
         $('#autocomplete-results').append(categoryHeader).append(subcategoryList);
     });
+
+
 
     // add click handlers for category headers and subcategory items
     $('.autocomplete-header, .autocomplete-item').on('click', function() {

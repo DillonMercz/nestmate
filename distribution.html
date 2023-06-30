@@ -80,11 +80,14 @@ ul.ui-autocomplete {
 
 
     }
-    .autocomplete-list{
-        margin-bottom:10px;
-        overflow-x:scroll;
-        -webkit-overflow-scrolling: touch;
-    }
+.autocomplete-list{
+    overflow-x: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+.swiper-container-pointer-events {
+    touch-action: pan-x !important;
+}
     #autocomplete-results{
         display: none;
     }
