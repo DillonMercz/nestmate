@@ -1414,11 +1414,17 @@ function searchCategories(query) {
     categories.forEach(function(category) {
         var categoryMatches = [];
 
-        category.subcategories.forEach(function(subcategory) {
-            if (subcategory.toLowerCase().includes(query.toLowerCase())) {
-                categoryMatches.push(subcategory);
-            }
-        });
+        // Check if the category name includes the query
+        if (category.name.toLowerCase().includes(query.toLowerCase())) {
+            categoryMatches = category.subcategories.slice();
+        } else {
+            // Check each subcategory
+            category.subcategories.forEach(function(subcategory) {
+                if (subcategory.toLowerCase().includes(query.toLowerCase())) {
+                    categoryMatches.push(subcategory);
+                }
+            });
+        }
 
         if (categoryMatches.length > 0) {
             results.push({
