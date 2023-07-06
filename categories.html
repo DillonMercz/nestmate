@@ -746,7 +746,11 @@ results.forEach(function(result) {
   
   subcategoryLists.forEach(function(list) {
     new Swiper(list, {
+        init:true,
+        enabled:true,
+        followFinger:true,
       slidesPerView: 'auto',
+      allowTouchMove:true,
       freeMode: true,
       spaceBetween: 16,
       touchRatio: 1,
