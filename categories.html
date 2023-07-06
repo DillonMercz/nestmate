@@ -728,7 +728,8 @@ var dashboardArea = document.getElementById("dashboard-area");
 
 results.forEach(function(result) {
         var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category).attr('id', result.category.toLowerCase());
-        var subcategoryList = $('<ul>').addClass('autocomplete-list subcategory-list swiper-wrapper swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events');
+        var subcategoryContainer = $('<div>').addClass('swiper-container tag-group mt-4 dz-swiper recomand-swiper')
+        var subcategoryList = $('<ul>').addClass('autocomplete-list subcategory-list swiper-wrapper');
         subcategoryList.attr("id", result.category.replace(/ /g, "-")+"-swiper");
 
         result.subcategories.forEach(function(subcategory) {
@@ -739,7 +740,7 @@ results.forEach(function(result) {
         });
 
         categoryHeader.data('category', result.category);
-        $('#dashboard-area').append(categoryHeader).append(subcategoryList);
+        $('#dashboard-area').append(categoryHeader).append(subcategoryContainer).append(subcategoryList);
     });
   // Initialize Swiper on each subcategory list
   var subcategoryLists = document.querySelectorAll('.subcategory-list');
@@ -747,6 +748,7 @@ results.forEach(function(result) {
   subcategoryLists.forEach(function(list) {
     new Swiper(list, {
         init:true,
+        touchEventsTarget:'wrapper',
         enabled:true,
         followFinger:true,
       slidesPerView: 'auto',
