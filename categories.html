@@ -728,31 +728,27 @@ var dashboardArea = document.getElementById("dashboard-area");
 
 results.forEach(function(result) {
         var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category).attr('id', result.category.toLowerCase());
-        var subcategoryContainer = $('<div>').addClass('swiper-container tag-group mt-4 dz-swiper recomand-swiper')
-        var subcategoryList = $('<ul>').addClass('autocomplete-list subcategory-list swiper-wrapper');
+        var subcategoryContainer = $('<div>').addClass('swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events')
+        var subcategoryList = $('<ul>').addClass('swiper-wrapper');
         subcategoryList.attr("id", result.category.replace(/ /g, "-")+"-swiper");
 
         result.subcategories.forEach(function(subcategory) {
-            var subcategoryItem = `<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="margin-right: 10px;">
+            var subcategoryItem = `<div class="swiper-slide" role="group" aria-label="2 / 6" style="margin-right: 10px;">
                                         <a href="./job-detail.html?category=${window.btoa(result.category)}&subcategory=${window.btoa(subcategory)}" class="tag-btn" id="${subcategory}">${subcategory}</a>
                                     </div>`
             subcategoryList.append(subcategoryItem);
+            subcategoryContainer.append(subcategoryList)
         });
 
         categoryHeader.data('category', result.category);
-        $('#dashboard-area').append(categoryHeader).append(subcategoryContainer).append(subcategoryList);
+        $('#dashboard-area').append(categoryHeader).append(subcategoryContainer)
     });
   // Initialize Swiper on each subcategory list
   var subcategoryLists = document.querySelectorAll('.subcategory-list');
   
   subcategoryLists.forEach(function(list) {
     new Swiper(list, {
-        init:true,
-        touchEventsTarget:'wrapper',
-        enabled:true,
-        followFinger:true,
       slidesPerView: 'auto',
-      allowTouchMove:true,
       freeMode: true,
       spaceBetween: 16,
       touchRatio: 1,
@@ -786,11 +782,11 @@ $('#search').on('input', function() {
 
     results.forEach(function(result) {
         var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category);
-        var subcategoryList = $('<ul>').addClass('swiper-container tag-group mt-4 dz-swiper recomand-swiper');
+        var subcategoryList = $('<ul>').addClass('autocomplete-list swiper-wrapper swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events');
         subcategoryList.attr("id", result.category.replace(/ /g, "-")+"-swiper");
 
         result.subcategories.forEach(function(subcategory) {
-            var subcategoryItem = `<div class="swiper-slide" role="group" aria-label="2 / 6" style="margin-right: 10px;">
+            var subcategoryItem = `<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="margin-right: 10px;">
                                         <a href="./job-detail.html?category=${window.btoa(result.category)}&subcategory=${window.btoa(subcategory)}" class="tag-btn" id="${subcategory}">${subcategory}</a>
                                     </div>`
             subcategoryList.append(subcategoryItem);
