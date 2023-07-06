@@ -780,11 +780,11 @@ $('#search').on('input', function() {
 
     results.forEach(function(result) {
         var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category);
-        var subcategoryList = $('<ul>').addClass('autocomplete-list swiper-wrapper swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events');
+        var subcategoryList = $('<ul>').addClass('swiper-container tag-group mt-4 dz-swiper recomand-swiper');
         subcategoryList.attr("id", result.category.replace(/ /g, "-")+"-swiper");
 
         result.subcategories.forEach(function(subcategory) {
-            var subcategoryItem = `<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="margin-right: 10px;">
+            var subcategoryItem = `<div class="swiper-slide" role="group" aria-label="2 / 6" style="margin-right: 10px;">
                                         <a href="./job-detail.html?category=${window.btoa(result.category)}&subcategory=${window.btoa(subcategory)}" class="tag-btn" id="${subcategory}">${subcategory}</a>
                                     </div>`
             subcategoryList.append(subcategoryItem);
