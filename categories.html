@@ -725,7 +725,7 @@ var dashboardArea = document.getElementById("dashboard-area");
 
 results.forEach(function(result) {
         var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category);
-        var subcategoryList = $('<ul>').addClass('autocomplete-list swiper-wrapper swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events');
+        var subcategoryList = $('<ul>').addClass('autocomplete-list subcategory-list swiper-wrapper swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events');
         subcategoryList.attr("id", result.category.replace(/ /g, "-")+"-swiper");
 
         result.subcategories.forEach(function(subcategory) {
@@ -738,8 +738,20 @@ results.forEach(function(result) {
         categoryHeader.data('category', result.category);
         $('#dashboard-area').append(categoryHeader).append(subcategoryList);
     });
-
-
+  // Initialize Swiper on each subcategory list
+  var subcategoryLists = document.querySelectorAll('.subcategory-list');
+  
+  subcategoryLists.forEach(function(list) {
+    new Swiper(list, {
+      slidesPerView: 'auto',
+      freeMode: true,
+      spaceBetween: 16,
+      scrollbar: {
+        el: '.swiper-scrollbar',
+        hide: false,
+      },
+    });
+  });
 
     // add click handlers for category headers and subcategory items
     $('.autocomplete-header, .autocomplete-item').on('click', function() {
