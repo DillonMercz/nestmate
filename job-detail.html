@@ -444,7 +444,6 @@
     ">Subcategories:</span>
                             <div class="swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
                                 <div class="swiper-wrapper" id="swiper-wrapper-714760010fb1034ea4" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
-
                                 </div>
                                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                             </div>
@@ -508,7 +507,6 @@
                                         <div class="mt-4 mb-2">
                                             <h5 class="mb-3">Service Description</h5>
                                             <p class="para-title" id="description">
-                                               
                                             </p>
                                             <br>
                                             <h3>Things to Note:</h3>
@@ -1373,6 +1371,11 @@
                     "name": "General Home Repairs",
                     "description": "Professional home repair services for a variety of issues, including plumbing, electrical, and more.",
                     "price": "45"
+                },
+                {
+                    "name": "Siding Installation or Repair",
+                    "description": "Professional siding installation or repair including wood, vinyl, aluminum, or fiber cement.",
+                    "price": "500"
                 },
                 {
                     "name": "Window Repair and Installation",
@@ -2358,17 +2361,17 @@
     window.localStorage.setItem("fee", price)
     console.log(obj)
     console.log(obj["subcategories"])
-        for (var i in obj["subcategories"]) {
+    for (var i in obj["subcategories"]) {
 
-            template = template + `<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="margin-right: 10px;">
+        template = template + `<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="margin-right: 10px;">
                                         <a href="?category=${window.btoa(category)}&subcategory=${window.btoa(obj["subcategories"][i].name)}" class="tag-btn" id="${obj["subcategories"][i].name}">${obj["subcategories"][i].name}</a>
                                     </div>`
-           
-        }
-        document.getElementById("swiper-wrapper-714760010fb1034ea4").innerHTML = template
-        document.getElementById("price").innerHTML = price
-        document.getElementById("description").innerHTML = description
-        document.getElementById(`${subcategory}`).classList.add('active');
+
+    }
+    document.getElementById("swiper-wrapper-714760010fb1034ea4").innerHTML = template
+    document.getElementById("price").innerHTML = price
+    document.getElementById("description").innerHTML = description
+    document.getElementById(`${subcategory}`).classList.add('active');
 
     function book() {
         location.href = `./book.html?subcategory=${subcategory}&category=${category}`

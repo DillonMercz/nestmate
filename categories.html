@@ -415,6 +415,7 @@ ul.ui-autocomplete {
                         "Drywall Repair and Installation",
                         "Furniture Assembly",
                         "General Home Repairs",
+                        "Siding Installation or Repair",
                         "Window Repair and Installation",
                         "Door Repair and Installation",
                         "Caulking and Weatherstripping",
@@ -724,7 +725,7 @@ var recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
 var dashboardArea = document.getElementById("dashboard-area");
 
 results.forEach(function(result) {
-        var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category);
+        var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category).attr('id', result.category.toLowerCase());
         var subcategoryList = $('<ul>').addClass('autocomplete-list subcategory-list swiper-wrapper swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events');
         subcategoryList.attr("id", result.category.replace(/ /g, "-")+"-swiper");
 
