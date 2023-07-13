@@ -1573,19 +1573,6 @@ $(document).on('click', function(event) {
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
 
-
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // User is signed in, show their name
-            var name = user.displayName;
-            document.getElementById("user-name").innerHTML = name;
-        } else {
-            // No user is signed in, show login button
-            console.log("No User Found")
-            window.location.href = "./login.html";
-            
-        }
-    });
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 

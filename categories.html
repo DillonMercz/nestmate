@@ -882,18 +882,7 @@ $(document).on('click', function(event) {
     const app = firebase.initializeApp(firebaseConfig);
 
 
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // User is signed in, show their name
-            var name = user.displayName;
-            //document.getElementById("user-name").innerHTML = name;
-        } else {
-            // No user is signed in, show login button
-            console.log("No User Found")
-            window.location.href = "./login.html";
-            
-        }
-    });
+   
     </script>
 </body>
 
