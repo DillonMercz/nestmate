@@ -1,0 +1,409 @@
+<head>
+<style>
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #222;
+    font-size: 0;
+}
+
+svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+
+}
+
+h1 {
+    width: 100%;
+    font-family: sans-serif;
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    top: 40%;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+}
+
+h1 a {
+    color: #48b1f4;
+    text-decoration: none;
+}
+
+path {
+    stroke-linecap: square;
+    stroke: white;
+    stroke-width: 0.5px;
+}
+
+* {
+    font-family: Verdana, Arial, sans-serif;
+}
+
+body {
+    text-align: center;
+}
+
+body>div {
+    margin: 20px;
+}
+
+a:link {
+    color: #000;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #000;
+}
+
+a:hover {
+    color: #33F;
+}
+
+select {
+    font-size: 1em;
+}
+
+.final {
+    color: black;
+    padding-right: 3px;
+}
+
+.interim {
+    color: gray;
+}
+
+.info {
+    font-size: 14px;
+    color: #777;
+    display: none;
+}
+
+#headline {
+    font-size: 40px;
+    font-weight: 300;
+}
+
+#info {
+    font-size: 1.2em;
+    color: #777;
+    visibility: hidden;
+}
+
+#results {
+    font-size: 1.5em;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 15px;
+    min-height: 150px;
+}
+
+#start_button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#start_button:focus {
+    background: red;
+}
+
+#language {
+    font-size: 1.2em;
+}
+</style>
+</head>
+<div id="language">
+    Language: <select id="select_language" onchange="updateCountry()"></select>
+    &nbsp;&nbsp;
+    <select id="select_dialect"></select>
+</div>
+<div id="info">
+    <p id="info_start">Click on the round button and begin speaking.</p>
+    <p id="info_speak_now">Speak now.</p>
+    <p id="info_no_speech">No speech was detected. You may need to adjust your
+        <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+            microphone settings</a>.</p>
+    <p id="info_no_microphone" style="display:none">
+        No microphone was found. Ensure that a microphone is installed and that
+        <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+            microphone settings</a> are configured correctly.</p>
+    <p id="info_allow">Click the "Allow" button above to enable your microphone.</p>
+    <p id="info_denied">Permission to use microphone was denied.</p>
+    <p id="info_blocked">Permission to use microphone is blocked. To change,
+        go to chrome://settings/contentExceptions#media-stream</p>
+    <p id="info_upgrade">Web Speech API is not supported by this browser.
+        Upgrade to <a href="//www.google.com/chrome">Chrome</a>
+        version 25 or later.</p>
+</div>
+<button id="start_button" onclick="startButton(event)"></button>
+<div id="results">
+    <span id="final_span" class="final"></span>
+    <span id="interim_span" class="interim"></span>
+</div>
+<svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <mask id="mask">
+            <g id="maskGroup">
+            </g>
+        </mask>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff0a0a;stop-opacity:1" />
+            <stop offset="20%" style="stop-color:#f1ff0a;stop-opacity:1" />
+            <stop offset="90%" style="stop-color:#d923b9;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#050d61;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
+</svg>
+<h1>In <a href="https://codepen.io/zapplebee/full/gbNbZE/">Full Page view</a>, please allow the use of your microphone</h1>
+<script>
+window.onload = function() {
+    "use strict";
+    var paths = document.getElementsByTagName('path');
+    var visualizer = document.getElementById('visualizer');
+    var mask = visualizer.getElementById('mask');
+    var h = document.getElementsByTagName('h1')[0];
+    var path;
+    var report = 0;
+
+    var soundAllowed = function(stream) {
+        //Audio stops listening in FF without // window.persistAudioStream = stream;
+        //https://bugzilla.mozilla.org/show_bug.cgi?id=965483
+        //https://support.mozilla.org/en-US/questions/984179
+        window.persistAudioStream = stream;
+        h.innerHTML = "Thanks";
+        h.setAttribute('style', 'opacity: 0;');
+        var audioContent = new AudioContext();
+        var audioStream = audioContent.createMediaStreamSource(stream);
+        var analyser = audioContent.createAnalyser();
+        audioStream.connect(analyser);
+        analyser.fftSize = 1024;
+
+        var frequencyArray = new Uint8Array(analyser.frequencyBinCount);
+        visualizer.setAttribute('viewBox', '0 0 255 255');
+
+        //Through the frequencyArray has a length longer than 255, there seems to be no
+        //significant data after this point. Not worth visualizing.
+        for (var i = 0; i < 255; i++) {
+            path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('stroke-dasharray', '4,1');
+            mask.appendChild(path);
+        }
+        var doDraw = function() {
+            requestAnimationFrame(doDraw);
+            analyser.getByteFrequencyData(frequencyArray);
+            var adjustedLength;
+            for (var i = 0; i < 255; i++) {
+                adjustedLength = Math.floor(frequencyArray[i]) - (Math.floor(frequencyArray[i]) % 5);
+                paths[i].setAttribute('d', 'M ' + (i) + ',255 l 0,-' + adjustedLength);
+            }
+
+        }
+        doDraw();
+    }
+
+    var soundNotAllowed = function(error) {
+        h.innerHTML = "You must allow your microphone.";
+        console.log(error);
+    }
+
+    /*window.navigator = window.navigator || {};
+    /*navigator.getUserMedia =  navigator.getUserMedia       ||
+                              navigator.webkitGetUserMedia ||
+                              navigator.mozGetUserMedia    ||
+                              null;*/
+    navigator.getUserMedia({ audio: true }, soundAllowed, soundNotAllowed);
+
+};
+var langs = [
+    ['English', ['en-AU', 'Australia'],
+        ['en-CA', 'Canada'],
+        ['en-IN', 'India'],
+        ['en-NZ', 'New Zealand'],
+        ['en-ZA', 'South Africa'],
+        ['en-GB', 'United Kingdom'],
+        ['en-US', 'United States']
+    ],
+    ['Español', ['es-AR', 'Argentina'],
+        ['es-BO', 'Bolivia'],
+        ['es-CL', 'Chile'],
+        ['es-CO', 'Colombia'],
+        ['es-CR', 'Costa Rica'],
+        ['es-EC', 'Ecuador'],
+        ['es-SV', 'El Salvador'],
+        ['es-ES', 'España'],
+        ['es-US', 'Estados Unidos'],
+        ['es-GT', 'Guatemala'],
+        ['es-HN', 'Honduras'],
+        ['es-MX', 'México'],
+        ['es-NI', 'Nicaragua'],
+        ['es-PA', 'Panamá'],
+        ['es-PY', 'Paraguay'],
+        ['es-PE', 'Perú'],
+        ['es-PR', 'Puerto Rico'],
+        ['es-DO', 'República Dominicana'],
+        ['es-UY', 'Uruguay'],
+        ['es-VE', 'Venezuela']
+    ],
+    ['Français', ['fr-FR']],
+    ['Italiano', ['it-IT', 'Italia'],
+        ['it-CH', 'Svizzera']
+    ],
+    ['Português', ['pt-BR', 'Brasil'],
+        ['pt-PT', 'Portugal']
+    ],
+    ['日本語', ['ja-JP']],
+    ['Lingua latīna', ['la']]
+];
+
+for (var i = 0; i < langs.length; i++) {
+    select_language.options[i] = new Option(langs[i][0], i);
+}
+select_language.selectedIndex = 6;
+updateCountry();
+select_dialect.selectedIndex = 6;
+showInfo('info_start');
+
+function updateCountry() {
+    for (var i = select_dialect.options.length - 1; i >= 0; i--) {
+        select_dialect.remove(i);
+    }
+    var list = langs[select_language.selectedIndex];
+    for (var i = 1; i < list.length; i++) {
+        select_dialect.options.add(new Option(list[i][1], list[i][0]));
+    }
+    select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
+}
+
+
+var final_transcript = '';
+var recognizing = false;
+var ignore_onend;
+var start_timestamp;
+if (!('webkitSpeechRecognition' in window)) {
+    upgrade();
+} else {
+    start_button.style.display = 'inline-block';
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    recognition.onstart = function() {
+        recognizing = true;
+        showInfo('info_speak_now');
+        start_img.src = 'mic-animate.gif';
+    };
+
+    recognition.onerror = function(event) {
+        if (event.error == 'no-speech') {
+            start_img.src = 'mic.gif';
+            showInfo('info_no_speech');
+            ignore_onend = true;
+        }
+        if (event.error == 'audio-capture') {
+            start_img.src = 'mic.gif';
+            showInfo('info_no_microphone');
+            ignore_onend = true;
+        }
+        if (event.error == 'not-allowed') {
+            if (event.timeStamp - start_timestamp < 100) {
+                showInfo('info_blocked');
+            } else {
+                showInfo('info_denied');
+            }
+            ignore_onend = true;
+        }
+    };
+
+    recognition.onend = function() {
+        recognizing = false;
+        if (ignore_onend) {
+            return;
+        }
+        start_img.src = 'mic.gif';
+        if (!final_transcript) {
+            showInfo('info_start');
+            return;
+        }
+        showInfo('');
+
+    };
+
+    recognition.onresult = function(event) {
+        var interim_transcript = '';
+        for (var i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+                final_transcript += event.results[i][0].transcript;
+            } else {
+                interim_transcript += event.results[i][0].transcript;
+            }
+        }
+        final_transcript = capitalize(final_transcript);
+        final_span.innerHTML = linebreak(final_transcript);
+        interim_span.innerHTML = linebreak(interim_transcript);
+        if (final_transcript || interim_transcript) {
+            showButtons('inline-block');
+        }
+    };
+}
+
+function upgrade() {
+    start_button.style.visibility = 'hidden';
+    showInfo('info_upgrade');
+}
+
+var two_line = /\n\n/g;
+var one_line = /\n/g;
+
+function linebreak(s) {
+    return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+}
+
+var first_char = /\S/;
+
+function capitalize(s) {
+    return s.replace(first_char, function(m) { return m.toUpperCase(); });
+}
+
+function startButton(event) {
+    if (recognizing) {
+        recognition.stop();
+        return;
+    }
+    final_transcript = '';
+    recognition.lang = select_dialect.value;
+    recognition.start();
+    ignore_onend = false;
+    final_span.innerHTML = '';
+    interim_span.innerHTML = '';
+    start_img.src = 'mic-slash.gif';
+    showInfo('info_allow');
+    showButtons('none');
+    start_timestamp = event.timeStamp;
+}
+
+function showInfo(s) {
+    if (s) {
+        for (var child = info.firstChild; child; child = child.nextSibling) {
+            if (child.style) {
+                child.style.display = child.id == s ? 'inline' : 'none';
+            }
+        }
+        info.style.visibility = 'visible';
+    } else {
+        info.style.visibility = 'hidden';
+    }
+}
+</script>
