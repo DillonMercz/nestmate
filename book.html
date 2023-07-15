@@ -71,6 +71,34 @@
                 </div>
             </div>
         </header>
+        <!DOCTYPE html>
+<html>
+<head>
+  <title>Share Button</title>
+</head>
+<body>
+  <button id="shareButton">Share</button>
+
+  <script>
+    document.getElementById('shareButton').addEventListener('click', function() {
+      var longUrl = window.location.href;
+
+      // Make a GET request to the TinyURL API to shorten the URL
+      fetch('https://api.tinyurl.com/dev/api-create.php?url=' + encodeURIComponent(longUrl))
+        .then(response => response.text())
+        .then(shortUrl => {
+          // Perform any actions with the short URL here
+          // For this example, we'll log it to the console
+          console.log('Short URL:', shortUrl);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    });
+  </script>
+</body>
+</html>
+
         <!-- Header End -->
         <div class="page-content">
             <div class="container fb">
