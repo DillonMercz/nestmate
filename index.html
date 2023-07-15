@@ -1573,6 +1573,7 @@ ul.ui-autocomplete {
 
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
     // Log a custom event for page view
     firebase.analytics().logEvent('page_view', { page_title: 'Home Page' });
 
