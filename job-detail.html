@@ -425,6 +425,37 @@
             </div>
         </header>
         <!-- Header End -->
+        <button id="shareButton">Share</button>
+
+  <script>
+    document.getElementById('shareButton').addEventListener('click', function() {
+      var longUrl = window.location.href;
+      var accessToken = 'YOUR_BITLY_ACCESS_TOKEN'; // Replace with your Bitly access token
+
+      // Make a POST request to the Bitly API to shorten the URL
+      fetch('https://api-ssl.bitly.com/v4/shorten', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + accessToken
+        },
+        body: JSON.stringify({
+          long_url: longUrl
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        var shortUrl = data.link;
+
+        // Perform any actions with the short URL here
+        // For this example, we'll log it to the console
+        console.log('Short URL:', shortUrl);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+  </script>
         <!-- Page Content -->
         <div class="page-content bottom-content">
             <div class="content-body">
