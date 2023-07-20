@@ -6,18 +6,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
     <meta name="theme-color" content="#2196f3">
-    <meta name="author" content="DillonMerx" />
+    <meta name="author" content="Nestmate Home Services LLC" />
     <meta name="keywords" content="" />
     <meta name="robots" content="" />
-    <meta name="description" content="NestMate Home Services" />
-    <meta property="og:title" content="NestMate Home Services" />
-    <meta property="og:description" content="NestMate Home Services" />
-    <meta property="og:image" content="https://jobie.DillonMerx.com/mobile-app/xhtml/social-image.png" />
-    <meta name="format-detection" content="telephone=no">
-    <!-- Favicons Icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <meta name="title" content="Nestmate Home Services - Book Now">
+    <meta name="description" content="Book Home Services With A Tap.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://metatags.io/">
+    <meta property="og:title" content="Nestmate Home Services - Book Now">
+    <meta property="og:description" content="Book Home Services With A Tap.">
+    <meta property="og:image" content="https://i.imgur.com/0zrobiV.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://metatags.io/">
+    <meta property="twitter:title" content="Nestmate Home Services - Book Now">
+    <meta property="twitter:description" content="Book Home Services With A Tap.">
+    <meta property="twitter:image" content="https://i.imgur.com/0zrobiV.png">
+    <meta name="description" content="NestMate - Services ">
+    <!-- Favicons Icon 
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Title -->
-    <title>NestMate - Category Details</title>
+    <title>Nestmate Home Services - Home</title>
+    <!-- PWA Version -->
+    <link rel="manifest" href="./manifest.json">
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
@@ -25,6 +39,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+    // Function to decode base64 URL parameter
+    function decodeBase64UrlParam(param) {
+      const decodedParam = decodeURIComponent(atob(param));
+      return decodedParam;
+    }
+
+    // Function to get URL parameter by name
+    function getUrlParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Get the 'category' query parameter from the URL
+    const categoryParam = getUrlParam('category');
+
+    // Check if the 'category' parameter is present in the URL
+    if (categoryParam) {
+      // Decode the base64 parameter and set as the page title
+      document.title = `Nestmate Home Services - ${decodeBase64UrlParam(categoryParam)} Category Details`;
+    }
+  </script>
     <style>
         @import 'https://fonts.googleapis.com/css?family=Ubuntu';
  @keyframes fade {
