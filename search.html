@@ -3,7 +3,6 @@
 
 <head>
     <!-- Meta -->
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
     <meta name="theme-color" content="#2196f3">
@@ -30,7 +29,7 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Title -->
-    <title>NestMate Home Services - Home</title>
+    <title>Nestmate Home Services - Home</title>
     <!-- PWA Version -->
     <link rel="manifest" href="./manifest.json">
     <!-- Stylesheets -->
@@ -123,7 +122,7 @@ ul.ui-autocomplete {
         <div class="page-content">
             <div class="content-inner pt-0">
                 <div class="container fb">
-                    <h1 style="margin-top:10%">What Can We NestMate?</h1>
+                    <h1 style="margin-top:10%">What Does Your Nest Need?</h1>
                     <!-- Search -->
                     <form class="m-b30">
                         <div class="serach-area">
@@ -951,6 +950,13 @@ ul.ui-autocomplete {
     <script src="assets/js/dz.carousel.js"></script><!-- Swiper -->
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script><!-- Swiper -->
     <script>
+    console.log(`
+███╗░░██╗███████╗░██████╗████████╗███╗░░░███╗░█████╗░████████╗███████╗
+████╗░██║██╔════╝██╔════╝╚══██╔══╝████╗░████║██╔══██╗╚══██╔══╝██╔════╝
+██╔██╗██║█████╗░░╚█████╗░░░░██║░░░██╔████╔██║███████║░░░██║░░░█████╗░░
+██║╚████║██╔══╝░░░╚═══██╗░░░██║░░░██║╚██╔╝██║██╔══██║░░░██║░░░██╔══╝░░
+██║░╚███║███████╗██████╔╝░░░██║░░░██║░╚═╝░██║██║░░██║░░░██║░░░███████╗
+╚═╝░░╚══╝╚══════╝╚═════╝░░░░╚═╝░░░╚═╝░░░░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚══════╝`)
     var categories;
 
     function mapAutocomplete() {
@@ -1415,6 +1421,7 @@ ul.ui-autocomplete {
                         "Bathroom Remodeling",
                         "Shower and Bathtub Installation",
                         "Toilet Repair and Installation",
+                        "Bathtub Resurfacing and Refinishing",
                         "Sink and Faucet Installation",
                         "Tile Installation and Repair",
                         "Grout and Caulking Services",
@@ -1432,100 +1439,100 @@ ul.ui-autocomplete {
 
         });
     }
-function searchCategories(query) {
-    var results = [];
 
-    categories.forEach(function(category) {
-        var categoryMatches = [];
+    function searchCategories(query) {
+        var results = [];
 
-        category.subcategories.forEach(function(subcategory) {
-            if (subcategory.toLowerCase().includes(query.toLowerCase())) {
-                categoryMatches.push(subcategory);
+        categories.forEach(function(category) {
+            var categoryMatches = [];
+
+            category.subcategories.forEach(function(subcategory) {
+                if (subcategory.toLowerCase().includes(query.toLowerCase())) {
+                    categoryMatches.push(subcategory);
+                }
+            });
+
+            if (categoryMatches.length > 0) {
+                results.push({
+                    category: category.name,
+                    subcategories: categoryMatches
+                });
             }
         });
 
-        if (categoryMatches.length > 0) {
-            results.push({
-                category: category.name,
-                subcategories: categoryMatches
+        // Limit the number of results
+        return results.slice(0, 10);
+    }
+
+    var autocompleteVisible = false;
+    var recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+
+    $('#search').on('input', function() {
+        var query = $(this).val();
+        var results = searchCategories(query);
+
+        $('#autocomplete-results').empty();
+
+        results.forEach(function(result) {
+            var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category);
+            var subcategoryList = $('<ul>').addClass('autocomplete-list swiper-wrapper swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events');
+            subcategoryList.attr("id", result.category.replace(/ /g, "-") + "-swiper");
+
+            result.subcategories.forEach(function(subcategory) {
+                var subcategoryItem = `<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="margin-right: 10px;">
+                                        <a href="./job-detail.html?category=${window.btoa(result.category)}&subcategory=${window.btoa(subcategory)}" class="tag-btn" id="${subcategory}">${subcategory}</a>
+                                    </div>`
+                subcategoryList.append(subcategoryItem);
             });
+
+            categoryHeader.data('category', result.category);
+            $('#autocomplete-results').append(categoryHeader).append(subcategoryList);
+        });
+
+
+
+        // add click handlers for category headers and subcategory items
+        $('.autocomplete-header, .autocomplete-item').on('click', function() {
+            var category = $(this).data('category');
+            var subcategory = $(this).hasClass('autocomplete-item') ? $(this).text() : null;
+
+            // store the search in recent searches
+            recentSearches.unshift({ category, subcategory });
+            localStorage.setItem('recentSearches', JSON.stringify(recentSearches.slice(0, 10)));
+
+            location.href = "./job-detail.html?category=" + window.btoa(category) + (subcategory ? '&subcategory=' + window.btoa(subcategory) : '');
+        });
+
+        $('#autocomplete-results').show();
+
+        autocompleteVisible = true;
+    });
+
+    $('#search').on('focus', function() {
+        // show recent searches when search bar is clicked
+        if (!autocompleteVisible) {
+            $('#autocomplete-results').empty();
+            recentSearches.forEach(function(search) {
+                var categoryHeader = $('<h3>').addClass('autocomplete-header').text(search.category);
+                categoryHeader.data('category', search.category);
+                $('#autocomplete-results').append(categoryHeader);
+                if (search.subcategory) {
+                    var subcategoryItem = $('<li>').addClass('autocomplete-item').text(search.subcategory);
+                    subcategoryItem.data('category', search.category);
+                    $('#autocomplete-results').append(subcategoryItem);
+                }
+            });
+            $('#autocomplete-results').show();
+            autocompleteVisible = true;
         }
     });
 
-    // Limit the number of results
-    return results.slice(0, 10);
-}
-
-var autocompleteVisible = false;
-var recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
-
-$('#search').on('input', function() {
-    var query = $(this).val();
-    var results = searchCategories(query);
-
-    $('#autocomplete-results').empty();
-
-    results.forEach(function(result) {
-        var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category);
-        var subcategoryList = $('<ul>').addClass('autocomplete-list swiper-wrapper swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events');
-        subcategoryList.attr("id", result.category.replace(/ /g, "-")+"-swiper");
-
-        result.subcategories.forEach(function(subcategory) {
-            var subcategoryItem = `<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="margin-right: 10px;">
-                                        <a href="./job-detail.html?category=${window.btoa(result.category)}&subcategory=${window.btoa(subcategory)}" class="tag-btn" id="${subcategory}">${subcategory}</a>
-                                    </div>`
-            subcategoryList.append(subcategoryItem);
-        });
-
-        categoryHeader.data('category', result.category);
-        $('#autocomplete-results').append(categoryHeader).append(subcategoryList);
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('#autocomplete-results').length) {
+            $('#autocomplete-results').hide();
+            autocompleteVisible = false;
+        }
     });
-
-
-
-    // add click handlers for category headers and subcategory items
-    $('.autocomplete-header, .autocomplete-item').on('click', function() {
-        var category = $(this).data('category');
-        var subcategory = $(this).hasClass('autocomplete-item') ? $(this).text() : null;
-
-        // store the search in recent searches
-        recentSearches.unshift({ category, subcategory });
-        localStorage.setItem('recentSearches', JSON.stringify(recentSearches.slice(0, 10)));
-
-        location.href = "./job-detail.html?category=" + window.btoa(category) + (subcategory ? '&subcategory=' + window.btoa(subcategory) : '');
-    });
-
-    $('#autocomplete-results').show();
-
-    autocompleteVisible = true;
-});
-
-$('#search').on('focus', function() {
-    // show recent searches when search bar is clicked
-    if (!autocompleteVisible) {
-        $('#autocomplete-results').empty();
-        recentSearches.forEach(function(search) {
-            var categoryHeader = $('<h3>').addClass('autocomplete-header').text(search.category);
-            categoryHeader.data('category', search.category);
-            $('#autocomplete-results').append(categoryHeader);
-            if (search.subcategory) {
-                var subcategoryItem = $('<li>').addClass('autocomplete-item').text(search.subcategory);
-                subcategoryItem.data('category', search.category);
-                $('#autocomplete-results').append(subcategoryItem);
-            }
-        });
-        $('#autocomplete-results').show();
-        autocompleteVisible = true;
-    }
-});
-
-$(document).on('click', function(event) {
-    if (!$(event.target).closest('#autocomplete-results').length) {
-        $('#autocomplete-results').hide();
-        autocompleteVisible = false;
-    }
-});
-
     </script>
     <script>
     // get the current hour
@@ -1551,6 +1558,7 @@ $(document).on('click', function(event) {
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+
     <script>
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -1566,9 +1574,11 @@ $(document).on('click', function(event) {
 
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
-firebase.analytics()
+    firebase.analytics();
+    // Log a custom event for page view
+    firebase.analytics().logEvent('page_view', { page_title: 'Home Page' });
 
-firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in, show their name
             var name = user.displayName;
@@ -1576,8 +1586,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         } else {
             // No user is signed in, show login button
             console.log("No User Found")
-            
-            
+
+
         }
     });
     </script>
