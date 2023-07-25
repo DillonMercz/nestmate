@@ -9852,6 +9852,7 @@ section {
     content: none; }
 
 .menubar-area {
+  height:90px;
   position: fixed;
   bottom: 0;
   left: 0;
