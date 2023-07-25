@@ -6,18 +6,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
     <meta name="theme-color" content="#2196f3">
-    <meta name="author" content="DillonMerx" />
+    <meta name="author" content="Nestmate Home Services LLC" />
     <meta name="keywords" content="" />
     <meta name="robots" content="" />
-    <meta name="description" content="NestMate Home Services" />
-    <meta property="og:title" content="NestMate Home Services" />
-    <meta property="og:description" content="NestMate Home Services" />
-    <meta property="og:image" content="https://jobie.DillonMerx.com/mobile-app/xhtml/social-image.png" />
-    <meta name="format-detection" content="telephone=no">
-    <!-- Favicons Icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <meta name="title" content="Nestmate Home Services - Book Now">
+    <meta name="description" content="Book Home Services With A Tap.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://metatags.io/">
+    <meta property="og:title" content="Nestmate Home Services - Book Now">
+    <meta property="og:description" content="Book Home Services With A Tap.">
+    <meta property="og:image" content="https://i.imgur.com/0zrobiV.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://metatags.io/">
+    <meta property="twitter:title" content="Nestmate Home Services - Book Now">
+    <meta property="twitter:description" content="Book Home Services With A Tap.">
+    <meta property="twitter:image" content="https://i.imgur.com/0zrobiV.png">
+    <meta name="description" content="NestMate - Services ">
+    <!-- Favicons Icon 
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Title -->
-    <title>NestMate - Category Details</title>
+    <!-- PWA Version -->
+    <link rel="manifest" href="./manifest.json">
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
@@ -25,6 +38,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+    // Function to decode base64 URL parameter
+    function decodeBase64UrlParam(param) {
+      const decodedParam = decodeURIComponent(atob(param));
+      return decodedParam;
+    }
+
+    // Function to get URL parameter by name
+    function getUrlParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Get the 'category' query parameter from the URL
+    const categoryParam = getUrlParam('category');
+
+    // Check if the 'category' parameter is present in the URL
+    if (categoryParam) {
+      // Decode the base64 parameter and set as the page title
+      document.title = `Nestmate Home Services - ${decodeBase64UrlParam(categoryParam)} Category Details`;
+    }
+  </script>
     <style>
         @import 'https://fonts.googleapis.com/css?family=Ubuntu';
  @keyframes fade {
@@ -411,7 +447,7 @@
                 <div class="container">
                     <div class="header-content">
                         <div class="left-content">
-                            <a href="javascript:void(0);" class="back-btn">
+                            <a href="./index.html" class="back-btn">
                                 <svg width="18" height="18" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.03033 0.46967C9.2966 0.735936 9.3208 1.1526 9.10295 1.44621L9.03033 1.53033L2.561 8L9.03033 14.4697C9.2966 14.7359 9.3208 15.1526 9.10295 15.4462L9.03033 15.5303C8.76406 15.7966 8.3474 15.8208 8.05379 15.6029L7.96967 15.5303L0.96967 8.53033C0.703403 8.26406 0.679197 7.8474 0.897052 7.55379L0.96967 7.46967L7.96967 0.46967C8.26256 0.176777 8.73744 0.176777 9.03033 0.46967Z" fill="#a19fa8"></path>
                                 </svg>
@@ -461,8 +497,99 @@
                                 <h6 class="mb-0">$<span id="price"></span></h6>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center my-4" style="width:250px">
+                        <div class="d-flex align-items-center my-4  d-flex flex-wrap" style="width:250px">
                             <a class="btn btn-primary btn-rounded flex-1 ms-2" id="book-btn1" onclick="book()">BOOK NOW</a>
+                            <a href="javascript:void(0);" id="shareButton" style="background-color: #e3b706; border-color: #e3b706;margin-left:15px;margin-top:8px;" class="dzToastBtnmb-2 me-2 btn btn-rounded btn-icon btn-facebook"><i class="fa-solid fa-share"></i>
+                            </a>
+                            <button type="button" class="btn btn-success btn-block my-3 dzToastBtn" style="display:none;" id="toastbtn3">Show live toast</button>
+                            <div id="dzToast3" class="dzToastArea toast style-1 toast-success dz-toast on-bottom fade hide" role="alert" aria-live="polite" aria-atomic="true" style="
+							    position: fixed;
+							    bottom: 80px;
+							    right: 10px;
+							">
+                                <div class="toast-body">
+                                    <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0       0-4-4h-8zm1.06 12h3.475c1.804 0 2.888-.908 2.888-2.396 0-1.102-.761-1.916-1.904-2.034v-.1c.832-.14 1.482-.93 1.482-1.816 0-1.3-.955-2.11-2.542-2.11H5.062V12zm1.313-4.875V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375v2.725z"></path>
+                                    </svg>
+                                    <div class="toast-content ms-3 me-2">
+                                        <strong>Link Successfully Copied!</strong>
+                                    </div>
+                                    <button class="btn btn-close position-absolute p-1" type="button" data-bs-dismiss="toast" aria-label="Close"> </button>
+                                </div>
+                            </div>
+                            <script>
+                                document.getElementById('shareButton').addEventListener('click', function() {
+      var longUrl = window.location.href;
+      var accessToken = '09cde029d4914751a05a2d24963b3b46d922a25e'; // Replace with your Bitly access token
+
+      // Make a POST request to the Bitly API to shorten the URL
+      fetch('https://api-ssl.bitly.com/v4/shorten', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + accessToken
+        },
+        body: JSON.stringify({
+          long_url: longUrl
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+         var shortUrl = data.link;
+
+                // Try to copy the short URL to the clipboard using navigator.clipboard.writeText()
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(shortUrl)
+            .then(function() {
+              console.log('Short URL copied to clipboard:', shortUrl);
+            })
+            .catch(function(error) {
+              console.error('Error copying to clipboard using navigator.clipboard:', error);
+
+              // Fallback: Try to copy using document.execCommand('copy')
+              var tempInput = document.createElement('input');
+              tempInput.value = shortUrl;
+              document.body.appendChild(tempInput);
+              tempInput.select();
+              document.execCommand('copy');
+              document.body.removeChild(tempInput);
+              console.log('Short URL copied to clipboard (fallback method):', shortUrl);
+            });
+        } else {
+          // Fallback: Try to copy using document.execCommand('copy')
+          var tempInput = document.createElement('input');
+          tempInput.value = shortUrl;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand('copy');
+          document.body.removeChild(tempInput);
+          console.log('Short URL copied to clipboard (fallback method):', shortUrl);
+        }
+
+        // Perform any actions with the short URL here
+        // For this example, we'll log it to the console
+        console.log('Short URL:', shortUrl);
+        document.getElementById("toastbtn3").click()
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+
+    var toastItem = document.querySelectorAll('.dzToastBtn');
+    toastItem.forEach(myFunction);
+    function myFunction(item, index) {
+        var toastID = item.id.split('toastbtn')[1]; 
+        const toastTrigger = document.getElementById('toastbtn'+toastID)
+        const toastLiveExample = document.getElementById('dzToast' + toastID )
+        if (toastTrigger) {
+          toastTrigger.addEventListener('click', () => {
+            const toast = new bootstrap.Toast(toastLiveExample)
+            toast.show()
+          })
+        }
+    }
+  </script>
                         </div>
                     </div>
                     <div class="wrapper">
@@ -511,8 +638,7 @@
                                             <br>
                                             <h3>Things to Note:</h3>
                                             <ul class="list-check">
-                                                <li>Pros will need access to your water supply.</li>
-                                                <li>This service will be quoted by square footage.</li>
+                                                <li> All service providers are Licensed and quality ensured</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -528,37 +654,37 @@
                                                     <div class="review">
                                                         <span class="icon-container">5 <i class="fas fa-star"></i></span>
                                                         <div class="progress">
-                                                            <div class="progress-done" data-done="68"></div>
+                                                            <div class="progress-done" data-done="100"></div>
                                                         </div>
-                                                        <span class="percent">68%</span>
+                                                        <span class="percent">100%</span>
                                                     </div>
                                                     <div class="review">
                                                         <span class="icon-container">4 <i class="fas fa-star"></i></span>
                                                         <div class="progress">
-                                                            <div class="progress-done" data-done="13"></div>
+                                                            <div class="progress-done" data-done="0"></div>
                                                         </div>
-                                                        <span class="percent">13%</span>
+                                                        <span class="percent">0%</span>
                                                     </div>
                                                     <div class="review">
                                                         <span class="icon-container">3 <i class="fas fa-star"></i></span>
                                                         <div class="progress">
-                                                            <div class="progress-done" data-done="9"></div>
+                                                            <div class="progress-done" data-done="0"></div>
                                                         </div>
-                                                        <span class="percent">9%</span>
+                                                        <span class="percent">0%</span>
                                                     </div>
                                                     <div class="review">
                                                         <span class="icon-container">2 <i class="fas fa-star"></i></span>
                                                         <div class="progress">
-                                                            <div class="progress-done" data-done="3"></div>
+                                                            <div class="progress-done" data-done="0"></div>
                                                         </div>
-                                                        <span class="percent">3%</span>
+                                                        <span class="percent">0%</span>
                                                     </div>
                                                     <div class="review">
                                                         <span class="icon-container">1 <i class="fas fa-star"></i></span>
                                                         <div class="progress">
-                                                            <div class="progress-done" data-done="7"></div>
+                                                            <div class="progress-done" data-done="0"></div>
                                                         </div>
-                                                        <span class="percent">7%</span>
+                                                        <span class="percent">0%</span>
                                                     </div>
                                                 </div>
                                             </center>
@@ -2171,7 +2297,7 @@
             "subcategories": [{
                     "name": "Local Moving",
                     "description": "Professional local moving services for homes and offices.",
-                    "price": "400"
+                    "price": "150"
                 },
                 {
                     "name": "Long Distance Moving",
@@ -2291,6 +2417,12 @@
                     "description": "Professional repair and installation services for toilets to ensure they are functioning properly.",
                     "price": "150"
                 },
+                {
+                    "name": "Bathtub Resurfacing and Refinish",
+                    "description": "Professional resurfacing of bathtub and refinishing of bathtub surface. Service professional may need to come back to check the quality of the work.",
+                    "price": "150"
+                },
+
                 {
                     "name": "Sink and Faucet Installation",
                     "description": "Professional installation of sinks and faucets to ensure they are installed properly.",
