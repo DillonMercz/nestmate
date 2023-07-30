@@ -1,0 +1,15 @@
+{
+  "background_color": "#40189d",
+  "description": "NestMate Home Services App",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "assets/images/pwa.png",
+      "sizes": "200x200",
+      "type": "image/png"
+    }
+  ],
+  "name": "NestMate Home Services",
+  "short_name": "NestMate",
+  "start_url": "https://nest-mate.com/search"
+}
