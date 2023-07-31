@@ -9817,7 +9817,7 @@ section {
   .header .header-content {
     display: flex;
     height: 100%;
-    min-height: 55px;
+    min-height: 135px;
     align-items: center; }
     .header .header-content .left-content {
       width: 30px;
