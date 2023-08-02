@@ -14,10 +14,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
     <meta name="theme-color" content="#2196f3">
-    <meta name="author" content="Nestmate" /> 
-    <meta name="keywords" content="" /> 
-    <meta name="robots" content="" /> 
-<meta name="title" content="NestMate Home Services - Book Now">
+    <meta name="author" content="Nestmate" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="" />
+    <meta name="title" content="NestMate Home Services - Book Now">
     <meta name="description" content="Book Home Services With A Tap.">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -81,7 +81,7 @@
                         <p id="w-node-_72db7d5e-67ba-1361-b1aa-1a07ac8f1178-ac768e33" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 1;" class="hero-description">Nestmate is a cutting-edge home services booking software designed to simplify and streamline the process of connecting homeowners with skilled service professionals. With Nestmate, finding trustworthy and reliable experts for various home needs becomes effortless, allowing users to efficiently book, manage, and track services all in one centralized platform.</p>
                     </div>
                     <div style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 1;" class="download-buttons hero-download-buttons">
-                        <div class="download-button"><a href="./search.html" target="_blank" class="button w-inline-block">
+                        <div class="download-button"><a onclick="handleButtonClick()" class="button w-inline-block">
                                 <div> Get Started</div>
                             </a></div>
                     </div>
@@ -136,7 +136,7 @@
                         <div class="fade-in-on-scroll" style="opacity: 0;">
                             <h5>More than 511,200,000 homeowners book services</h5>
                             <div style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 1;" class="download-buttons hero-download-buttons">
-                                <div class="download-button"><a href="./search.html" target="_blank" class="button w-inline-block">
+                                <div class="download-button"><a onclick="handleButtonClick()" class="button w-inline-block">
                                         <div> Become One Of Them</div>
                                     </a></div>
                             </div>
@@ -144,7 +144,6 @@
                     </div>
                 </div>
                 <div class="w-layout-grid grid-5-col">
-                   
                 </div>
             </div>
         </div>
@@ -156,6 +155,10 @@
 
         <body>
             <script>
+            function handleButtonClick() {
+                // Send a message to React Native when the button is clicked
+                window.ReactNativeWebView.postMessage('buttonClicked');
+            }
             $(function() {
                 $(".p2").typed({
                     strings: ["YOUR CLEANING", "YOUR LAWN", "YOUR PLUMBING", " YOUR ELECTRICAL", "YOUR PAINTING", "YOUR POOL", "YOUR HOME", "IT ALL"],
