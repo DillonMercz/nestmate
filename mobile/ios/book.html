@@ -71,7 +71,6 @@
                 </div>
             </div>
         </header>
-
         <!-- Header End -->
         <div class="page-content">
             <div class="container fb">
@@ -212,7 +211,6 @@
                                 <i class="fa fa-4x fa-exclamation-circle text-error m-b15"></i>
                                 <h5>Payment Was Unsuccessful!</h5>
                                 <p class="m-b0">Please try a different payment method or card.</p>
-                            
                             </div>
                         </div>
                     </div>
@@ -273,6 +271,11 @@
         <!--**********************************
     Scripts
 ***********************************-->
+        <!-- Include the Firebase JavaScript SDK -->
+        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics-compat.js"></script>
         <script src="assets/js/jquery.js"></script>
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/settings.js"></script>
@@ -542,11 +545,6 @@
             scrollbar: true
         });
         </script>
-        <!-- Include the Firebase JavaScript SDK -->
-        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
         <script>
         var guest
         // Initialize Firebase
@@ -561,7 +559,7 @@
             measurementId: "G-3JJKPRCD9Y"
         };
         firebase.initializeApp(firebaseConfig);
-firebase.analytics()
+        firebase.analytics()
 
         // Get a reference to the database service
         const database = firebase.firestore();
@@ -619,7 +617,8 @@ firebase.analytics()
 
 
         }
-        function createNewBooking(){
+
+        function createNewBooking() {
             const data = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
@@ -729,7 +728,6 @@ firebase.analytics()
             console.log('Booking submitted');
             // ...
         });
-
         </script>
 </body>
 
