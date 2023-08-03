@@ -9817,7 +9817,6 @@ section {
   .header .header-content {
     display: flex;
     height: 100%;
-    min-height: 135px;
     align-items: center; }
     .header .header-content .left-content {
       width: 30px;
@@ -9915,6 +9914,7 @@ section {
 
 /* Start Header is-fixed Animation */
 .main-bar {
+  margin-top:40px;
   -webkit-transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) 0s;
   -khtml-transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) 0s;
   -moz-transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) 0s;
@@ -10261,6 +10261,7 @@ section {
   --rgba-primary-9: rgba(255,158,177,0.9); }
 
 [data-theme-color="color-yellow"] {
+    background-color: white;
   --primary: #e3b706;
   --primary-hover: #cca300;
   --primary-dark: #665200;

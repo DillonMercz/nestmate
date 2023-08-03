@@ -6,29 +6,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
     <meta name="theme-color" content="#2196f3">
-    <meta name="author" content="Nestmate" />
+    <meta name="author" content="DillonMerx" />
     <meta name="keywords" content="" />
     <meta name="robots" content="" />
-    <meta name="title" content="NestMate Home Services - Book Now">
+    <meta name="title" content="Elev8 Home Services - Book Now">
     <meta name="description" content="Book Home Services With A Tap.">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://metatags.io/">
-    <meta property="og:title" content="NestMate Home Services - Book Now">
+    <meta property="og:title" content="Elev8 Home Services - Book Now">
     <meta property="og:description" content="Book Home Services With A Tap.">
-    <meta property="og:image" content="https://i.imgur.com/0zrobiV.png">
+    <meta property="og:image" content="https://i.imgur.com/AuINjvO.png">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://metatags.io/">
-    <meta property="twitter:title" content="NestMate Home Services - Book Now">
+    <meta property="twitter:title" content="Elev8 Home Services - Book Now">
     <meta property="twitter:description" content="Book Home Services With A Tap.">
-    <meta property="twitter:image" content="https://i.imgur.com/0zrobiV.png">
-    <meta name="description" content="NestMate - Services ">
+    <meta property="twitter:image" content="https://i.imgur.com/AuINjvO.png">
+    <meta name="description" content="Elev8 - Services ">
     <meta name="format-detection" content="telephone=no">
     <!-- Favicons Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
     <!-- Title -->
-    <title>NestMate Home Services</title>
+    <title>Elev8 Home Services</title>
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
@@ -45,7 +45,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 </head>
 <style>
-.btn-margin-right {
+    .btn-margin-right {
     margin-right: 20px;
 }
 
@@ -53,6 +53,21 @@
     overflow-wrap: break-word;
     max-width: 200px;
 }
+        /* Switch styles */
+        .switch-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .switch-toggle label {
+            margin-right: 10px;
+        }
+            .accordion-map {
+        height: 300px;
+    }
 </style>
 
 <body data-theme-color="color-yellow">
@@ -85,20 +100,26 @@
         <div class="page-content">
             <div class="container fb">
                 <!-- row -->
+                <div class="form-check form-switch">
+                    <input class="form-check-input form-check-primary" id="togglePast" type="checkbox" checked="checked">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Past Bookings</label>
+                </div>
                 <div class="container">
                     <div class="row">
                         <div id="bookings-list">
-                            <center>
+                            <div id="activeDiv">
+                                <center>
                                     <h1>Active Bookings</h1>
                                 </center>
-                            <div id="active-bookings">
-                            
-                            </div><br><br><br><br>
-                            <center>
+                                <div id="active-bookings">
+                                </div>
+                            </div>
+                            <div id="pastDiv">
+                                <center>
                                     <h1>Past Bookings</h1>
                                 </center>
-                            <div id="past-bookings">
-                                
+                                <div id="past-bookings">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -108,7 +129,7 @@
         <!-- Menubar -->
         <div class="menubar-area">
             <div class="toolbar-inner menubar-nav">
-                <a href="search.html" class="nav-link">
+                <a href="index.html" class="nav-link">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.14373 20.7821V17.7152C9.14372 16.9381 9.77567 16.3067 10.5584 16.3018H13.4326C14.2189 16.3018 14.8563 16.9346 14.8563 17.7152V20.7732C14.8562 21.4473 15.404 21.9951 16.0829 22H18.0438C18.9596 22.0023 19.8388 21.6428 20.4872 21.0007C21.1356 20.3586 21.5 19.4868 21.5 18.5775V9.86585C21.5 9.13139 21.1721 8.43471 20.6046 7.9635L13.943 2.67427C12.7785 1.74912 11.1154 1.77901 9.98539 2.74538L3.46701 7.9635C2.87274 8.42082 2.51755 9.11956 2.5 9.86585V18.5686C2.5 20.4637 4.04738 22 5.95617 22H7.87229C8.19917 22.0023 8.51349 21.8751 8.74547 21.6464C8.97746 21.4178 9.10793 21.1067 9.10792 20.7821H9.14373Z" fill="#130F26" />
                     </svg>
@@ -123,7 +144,7 @@
                         <path d="M21.4761 5.67369C20.6101 4.04169 18.9061 2.99969 17.0301 2.99969H7.05013C5.17413 2.99969 3.47013 4.04169 2.60413 5.67369C2.41013 6.03869 2.50213 6.4937 2.82513 6.75169L10.2501 12.6907C10.7701 13.1107 11.4001 13.3197 12.0301 13.3197C12.0341 13.3197 12.0371 13.3197 12.0401 13.3197C12.0431 13.3197 12.0471 13.3197 12.0501 13.3197C12.6801 13.3197 13.3101 13.1107 13.8301 12.6907L21.2551 6.75169C21.5781 6.4937 21.6701 6.03869 21.4761 5.67369Z" fill="#a19fa8" />
                     </svg>
                 </a>
-                <a href="links.html" class="nav-link">
+                <a href="javascript:void(0);" class="menu-toggler">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path opacity="0.4" d="M16.0755 2H19.4615C20.8637 2 22 3.14585 22 4.55996V7.97452C22 9.38864 20.8637 10.5345 19.4615 10.5345H16.0755C14.6732 10.5345 13.537 9.38864 13.537 7.97452V4.55996C13.537 3.14585 14.6732 2 16.0755 2Z" fill="#a19fa8" />
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.53852 2H7.92449C9.32676 2 10.463 3.14585 10.463 4.55996V7.97452C10.463 9.38864 9.32676 10.5345 7.92449 10.5345H4.53852C3.13626 10.5345 2 9.38864 2 7.97452V4.55996C2 3.14585 3.13626 2 4.53852 2ZM4.53852 13.4655H7.92449C9.32676 13.4655 10.463 14.6114 10.463 16.0255V19.44C10.463 20.8532 9.32676 22 7.92449 22H4.53852C3.13626 22 2 20.8532 2 19.44V16.0255C2 14.6114 3.13626 13.4655 4.53852 13.4655ZM19.4615 13.4655H16.0755C14.6732 13.4655 13.537 14.6114 13.537 16.0255V19.44C13.537 20.8532 14.6732 22 16.0755 22H19.4615C20.8637 22 22 20.8532 22 19.44V16.0255C22 14.6114 20.8637 13.4655 19.4615 13.4655Z" fill="#a19fa8" />
@@ -152,9 +173,36 @@
     <!-- Include the Firebase JavaScript SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
-            <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics-compat.js"></script>
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
+    document.getElementById("togglePast").click()
+    // JavaScript logic to handle the toggle switch
+    document.addEventListener('DOMContentLoaded', function() {
+        var togglePast = document.getElementById('togglePast');
+        var activeBookings = document.getElementById('activeDiv');
+        var pastBookings = document.getElementById('pastDiv');
+        if (togglePast.checked) {
+            activeBookings.style.display = 'none';
+            pastBookings.style.display = 'block';
+        } else {
+            activeBookings.style.display = 'block';
+            pastBookings.style.display = 'none';
+        }
+
+        togglePast.addEventListener('change', function() {
+            if (togglePast.checked) {
+                activeBookings.style.display = 'none';
+                pastBookings.style.display = 'block';
+            } else {
+                activeBookings.style.display = 'block';
+                pastBookings.style.display = 'none';
+            }
+        });
+    });
     //console.log(activeBookingsSection)
     var guest
     // Initialize Firebase
@@ -169,7 +217,6 @@
         measurementId: "G-3JJKPRCD9Y"
     };
     firebase.initializeApp(firebaseConfig);
-firebase.analytics()
 
     // Get a reference to the database service
     const database = firebase.firestore();
@@ -270,6 +317,73 @@ firebase.analytics()
 
                         const accordionBody = document.createElement('div');
                         accordionBody.classList.add('accordion-body-text');
+                        // Create a map div
+                        const accordionMap = document.createElement('div');
+                        accordionMap.classList.add("accordion-map")
+                        accordionMap.setAttribute('id', `${booking.id}Map`);
+                        accordionBody.appendChild(accordionMap);
+
+                        // Use geocoding service to obtain coordinates for the address
+                        const address = `${booking.address}`;
+                        const encodedAddress = encodeURIComponent(address);
+                        const url = `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&limit=1`;
+
+                        fetch(url)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.length > 0) {
+                                    const { lat, lon } = data[0];
+                                    const coordinates = [parseFloat(lat), parseFloat(lon)];
+                                    console.log(coordinates)
+                                    console.log(data[0].lat, data[0].lon)
+
+
+                                    // Create a map
+                                    const map = L.map(`${booking.id}Map`, {
+                                        center: coordinates,
+                                        zoom: 13,
+                                        dragging: false
+                                    });
+                                    var marker = L.marker(
+                                        coordinates, {
+                                            draggable: false,
+                                            title: "Customer House",
+                                            opacity: 1
+                                        });
+                                    const url = `https://nominatim.openstreetmap.org/reverse?lat=${coordinates[0]}&lon=${coordinates[1]}&format=jsonv2`;
+
+                                    fetch(url)
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            console.log(data)
+                                            if (data.address) {
+                                                const address = `${data.address.road}, ${data.address.city}, ${data.address.state}, ${data.address.country}`;
+                                                marker.bindPopup(address).openPopup();
+                                            } else {
+                                                console.error('Unable to retrieve address from coordinates:', coordinates);
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error('Error retrieving address:', error);
+                                        });
+
+
+                                    // Add the OpenStreetMap tile layer
+                                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+
+                                    }).addTo(map);
+
+                                    // Add a marker to the map
+                                    marker.addTo(map)
+                                } else {
+                                    console.error('Unable to geocode address:', address);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error geocoding address:', error);
+                            });
+
 
                         // Create a list to display the job details
                         const jobDetailsList = document.createElement('ul');
