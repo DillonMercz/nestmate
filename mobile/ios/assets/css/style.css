@@ -5740,7 +5740,8 @@ textarea.form-control-lg {
   margin-right: auto !important; }
 
 .mb-0 {
-  margin-bottom: 0 !important; }
+  margin-bottom: 0 !important;
+  padding-right:3% }
 
 .mb-1 {
   margin-bottom: 0.25rem !important; }
