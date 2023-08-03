@@ -9923,6 +9923,7 @@ section {
   transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) 0s; }
 
 .main-bar.sticky-header {
+    margin-top:40px;
   -webkit-animation: 0.50s ease 0s normal forwards 1 running headerSlideDown;
   -khtml-animation: 0.50s ease 0s normal forwards 1 running headerSlideDown;
   -moz-animation: 0.50s ease 0s normal forwards 1 running headerSlideDown;
