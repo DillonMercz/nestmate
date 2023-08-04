@@ -66,7 +66,7 @@
         </header>
         <!-- Header End -->
         <!-- Page content  -->
-        <div class="page-content message-content">
+        <div class="page-content message-content" id="messages-container">
             <div class="container chat-box-area bottom-content" id="messages-display">
             </div>
         </div>
@@ -301,7 +301,7 @@
     }
 
     function scrollToBottom() {
-        var messagesContainer = document.getElementById('messages-display');
+        var messagesContainer = document.getElementById('messages-container');
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
     //render the messages
