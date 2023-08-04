@@ -158,7 +158,6 @@
             </div>
         </footer>
         <!-- Footer End -->
-       
     </div>
     <!--**********************************
     Scripts
@@ -171,7 +170,7 @@
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script><!-- Swiper -->
     <script>
     // Chat button
-         window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, document.body.scrollHeight);
     var handleChatBox = function() {
         $('.btn-chat').on('click', function() {
 
@@ -187,10 +186,11 @@
 
             if (chatMessageValue.length > 0) {
                 //var appendMessage = $('.chat-box-area').append(messageHtml);
-                 // Add the message to the conversation's messaging history
-                    addMessageToHistory(chatMessageValue);
+                // Add the message to the conversation's messaging history
+                addMessageToHistory(chatMessageValue);
 
             }
+            scrollToBottom()
 
             window.scrollTo(0, document.body.scrollHeight);
             var clearChatInput = chatInput.val('');
@@ -198,10 +198,10 @@
         });
     }
     </script>
-        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics-compat.js"></script>
     <script>
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -219,7 +219,7 @@
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-firebase.analytics()
+    firebase.analytics()
 
     // Get a reference to the Firestore database
     const db = firebase.firestore();
@@ -240,134 +240,139 @@ firebase.analytics()
         }
     });
 
-// Function to fetch messages for the current user's email
-function fetchMessages() {
-  var conversationId = window.localStorage.getItem("conversationID");
-
-  db.collection('messaging')
-    .doc(conversationId)
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        const conversationData = doc.data();
-        document.getElementById('projectName').innerHTML = conversationData.name;
+    // Function to fetch messages for the current user's email
+    function fetchMessages() {
+        var conversationId = window.localStorage.getItem("conversationID");
 
         db.collection('messaging')
-          .doc(conversationId)
-          .collection('history')
-          .orderBy('time')
-          .get()
-          .then((snapshot) => {
-            const messages = snapshot.docs.map((doc) => doc.data());
-            renderMessages(messages);
-          });
-      } else {
-        console.log('Conversation not found');
-      }
-    })
-    .catch((error) => {
-      console.error('Error fetching conversation:', error);
-    });
-//listen for changes and update UI
-db.collection('messaging')
-  .doc(conversationId)
-  .collection('history')
-  .orderBy('time')
-  .onSnapshot((snapshot) => {
-    const addedMessages = [];
-    const updatePromises = []; // Array to store update promises
+            .doc(conversationId)
+            .get()
+            .then((doc) => {
+                if (doc.exists) {
+                    const conversationData = doc.data();
+                    document.getElementById('projectName').innerHTML = conversationData.name;
 
-    snapshot.docChanges().forEach((change) => {
-      if (change.type === "added" && change.doc.data().read === false) {
-        addedMessages.push(change.doc.data());
+                    db.collection('messaging')
+                        .doc(conversationId)
+                        .collection('history')
+                        .orderBy('time')
+                        .get()
+                        .then((snapshot) => {
+                            const messages = snapshot.docs.map((doc) => doc.data());
+                            renderMessages(messages);
+                        });
+                } else {
+                    console.log('Conversation not found');
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching conversation:', error);
+            });
 
-        // Create an update promise and add it to the array
-        const updatePromise = change.doc.ref.update({ read: true });
-        updatePromises.push(updatePromise);
-      }
-    });
+        //listen for changes and update UI
+        db.collection('messaging')
+            .doc(conversationId)
+            .collection('history')
+            .orderBy('time')
+            .onSnapshot((snapshot) => {
+                const addedMessages = [];
+                const updatePromises = []; // Array to store update promises
 
-    // Wait for all update promises to resolve before rendering messages
-    Promise.all(updatePromises)
-      .then(() => {
-        renderMessages(addedMessages);
-      })
-      .catch((error) => {
-        console.error('Error updating messages:', error);
-      });
-  }, (error) => {
-    console.error('Error fetching messages:', error);
-  });
+                snapshot.docChanges().forEach((change) => {
+                    if (change.type === "added" && change.doc.data().read === false) {
+                        addedMessages.push(change.doc.data());
 
-}
+                        // Create an update promise and add it to the array
+                        const updatePromise = change.doc.ref.update({ read: true });
+                        updatePromises.push(updatePromise);
+                    }
+                });
 
- 
-//render the messages
-function renderMessages(messages) {
-  const messagesContainer = document.getElementById('messages-display');
-  
-  messages.forEach((message) => {
-    const messageDiv = document.createElement('div');
-    messageDiv.textContent = `${message.sender}: ${message.content}`;
-    
-    if (message.sender === currentUserEmail) {
-      var htmlTemplate = `
+                // Wait for all update promises to resolve before rendering messages
+                Promise.all(updatePromises)
+                    .then(() => {
+                        renderMessages(addedMessages);
+                        scrollToBottom()
+                    })
+                    .catch((error) => {
+                        console.error('Error updating messages:', error);
+                    });
+            }, (error) => {
+                console.error('Error fetching messages:', error);
+            });
+
+    }
+
+    function scrollToBottom() {
+        var messagesContainer = document.getElementById('messages-display');
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+    //render the messages
+    function renderMessages(messages) {
+        const messagesContainer = document.getElementById('messages-display');
+
+        messages.forEach((message) => {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = `${message.sender}: ${message.content}`;
+
+            if (message.sender === currentUserEmail) {
+                var htmlTemplate = `
         <div class="chat-content user">
           <div class="message-item">
             <div class="bubble">${message.content}</div>
           </div>
         </div>
       `;
-    } else {
-      var htmlTemplate = `
+            } else {
+                var htmlTemplate = `
         <div class="chat-content">
           <div class="message-item">
             <div class="bubble">${message.content}</div>
           </div>
         </div>
       `;
+            }
+
+            messagesContainer.insertAdjacentHTML('beforeend', htmlTemplate);
+            scrollToBottom()
+        });
     }
 
-    messagesContainer.insertAdjacentHTML('beforeend', htmlTemplate);
-  });
-}
 
-
-// Function to add a message to the conversation's messaging history
-function addMessageToHistory(message) {
-  db.collection('messaging')
-    .where('users', 'array-contains', currentUserEmail)
-    .get()
-    .then((snapshot) => {
-      const conversation = snapshot.docs[0];
-      if (conversation) {
-          var conversationId = window.localStorage.getItem("conversationID");
-        const historyRef = db.collection('messaging').doc(conversationId).collection('history');
-        const timestamp = firebase.firestore.Timestamp.fromDate(new Date()); // Get the current datetime
-        const newMessage = {
-          sender: currentUserEmail,
-          content: message,
-          time: timestamp,
-          read: false,
-        };
-        historyRef
-          .add(newMessage)
-          .then(() => {
-            console.log('Message added to history successfully');
-            // You can perform additional actions after adding the message if needed
-          })
-          .catch((error) => {
-            console.error('Error adding message to history:', error);
-          });
-      } else {
-        console.error('No conversation found for the user');
-      }
-    })
-    .catch((error) => {
-      console.error('Error fetching conversation:', error);
-    });
-}
-
+    // Function to add a message to the conversation's messaging history
+    function addMessageToHistory(message) {
+        db.collection('messaging')
+            .where('users', 'array-contains', currentUserEmail)
+            .get()
+            .then((snapshot) => {
+                const conversation = snapshot.docs[0];
+                if (conversation) {
+                    var conversationId = window.localStorage.getItem("conversationID");
+                    const historyRef = db.collection('messaging').doc(conversationId).collection('history');
+                    const timestamp = firebase.firestore.Timestamp.fromDate(new Date()); // Get the current datetime
+                    const newMessage = {
+                        sender: currentUserEmail,
+                        content: message,
+                        time: timestamp,
+                        read: false,
+                    };
+                    historyRef
+                        .add(newMessage)
+                        .then(() => {
+                            console.log('Message added to history successfully');
+                            // You can perform additional actions after adding the message if needed
+                        })
+                        .catch((error) => {
+                            console.error('Error adding message to history:', error);
+                        });
+                } else {
+                    console.error('No conversation found for the user');
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching conversation:', error);
+            });
+    }
     </script>
 </body>
 
