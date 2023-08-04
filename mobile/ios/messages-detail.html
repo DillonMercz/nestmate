@@ -370,6 +370,23 @@
                 console.error('Error fetching conversation:', error);
             });
     }
+
+    // Function to handle the focus of the input field
+    function handleInputFocus() {
+        const chatInput = $('.message-area .form-control');
+        const chatFooter = $('.chat-footer');
+
+        chatInput.on('focus', function() {
+            // When the input is focused, add a class to the chat footer
+            // This class will adjust the position of the chat footer to be above the keyboard
+            chatFooter.addClass('keyboard-visible');
+        });
+
+        chatInput.on('blur', function() {
+            // When the input is blurred (loses focus), remove the class from the chat footer
+            chatFooter.removeClass('keyboard-visible');
+        });
+    }
     </script>
 </body>
 
