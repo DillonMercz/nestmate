@@ -60,6 +60,13 @@
   /* Linear Gradient - From bright yellow (#f2c300) to orange (#ea5a0b) to cerulean blue (#0075b7) to lime green (#6da644) */
   background: linear-gradient(to right, #f2c300, #ea5a0b, #0075b7, #6da644);
 }
+@media only screen and (max-width: 820px) and (orientation: portrait) {
+    /* Your CSS styles for iPad in portrait mode */
+    .hero-text-holder{
+        background-attachment:scroll !important;
+        margin-top:180px;
+    }
+}
 </style>
 </head>
 
@@ -91,12 +98,12 @@
         <div class="small-container">
             <div style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="hero-text-sticky">
                 <div class="hero-text-holder">
-                    <div class="hero-text-holder-1" style="will-change: transform; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
-                        <h1 style="transform: translate3d(0%, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="hero-text _1">Meet</h1>
+                    <div class="hero-text-holder-1" style="">
+                        <h1 style="transform: translate3d(0%, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;" class="hero-text _1">Meet</h1>
                     </div>
-                    <div class="hero-text-line" style="will-change: opacity; opacity: 1;"></div>
-                    <div class="hero-text-holder-2" style="will-change: transform; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
-                        <h3 style="transform: translate3d(0%, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="hero-text _2">Nestmate</h3>
+                    <div class="hero-text-line" style="will-change: transform; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"></div>
+                    <div class="hero-text-holder-2" style="">
+                        <h3 style="transform: translate3d(0%, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;" class="hero-text _2">Nestmate</h3>
                     </div>
                 </div>
             </div>
