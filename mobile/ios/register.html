@@ -115,8 +115,6 @@
                         </div>
                         <div class="input-group">
                             <input class="form-control" type="search" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off" id="autocomplete" name="autocomplete" placeholder="Enter your address">
-                            <button type="button" id="getLocationBtn" class="btn btn-primary mt-2 w-100 btn-rounded">Get Current Location</button>
-
                             <br>
                         </div>
                         <div class="input-group">
@@ -383,58 +381,6 @@
     }
 
     autocompleteAddress();
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    // ... your existing code ...
-
-    // Handle Get Current Location button click
-    const getLocationBtn = document.getElementById("getLocationBtn");
-    getLocationBtn.addEventListener("click", getUserLocation);
-});
-
-function getUserLocation() {
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-
-                // Call a function to reverse geocode the coordinates
-                reverseGeocodeCoordinates(latitude, longitude);
-            },
-            function (error) {
-                console.log("Error getting location:", error);
-            }
-        );
-    } else {
-        console.log("Geolocation is not available in this browser.");
-    }
-}
-
-function reverseGeocodeCoordinates(latitude, longitude) {
-    // Use a reverse geocoding API service here
-    // Fetch the address and ZIP code using the coordinates
-
-    // Example using OpenStreetMap Nominatim API
-    const apiUrl = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
-    
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            const formattedAddress = data.display_name;
-            const zipCode = data.address.postcode;
-
-            // Update the form fields with the address and ZIP code
-            document.getElementById("autocomplete").value = formattedAddress;
-            document.getElementById("zipcode").value = zipCode;
-        })
-        .catch(error => {
-            console.log("Error fetching reverse geocoding data:", error);
-        });
-}
-
-
     </script>
 </body>
 
