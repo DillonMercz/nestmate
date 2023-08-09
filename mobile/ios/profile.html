@@ -127,15 +127,42 @@
                         </div>
                     </form>
                     <h1 class="">Settings:</h2>
-                    <br>
-                    <div class="mode">
-                        <span class="dz-icon bg-green light">
-                            <i class="fa-solid fa-moon"></i>
-                        </span>
-                        <span>Dark Mode</span>
-                        <div class="custom-switch">
-                            <input type="checkbox" class="switch-input theme-btn" id="toggle-dark-menu">
-                            <label class="custom-switch-label" for="toggle-dark-menu"></label>
+                        <br>
+                        <div class="mode">
+                            <span class="dz-icon bg-green light">
+                                <i class="fa-solid fa-moon"></i>
+                            </span>
+                            <span>Dark Mode</span>
+                            <div class="custom-switch">
+                                <input type="checkbox" class="switch-input theme-btn" id="toggle-dark-menu">
+                                <label class="custom-switch-label" for="toggle-dark-menu"></label>
+                            </div>
+                        </div>
+                        <br><br>
+                        <button id="becomeProviderBtn" class="btn btn-primary w-100 btn-rounded">Become a Service Provider</button>
+                        <button id="deleteAccountBtn" class="btn btn-danger w-100 btn-rounded mt-2">Delete Account</button>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                </div>
+            </div>
+            <!-- Modal for password confirmation -->
+            <div class="modal fade" id="passwordConfirmationModal" tabindex="-1" aria-labelledby="passwordConfirmationModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="passwordConfirmationModalLabel">Confirm Account Deletion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Please enter your password to delete the account.</p>
+                            <input type="password" id="passwordInput" class="form-control" placeholder="Enter your password">
+                            <div id="passwordError" class="text-danger mt-2"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Confirm</button>
                         </div>
                     </div>
                 </div>
@@ -337,6 +364,49 @@
                 });
         });
     });
+    // Function to become a service provider
+    document.getElementById('becomeProviderBtn').addEventListener('click', () => {
+        // Implement your logic here to handle becoming a service provider
+        // This could include updating user roles or adding user information to a "Service Providers" collection
+        // You can use Firebase Firestore to store this information
+    });
+
+// Function to open the password confirmation modal
+document.getElementById('deleteAccountBtn').addEventListener('click', () => {
+    $('#passwordConfirmationModal').modal('show');
+});
+
+// Function to confirm account deletion
+document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
+    const password = document.getElementById('passwordInput').value;
+    const user = firebase.auth().currentUser;
+
+    if (!password) {
+        document.getElementById('passwordError').textContent = "Please enter your password";
+        return;
+    }
+
+    // Re-authenticate the user with their password
+    const credentials = firebase.auth.EmailAuthProvider.credential(user.email, password);
+    user.reauthenticateWithCredential(credentials)
+        .then(() => {
+            // Re-authentication successful, delete the account
+            user.delete().then(() => {
+                console.log("User account deleted successfully");
+                // You can also delete the user's information from Firestore if needed
+                $('#passwordConfirmationModal').modal('hide');
+                // Redirect to a sign-out or landing page
+            }).catch((error) => {
+                console.error("Error deleting user account:", error);
+            });
+        })
+        .catch((error) => {
+            document.getElementById('passwordError').textContent = "Invalid password";
+            console.error("Error re-authenticating user:", error);
+        });
+});
+
+
     // Select the phone input field
     const phoneInput = document.getElementById('phone');
 
