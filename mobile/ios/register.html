@@ -117,6 +117,7 @@
                             <input class="form-control" type="search" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off" id="autocomplete" name="autocomplete" placeholder="Enter your address">
                             <br>
                         </div>
+                            <input type="text" id="zipcode" placeholder="Zip Code"  hidden class="form-control">
                         <div class="input-group">
                             <input type="email" id="email" placeholder="Email" class="form-control">
                         </div>
@@ -224,7 +225,7 @@
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
         var phone = document.getElementById("phone").value;
-        var address = document.getElementById("address").value;
+        var address = document.getElementById("autocomplete").value;
         var zipcode = document.getElementById("zipcode").value;
         // Check if any field is empty
         if (!username || !email || !password || !phone || !address || !zipcode) {
@@ -374,7 +375,7 @@
                 var selectedAddress = ui.item.value;
                 var zip = extractZipCode(selectedAddress);
                 console.log(zip)
-                //document.getElementById("zipcode").value = zip;
+                document.getElementById("zipcode").value = zip;
             }
 
         });
