@@ -254,11 +254,11 @@
                     // Store additional user information in Firestore
                     var db = firebase.firestore();
                     db.collection("profiles").doc(user.uid).set({
-                        name: username,
-                        email: email,
-                        phone: phone,
-                        address: address,
-                        zipcode: zipcode,
+                        name: `${username}`,
+                        email: `${email}`,
+                        phone: `${phone}`,
+                        address: `${address}`,
+                        zipcode: `${zipcode}`,
                         userType: "customer"
                     }).then(function() {
                         console.log("User profile created in Firestore");
