@@ -50,7 +50,7 @@
             <!-- Banner -->
             <div class="banner-wrapper shape-1">
                 <div class="container inner-wrapper">
-                <br><br><br>
+                    <br><br><br>
                     <h2 class="dz-title">Create an Account</h2>
                     <p class="mb-0">Please complete the registration form below before continuing.</p>
                 </div>
@@ -60,13 +60,22 @@
                 <div class="account-area">
                     <form id="signup-form">
                         <div class="input-group">
-                            <input type="text" id="username" placeholder="Full Name" class="form-control">
+                            <input type="text" id="name" placeholder="Full Name" class="form-control">
                         </div>
                         <div class="input-group">
                             <input type="email" id="email" placeholder="Email" class="form-control">
                         </div>
                         <div class="input-group">
                             <input type="password" id="password" placeholder="Password" class="form-control">
+                        </div>
+                        <div class="input-group">
+                            <input type="tel" id="phone" placeholder="Phone Number" class="form-control">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="address" placeholder="Address" class="form-control">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="zipcode" placeholder="Zip Code" class="form-control">
                         </div>
                         <div class="input-group">
                             <button type="submit" class="btn mt-2 btn-primary w-100 btn-rounded">Sign Up</button>
@@ -112,7 +121,9 @@
         <!-- Footer -->
         <footer class="footer fixed" style="bottom:15px !important">
             <div class="container">
-                <center><p>Already have an account?</p></center>
+                <center>
+                    <p>Already have an account?</p>
+                </center>
                 <a href="login.html" class="btn btn-primary light btn-rounded text-primary d-block">Login</a>
             </div>
         </footer>
@@ -141,89 +152,108 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-firebase.analytics()
+    firebase.analytics()
 
     // Sign up form submit event listener
     document.getElementById("signup-form").addEventListener("submit", function(event) {
-                event.preventDefault(); // Prevent form submission
+        event.preventDefault(); // Prevent form submission
 
-                var username = document.getElementById("username").value;
-                var email = document.getElementById("email").value;
-                var password = document.getElementById("password").value;
+        var username = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var phone = document.getElementById("phone").value;
+        var address = document.getElementById("address").value;
+        var zipcode = document.getElementById("zipcode").value;
 
-                // Create user with email and password
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then(function(userCredential) {
-                        // User created successfully
-                        var user = userCredential.user;
-                        // Updating the displayName with the username input
-                        user.updateProfile({
-                            displayName: username
-                        }).then(function() {
-                            // Profile updated successfully
-                            console.log("Username updated");
-                            console.log(user);
-                            window.location.href = "./search.html";
-                            // You can redirect the user to a new page or perform additional actions here
-                        }).catch(function(error) {
-                            // An error happened
-                            console.log(error);
-                        });
-                    })
-                    .catch(function(error) {
-                        // Error occurred during signup
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        console.log(errorCode, errorMessage);
-
-                        // Show error toast
-                        var errorToast = document.getElementById('dzToast5');
-                        var errorToastContent = errorToast.querySelector('.toast-content');
-                        errorToastContent.innerHTML = `<strong>${errorMessage}</strong>`;
-                        const toast = new bootstrap.Toast(errorToast);
-                        toast.show();
+        // Create user with email and password
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(function(userCredential) {
+                // User created successfully
+                var user = userCredential.user;
+                // Updating the displayName with the username input
+                user.updateProfile({
+                    displayName: username
+                }).then(function() {
+                    // Profile updated successfully
+                    console.log("Username updated");
+                    console.log(user);
+                    
+                    // Store additional user information in Firestore
+                    var db = firebase.firestore();
+                    db.collection("profiles").doc(user.uid).set({
+                        name: username,
+                        email: email,
+                        phone: phone,
+                        address: address,
+                        zipcode: zipcode,
+                        userType: "customer"
+                    }).then(function() {
+                        console.log("User profile created in Firestore");
+                        window.location.href = "./search.html";
+                        // You can redirect the user to a new page or perform additional actions here
+                    }).catch(function(error) {
+                        console.log("Error creating user profile: ", error);
                     });
-                })
+
+                }).catch(function(error) {
+                    // An error happened
+                    console.log(error);
+                });
+            })
+            .catch(function(error) {
+                // Error occurred during signup
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+
+                // Show error toast
+                var errorToast = document.getElementById('dzToast5');
+                var errorToastContent = errorToast.querySelector('.toast-content');
+                errorToastContent.innerHTML = `<strong>${errorMessage}</strong>`;
+                const toast = new bootstrap.Toast(errorToast);
+                toast.show();
+            });
+    });
 
 
 
-                // Sign up with Google
-                function signUpWithGoogle() {
-                    var provider = new firebase.auth.GoogleAuthProvider();
+    // Sign up with Google
+    function signUpWithGoogle() {
+        var provider = new firebase.auth.GoogleAuthProvider();
 
-                    firebase.auth().signInWithPopup(provider)
-                        .then(function(result) {
-                            // Signed up successfully with Google
-                            var user = result.user;
-                            console.log(user);
-                            // You can redirect the user to a new page or perform additional actions here
-                        })
-                        .catch(function(error) {
-                            // Error occurred during Google signup
-                            var errorCode = error.code;
-                            var errorMessage = error.message;
-                            console.log(errorCode, errorMessage);
-                        });
-                }
+        firebase.auth().signInWithPopup(provider)
+            .then(function(result) {
+                // Signed up successfully with Google
+                var user = result.user;
+                console.log(user);
+                // You can redirect the user to a new page or perform additional actions here
+            })
+            .catch(function(error) {
+                // Error occurred during Google signup
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+            });
+    }
 
-                // Sign up with Facebook
-                function signUpWithFacebook() {
-                    var provider = new firebase.auth.FacebookAuthProvider();
+    // Sign up with Facebook
+    function signUpWithFacebook() {
+        var provider = new firebase.auth.FacebookAuthProvider();
 
-                    firebase.auth().signInWithPopup(provider)
-                        .then(function(result) {
-                            // Signed up successfully with Facebook
-                            var user = result.user;
-                            console.log(user);
-                            // You can redirect the user to a new page or perform additional actions here
-                        })
-                        .catch(function(error) {
-                            // Error occurred during Facebook signup
-                            var errorCode = error.code;
-                            var errorMessage = error.message;
-                            console.log(errorCode, errorMessage);
-                        });
-                }
+        firebase.auth().signInWithPopup(provider)
+            .then(function(result) {
+                // Signed up successfully with Facebook
+                var user = result.user;
+                console.log(user);
+                // You can redirect the user to a new page or perform additional actions here
+            })
+            .catch(function(error) {
+                // Error occurred during Facebook signup
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+            });
+    }
     </script>
 </body>
 
