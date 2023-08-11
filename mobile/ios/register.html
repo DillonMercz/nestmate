@@ -247,7 +247,7 @@
 
                     // Store additional user information in Firestore
                     var db = firebase.firestore();
-                    db.collection("profiles").doc(user.uid).set({
+                    db.collection("profiles").doc(user.email).set({
                         name: `${username}`,
                         email: `${email}`,
                         phone: `${phone}`,
