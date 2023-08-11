@@ -28,7 +28,7 @@
     <!-- Favicons Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
     <!-- Title -->
-    <title>Nestmate Home Services</title>
+    <title>NestMate Home Services</title>
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -36,52 +36,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Racing+Sans+One&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
 </head>
-<style type="text/css">
-/* Your existing styles */
-
-/* Add the wave animation styles */
-.wave-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 150px;
-    /* Adjust this value to control the wave height */
-    overflow: hidden;
-}
-
-.wave {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: --primary;
-    /* Adjust this color as needed */
-    animation: waveAnimation 4s linear infinite;
-    transform-origin: bottom;
-}
-
-@keyframes waveAnimation {
-    0% {
-        transform: scaleY(1);
-    }
-
-    50% {
-        transform: scaleY(0.8);
-    }
-
-    100% {
-        transform: scaleY(1);
-    }
-}
-</style>
 
 <body data-theme-color="color-yellow">
     <div class="page-wraper">
@@ -95,12 +50,9 @@
             <!-- Banner -->
             <div class="banner-wrapper shape-1">
                 <div class="container inner-wrapper">
-                    <br><br><br>
+                <br><br><br>
                     <h2 class="dz-title">Create an Account</h2>
                     <p class="mb-0">Please complete the registration form below before continuing.</p>
-                </div>
-                <div class="wave-container">
-                    <div class="wave"></div>
                 </div>
             </div>
             <!-- Banner End -->
@@ -108,26 +60,18 @@
                 <div class="account-area">
                     <form id="signup-form">
                         <div class="input-group">
-                            <input type="text" id="name" placeholder="Full Name" class="form-control">
+                            <input type="text" id="username" placeholder="Full Name" class="form-control">
                         </div>
-                        <div class="input-group">
-                            <input type="tel" id="phone" placeholder="Phone Number" class="form-control">
-                        </div>
-                        <div class="">
-                            <input class="form-control" type="search" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off" id="autocomplete" name="autocomplete" placeholder="Enter your address">
-                            <br>
-                        </div>
-                            <input type="text" id="zipcode" placeholder="Zip Code"  hidden class="form-control">
                         <div class="input-group">
                             <input type="email" id="email" placeholder="Email" class="form-control">
                         </div>
                         <div class="input-group">
                             <input type="password" id="password" placeholder="Password" class="form-control">
                         </div>
-                        <p class="text-center">By tapping "Sign Up" you accept our <a href="./terms.html" class="text-primary font-w700">Terms and Conditions</a> and our <a href="../../privacy-policy.html" class="text-primary font-w700">Privacy Policy</a></p>
                         <div class="input-group">
                             <button type="submit" class="btn mt-2 btn-primary w-100 btn-rounded">Sign Up</button>
                         </div>
+                        <p class="text-center">By tapping "Sign Up" you accept our <a href="./terms.html" class="text-primary font-w700">Terms and Conditions</a></p>
                     </form>
                     <!--<div class="text-center p-tb20">
                         <span class="saprate">Or sign up with</span>
@@ -164,16 +108,11 @@
                 </div>
             </div>
         </div>
-        <br>
-        <br>
-        <br><br>
         <!-- Page Content End -->
         <!-- Footer -->
         <footer class="footer fixed" style="bottom:15px !important">
             <div class="container">
-                <center>
-                    <p>Already have an account?</p>
-                </center>
+                <center><p>Already have an account?</p></center>
                 <a href="login.html" class="btn btn-primary light btn-rounded text-primary d-block">Login</a>
             </div>
         </footer>
@@ -186,17 +125,11 @@
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/settings.js"></script>
     <script src="assets/js/custom.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics-compat.js"></script>
     <script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var currentUserEmail
-
     const firebaseConfig = {
         apiKey: "AIzaSyBd9mTGo1lM19_Kcqf_vl7-pE4Rq1AzWA8",
         authDomain: "bookings-49c4e.firebaseapp.com",
@@ -206,176 +139,91 @@
         appId: "1:491340380786:web:50ea0578b31309494ae0eb",
         measurementId: "G-3JJKPRCD9Y"
     };
-
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics()
+firebase.analytics()
 
     // Sign up form submit event listener
     document.getElementById("signup-form").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent form submission
+                event.preventDefault(); // Prevent form submission
 
-        var username = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-        var phone = document.getElementById("phone").value;
-        var address = document.getElementById("autocomplete").value;
-        var zipcode = document.getElementById("zipcode").value;
-        // Check if any field is empty
-        if (!username || !email || !password || !phone || !address || !zipcode) {
-            // Show an error toast indicating missing fields
-            const errorToast = document.getElementById('dzToast5');
-            const errorToastContent = errorToast.querySelector('.toast-content');
-            errorToastContent.innerHTML = `<strong>All fields are required.</strong>`;
-            const toast = new bootstrap.Toast(errorToast);
-            toast.show();
-            return; // Prevent further processing
-        }
+                var username = document.getElementById("username").value;
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
 
-        // Create user with email and password
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(function(userCredential) {
-                // User created successfully
-                var user = userCredential.user;
-                // Updating the displayName with the username input
-                user.updateProfile({
-                    displayName: username
-                }).then(function() {
-                    // Profile updated successfully
-                    console.log("Username updated");
-                    console.log(user);
+                // Create user with email and password
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                    .then(function(userCredential) {
+                        // User created successfully
+                        var user = userCredential.user;
+                        // Updating the displayName with the username input
+                        user.updateProfile({
+                            displayName: username
+                        }).then(function() {
+                            // Profile updated successfully
+                            console.log("Username updated");
+                            console.log(user);
+                            window.location.href = "./search.html";
+                            // You can redirect the user to a new page or perform additional actions here
+                        }).catch(function(error) {
+                            // An error happened
+                            console.log(error);
+                        });
+                    })
+                    .catch(function(error) {
+                        // Error occurred during signup
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log(errorCode, errorMessage);
 
-                    // Store additional user information in Firestore
-                    var db = firebase.firestore();
-                    db.collection("profiles").doc(user.email).set({
-                        name: `${username}`,
-                        email: `${email}`,
-                        phone: `${phone}`,
-                        address: `${address}`,
-                        zipcode: `${zipcode}`,
-                        userType: "customer"
-                    }).then(function() {
-                        console.log("User profile created in Firestore");
-                        window.location.href = "./search.html";
-                        // You can redirect the user to a new page or perform additional actions here
-                    }).catch(function(error) {
-                        console.log("Error creating user profile: ", error);
+                        // Show error toast
+                        var errorToast = document.getElementById('dzToast5');
+                        var errorToastContent = errorToast.querySelector('.toast-content');
+                        errorToastContent.innerHTML = `<strong>${errorMessage}</strong>`;
+                        const toast = new bootstrap.Toast(errorToast);
+                        toast.show();
                     });
-
-                }).catch(function(error) {
-                    // An error happened
-                    console.log(error);
-                });
-            })
-            .catch(function(error) {
-                // Error occurred during signup
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(errorCode, errorMessage);
-
-                // Show error toast
-                var errorToast = document.getElementById('dzToast5');
-                var errorToastContent = errorToast.querySelector('.toast-content');
-                errorToastContent.innerHTML = `<strong>${errorMessage}</strong>`;
-                const toast = new bootstrap.Toast(errorToast);
-                toast.show();
-            });
-    });
+                })
 
 
 
-    // Sign up with Google
-    function signUpWithGoogle() {
-        var provider = new firebase.auth.GoogleAuthProvider();
+                // Sign up with Google
+                function signUpWithGoogle() {
+                    var provider = new firebase.auth.GoogleAuthProvider();
 
-        firebase.auth().signInWithPopup(provider)
-            .then(function(result) {
-                // Signed up successfully with Google
-                var user = result.user;
-                console.log(user);
-                // You can redirect the user to a new page or perform additional actions here
-            })
-            .catch(function(error) {
-                // Error occurred during Google signup
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(errorCode, errorMessage);
-            });
-    }
+                    firebase.auth().signInWithPopup(provider)
+                        .then(function(result) {
+                            // Signed up successfully with Google
+                            var user = result.user;
+                            console.log(user);
+                            // You can redirect the user to a new page or perform additional actions here
+                        })
+                        .catch(function(error) {
+                            // Error occurred during Google signup
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            console.log(errorCode, errorMessage);
+                        });
+                }
 
-    // Sign up with Facebook
-    function signUpWithFacebook() {
-        var provider = new firebase.auth.FacebookAuthProvider();
+                // Sign up with Facebook
+                function signUpWithFacebook() {
+                    var provider = new firebase.auth.FacebookAuthProvider();
 
-        firebase.auth().signInWithPopup(provider)
-            .then(function(result) {
-                // Signed up successfully with Facebook
-                var user = result.user;
-                console.log(user);
-                // You can redirect the user to a new page or perform additional actions here
-            })
-            .catch(function(error) {
-                // Error occurred during Facebook signup
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(errorCode, errorMessage);
-            });
-    }
-    // Select the phone input field
-    const phoneInput = document.getElementById('phone');
-
-    // Define the format function
-    function formatPhoneNumber(phoneNumberString) {
-        const cleaned = ('' + phoneNumberString).replace(/\D/g, '');
-        const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-        if (match) {
-            return '(' + match[1] + ') ' + match[2] + '-' + match[3];
-        }
-        return phoneNumberString;
-    }
-
-    // Add an event listener to the input field
-    phoneInput.addEventListener('input', () => {
-        phoneInput.value = formatPhoneNumber(phoneInput.value);
-    });
-
-    function extractZipCode(address) {
-        // Search for a ZIP code pattern within the address
-        var zipPattern = /\b\d{5}(?:-\d{4})?\b/;
-        var match = address.match(zipPattern);
-
-        if (match) {
-            return match[0];
-        } else {
-            return "";
-        }
-    }
-
-    function autocompleteAddress() {
-        $('#autocomplete').autocomplete({
-            source: async function(request, response) {
-                const options = {
-                    countrycodes: 'us', // limit results to the United States
-                    limit: 10, // limit to a maximum of 10 results
-                };
-                const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(request.term)}&${new URLSearchParams(options)}`;
-                const result = await fetch(url);
-                const json = await result.json();
-                console.log(json)
-                response(json.map(result => result.display_name));
-            },
-            minLength: 2,
-            select: function(event, ui) {
-                var selectedAddress = ui.item.value;
-                var zip = extractZipCode(selectedAddress);
-                console.log(zip)
-                document.getElementById("zipcode").value = zip;
-            }
-
-        });
-    }
-
-    autocompleteAddress();
+                    firebase.auth().signInWithPopup(provider)
+                        .then(function(result) {
+                            // Signed up successfully with Facebook
+                            var user = result.user;
+                            console.log(user);
+                            // You can redirect the user to a new page or perform additional actions here
+                        })
+                        .catch(function(error) {
+                            // Error occurred during Facebook signup
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            console.log(errorCode, errorMessage);
+                        });
+                }
     </script>
 </body>
 
