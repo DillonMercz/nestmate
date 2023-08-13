@@ -189,6 +189,24 @@
                         </div>
                     </div>
                 </div>
+                <!-- Add this HTML for the profile completion modal -->
+                <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="profileModalLabel">Complete Your Profile</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Your profile is incomplete. Please fill in all the necessary fields to proceed.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="./profile.html" class="btn btn-primary">Complete Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!--Succesfull Payment-->
                 <div class="modal fade" tabindex="-1" id="paymentCompleteModal" aria-labelledby="paymentCompleteModal" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -566,16 +584,51 @@
         // Get a reference to the form and listen for submit events
         const form = document.querySelector('#form-part-4');
         form.addEventListener('submit', handleSubmit);
+
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 // User is signed in, show their name
                 guest = user.email;
 
+                // Attempt to autofill part 1 fields with user's profile data
+                const profileRef = database.collection('profiles').where('email', '==', guest);
+                profileRef.get().then(querySnapshot => {
+                    if (querySnapshot.empty) {
+                        // No profile found, redirect to profile.html
+                        window.location.href = "./profile.html";
+                    } else {
+                        const profileDoc = querySnapshot.docs[0];
+                        const profileData = profileDoc.data();
+                        console.log(profileData)
+                        console.log("checking")
+
+                        // Check if all necessary fields are present
+                        if (
+                            profileData.name && profileData.name !== "" && profileData.name !== undefined && profileData.name !== null &&
+                            profileData.email && profileData.email !== "" && profileData.email !== undefined && profileData.email !== null &&
+                            profileData.phone && profileData.phone !== "" && profileData.phone !== undefined && profileData.phone !== null &&
+                            profileData.address && profileData.address !== "" && profileData.address !== undefined && profileData.address !== null &&
+                            profileData.zipcode && profileData.zipcode !== "" && profileData.zipcode !== undefined && profileData.zipcode !== null
+                        ) {
+                            console.log("autofilling")
+                            // Autofill part 1 fields
+                            document.getElementById("name").value = profileData.name;
+                            document.getElementById("email").value = profileData.email;
+                            document.getElementById("phone").value = profileData.phone;
+                            document.getElementById("autocomplete").value = profileData.address;
+                            document.getElementById("zip").value = profileData.zipcode;
+                        } else {
+                            // Display modal to complete profile
+                            const modal = new bootstrap.Modal(document.getElementById('profileModal'));
+                            modal.show();
+                        }
+                    }
+                });
+
             } else {
                 // No user is signed in, show login button
                 console.log("No User Found")
                 window.location.href = "./login.html";
-
             }
         });
 
@@ -720,14 +773,6 @@
         function enableBookingButton() {
             document.getElementById('part-4-submit').removeAttribute('disabled');
         }
-
-        // Event listener for submit booking button in modal
-        document.getElementById('submitBookingButton').addEventListener('click', function() {
-            // Perform necessary actions for submitting the booking
-            document.getElementById('part-4-submit').click()
-            console.log('Booking submitted');
-            // ...
-        });
         </script>
 </body>
 

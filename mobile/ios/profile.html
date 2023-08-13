@@ -364,6 +364,7 @@ firebase.auth().onAuthStateChanged((user) => {
                     errorToastContent.innerHTML = `<strong>Successfully Updated Your Profile</strong>`;
                     const toast = new bootstrap.Toast(errorToast);
                     toast.show();
+                    window.location.reload();
 
                 })
                 .catch((error) => {
