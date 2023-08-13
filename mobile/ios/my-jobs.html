@@ -458,6 +458,19 @@
                 console.error("Error retrieving bookings: ", error);
             });
     }
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in, show their name
+            //var name = user.displayName;
+            //document.getElementById("user-name").innerHTML = name;
+        } else {
+            // No user is signed in, show login button
+            console.log("No User Found")
+            window.location.href="./register.html"
+
+
+        }
+    });
     </script>
 </body>
 
