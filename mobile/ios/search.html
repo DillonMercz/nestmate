@@ -107,7 +107,12 @@ ul.ui-autocomplete {
                 <div class="dz-info" style="margin-top:30px">
                     <strong><span id=greeting></span><strong>
                             <h2 class="name mb-0" id="user-name"></h2>
-                            <div id="login-container">
+                            <div style="display: none;" id="login-container">
+                                <button class="btn btn-primary" style="
+                                    background-color: white;
+                                    color: var(--primary);
+                                    width: 110px;
+                                ">Login</button>
                             </div>
                 </div>
                 <!-- Profile
@@ -955,13 +960,6 @@ ul.ui-autocomplete {
     <script src="assets/js/dz.carousel.js"></script><!-- Swiper -->
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script><!-- Swiper -->
     <script>
-    console.log(`
-███╗░░██╗███████╗░██████╗████████╗███╗░░░███╗░█████╗░████████╗███████╗
-████╗░██║██╔════╝██╔════╝╚══██╔══╝████╗░████║██╔══██╗╚══██╔══╝██╔════╝
-██╔██╗██║█████╗░░╚█████╗░░░░██║░░░██╔████╔██║███████║░░░██║░░░█████╗░░
-██║╚████║██╔══╝░░░╚═══██╗░░░██║░░░██║╚██╔╝██║██╔══██║░░░██║░░░██╔══╝░░
-██║░╚███║███████╗██████╔╝░░░██║░░░██║░╚═╝░██║██║░░██║░░░██║░░░███████╗
-╚═╝░░╚══╝╚══════╝╚═════╝░░░░╚═╝░░░╚═╝░░░░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚══════╝`)
     var categories;
 
     function mapAutocomplete() {
@@ -1596,6 +1594,7 @@ ul.ui-autocomplete {
         } else {
             // No user is signed in, show login button
             console.log("No User Found")
+            document.getElementById("login-container").style.display="block"
             //window.location.href="./register.html"
 
 
