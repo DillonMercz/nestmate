@@ -1,256 +1,641 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Service Provider Onboarding Form</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="author" content="NestMate Home Services LLC" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="" />
+    <meta name="title" content="NestMate Home Services - Book Now">
+    <meta name="description" content="Book Home Services With A Tap.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://metatags.io/">
+    <meta property="og:title" content="NestMate Home Services - Book Now">
+    <meta property="og:description" content="Book Home Services With A Tap.">
+    <meta property="og:image" content="https://i.imgur.com/LxRcNqE.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://metatags.io/">
+    <meta property="twitter:title" content="NestMate Home Services - Book Now">
+    <meta property="twitter:description" content="Book Home Services With A Tap.">
+    <meta property="twitter:image" content="https://i.imgur.com/LxRcNqE.png">
+    <meta name="description" content="NestMate - Services ">
+    <!-- Favicons Icon 
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Title -->
+    <title>Nestmate Home Services - Service Details Page</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 </head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(349deg, #fa5853, #f46692 52%, #ffc444);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+label {
+    display: inline-block;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    margin-top: 25px;
+    font-weight: bold;
+}
+
+.form-page {
+    display: none;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-page h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.form-content {
+    padding: 20px;
+}
+
+.next-button,
+.back-button {
+    margin-top: 20px;
+}
+
+.progress {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 600px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+    border: 1px solid;
+}
+
+.progress-sections {
+    position: relative;
+    top: 20px; /* Adjust this value for proper positioning */
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    padding: 0 10px; /* Adjust the padding as needed */
+    box-sizing: border-box;
+}
+
+.progress-label {
+    flex: 1;
+    text-align: center;
+    color: black; /* Initial color */
+    font-size: 12px; /* Adjust font size as needed */
+    opacity: 0.5; /* Initial opacity */
+}
+
+.complete .progress-label {
+    opacity: 1; /* Opacity for completed sections */
+}
+
+
+.complete .progress-label {
+    color: white; /* Color for completed sections */
+}
+
+
+.incomplete {
+    background-color: transparent;
+}
+
+
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    background-color: #f0f0f0;
+}
+
+.list-group-item .remove-button {
+    cursor: pointer;
+}
+
+.list-group-item .remove-button:hover {
+    color: #fa5853;
+}
+
+.chip {
+    display: inline-block;
+    margin: 4px;
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border-radius: 25px;
+    font-size: 14px;
+    line-height: 1;
+}
+ h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        .offer {
+            background-color: #ffc444;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .offer-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .offer-details {
+            margin-left: 20px;
+        }
+        .form-button {
+            text-align: center;
+        }
+        button {
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1e87db;
+        }
+
+
+</style>
+
 <body>
-
-<div class="container mt-5">
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
-
-  <form id="multi-page-form">
-    <div class="form-page">
-      <h2>Contact Information</h2>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter your name">
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter your email">
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
-      </div>
+    <div class="container mt-5" id="main-form">
+        <form id="multi-page-form">
+            <div class="form-page" id="start-page">
+                <!-- Contact Information -->
+                <h1>Welcome to the Nestmate Service Provider Pre-Offer Form!</h1>
+                <p>Nestmate is an innovative home services booking mobile app designed to connect service providers like you with a wide range of customers seeking top-notch services. Whether you're a plumber, electrician, cleaner, landscaper, or offer any other specialized service, Nestmate is your platform to showcase your skills and expand your business reach.</p>
+                <p><strong>Benefits of Joining Nestmate:</strong></p>
+                <ul style="padding: revert; margin: 15px;margin-bottom: 25px;">
+                    <li style="list-style: disc;">Expand Your Reach: Reach a larger customer base and gain exposure in your service area.</li>
+                    <li style="list-style: disc;">Efficient Booking: Seamlessly manage appointments and schedules through our user-friendly app.</li>
+                    <li style="list-style: disc;">Showcase Your Expertise: Build your portfolio and showcase your past work to potential customers.</li>
+                    <li style="list-style: disc;">Enhanced Communication: Easily communicate with clients and address their needs using various communication methods including our in-app chat system which aims to help you organize all client communications in one place!</li>
+                </ul>
+                <div class="offer">
+                    <p class="offer-title">Our Pre-Launch Offer:</p>
+                    <div class="offer-details">
+                        <p>As part of our pre-launch campaign, we're excited to offer you an exclusive opportunity. For every month you purchase, you'll receive an incredible 2 additional months completely FREE! That's right – buy 1 month, and get 2 months free. This unbeatable offer gives you three full months to experience the benefits of Nestmate and witness how it can elevate your business, all for the cost of just one month.</p>
+                        <p>Ready to take your service business to new heights? Complete this form to express your interest in joining Nestmate and taking advantage of this exceptional pre-launch buy 1 month, get 2 free offer.</p>
+                    </div>
+                </div>
+                <p>Thank you for considering Nestmate as your partner in business growth. We look forward to helping you thrive in the digital age of service provision.</p>
+                <p>Sincerely,</p>
+                <p>Dylan Clayton<br>Founder, Nestmate</p>
+                <div class="form-button">
+                    <button class="btn btn-primary get-started-button">Get Started</button>
+                </div>
+            </div>
+            <div class="form-page" id="contact-page">
+                <!-- Contact Information -->
+                <h2>Contact Information</h2>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                </div>
+                <button class="btn btn-primary back-button">Back</button>
+                <button class="btn btn-primary next-button">Next</button>
+            </div>
+            <div class="form-page" id="services-page">
+                <!-- Services Offered -->
+                <h2>Services Offered</h2>
+                <div class="form-group">
+                    <label for="main-category">Main Category</label>
+                    <select class="form-control" id="main-category">
+                        <option disabled selected>Select a main category</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Subcategories</label>
+                    <ul id="subcategory-list" class="list-group">
+                        <!-- Subcategories checkboxes and custom input will be dynamically added here -->
+                    </ul>
+                    <input type="text" class="form-control mt-2" id="custom-subcategory" placeholder="Enter custom subcategory">
+                    <small class="form-text text-muted">Separate multiple subcategories with commas.</small>
+                </div>
+                <button class="btn btn-primary back-button">Back</button>
+                <button class="btn btn-primary next-button">Next</button>
+            </div>
+            <div class="form-page" id="areas-page">
+                <!-- Areas Serviced -->
+                <h2>Areas Serviced</h2>
+                <div class="form-group">
+                    <label for="areas-serviced">Enter Zip Codes</label>
+                    <input type="text" class="form-control" id="areas-serviced" placeholder="Enter zip codes separated by commas">
+                </div>
+                <ul id="areas-chips" class="list-group"></ul>
+                <button class="btn btn-primary back-button">Back</button>
+                <button class="btn btn-primary next-button">Next</button>
+            </div>
+            <div class="form-page" id="pricing-page">
+                <!-- Pricing and Availability -->
+                <h2>Pricing and Availability</h2>
+                <div class="form-group">
+                    <label for="pricing">Pricing</label>
+                    <input type="text" class="form-control" id="pricing" placeholder="Enter your pricing details">
+                </div>
+                <div class="form-group">
+                    <label for="availability">Availability</label>
+                    <input type="text" class="form-control" id="availability" placeholder="Enter your availability">
+                </div>
+                <button class="btn btn-primary back-button">Back</button>
+                <button class="btn btn-primary next-button">Next</button>
+            </div>
+            <div class="form-page" id="experience-page">
+                <!-- Experience and Portfolio -->
+                <h2>Experience and Portfolio</h2>
+                <div class="form-group">
+                    <label for="experience">Years of Experience</label>
+                    <input type="number" class="form-control" id="experience" placeholder="Enter your years of experience">
+                </div>
+                <div class="form-group">
+                    <label for="portfolio">Portfolio</label>
+                    <textarea class="form-control" id="portfolio" rows="4" placeholder="Provide examples of your past work"></textarea>
+                </div>
+                <button class="btn btn-primary back-button">Back</button>
+                <button class="btn btn-primary next-button">Next</button>
+            </div>
+            <div class="form-page" id="insurance-page">
+                <!-- Insurance and Background Check -->
+                <h2>Insurance and Background Check</h2>
+                <div class="form-group">
+                    <label for="insurance">Insurance Information</label>
+                    <textarea class="form-control" id="insurance" rows="4" placeholder="Provide insurance details"></textarea>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="background-check">
+                    <label class="form-check-label" for="background-check">I consent to a background check</label>
+                </div>
+                <button class="btn btn-primary back-button">Back</button>
+                <button class="btn btn-primary next-button">Next</button>
+            </div>
+            <div class="form-page" id="references-page">
+                <!-- References and Payment Information -->
+                <h2>References and Payment Information</h2>
+                <div class="form-group">
+                    <label for="references">References</label>
+                    <textarea class="form-control" id="references" rows="4" placeholder="Provide references"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="payment">Payment Methods</label>
+                    <input type="text" class="form-control" id="payment" placeholder="Enter accepted payment methods">
+                </div>
+                <button class="btn btn-primary back-button">Back</button>
+                <button class="btn btn-primary next-button">Next</button>
+            </div>
+            <div class="form-page" id="profile-picture-page">
+                <!-- Profile Picture -->
+                <h2>Profile Picture</h2>
+                <div class="form-group">
+                    <label for="profile-picture">Profile Picture</label>
+                    <input type="file" class="form-control-file" id="profile-picture">
+                </div>
+                <button class="btn btn-primary back-button">Back</button>
+                <button class="btn btn-primary next-button">Next</button>
+            </div>
+            <div class="form-page" id="terms-page">
+                <!-- Terms and Conditions -->
+                <h2>Terms and Conditions</h2>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="terms">
+                    <label class="form-check-label" for="terms">I agree to the terms and conditions</label>
+                    <input type="submit" class="btn btn-primary" value="Submit" id="submit-button">
+                </div>
+                <button class="btn btn-primary back-button">Back</button>
+                <input type="submit" class="btn btn-primary" value="Submit" id="submit-button">
+            </div>
+            <div class="progress">
+                <div class="progress-bar" style="width: 12.5%;"></div>
+            </div>
+        </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        const formPages = [
+            'start-page',
+            'contact-page',
+            'services-page',
+            'areas-page',
+            'pricing-page',
+            'experience-page',
+            'insurance-page',
+            'references-page',
+            'profile-picture-page',
+            'terms-page'
+        ];
 
- <div class="form-page">
-      <h2>Services Offered</h2>
-      <div class="form-group">
-        <label for="main-category">Main Category</label>
-        <select class="form-control" id="main-category">
-          <option disabled selected>Select a main category</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Subcategories</label>
-        <ul id="subcategory-list" class="list-group">
-          <!-- Subcategories checkboxes and custom input will be dynamically added here -->
-        </ul>
-        <input type="text" class="form-control mt-2" id="custom-subcategory" placeholder="Enter custom subcategory">
-        <small class="form-text text-muted">Separate multiple subcategories with commas.</small>
-      </div>
-    </div>
+        let currentPageIndex = 0;
+        let progressBarStep = 0;
 
-    <div class="form-page">
-      <h2>Pricing and Availability</h2>
-      <div class="form-group">
-        <label for="pricing">Pricing</label>
-        <input type="text" class="form-control" id="pricing" placeholder="Enter your pricing details">
-      </div>
-      <div class="form-group">
-        <label for="availability">Availability</label>
-        <input type="text" class="form-control" id="availability" placeholder="Enter your availability">
-      </div>
-    </div>
+        function showPage(pageIndex) {
+            formPages.forEach((page, index) => {
+                if (index === pageIndex) {
+                    $("#" + page).show();
+                } else {
+                    $("#" + page).hide();
+                }
+            });
+        }
 
-    <div class="form-page">
-      <h2>Experience and Portfolio</h2>
-      <div class="form-group">
-        <label for="experience">Years of Experience</label>
-        <input type="number" class="form-control" id="experience" placeholder="Enter your years of experience">
-      </div>
-      <div class="form-group">
-        <label for="portfolio">Portfolio</label>
-        <textarea class="form-control" id="portfolio" rows="4" placeholder="Provide examples of your past work"></textarea>
-      </div>
-    </div>
+        function updateProgressBar() {
+            const progressPercentage = (progressBarStep / (formPages.length - 1)) * 100;
+            $(".progress-bar").css("width", progressPercentage + "%");
+        }
 
-    <div class="form-page">
-      <h2>Insurance and Background Check</h2>
-      <div class="form-group">
-        <label for="insurance">Insurance Information</label>
-        <textarea class="form-control" id="insurance" rows="4" placeholder="Provide insurance details"></textarea>
-      </div>
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="background-check">
-        <label class="form-check-label" for="background-check">I consent to a background check</label>
-      </div>
-    </div>
+        function navigateToFirstPage() {
+            if (currentPageIndex < formPages.length - 1) {
+                currentPageIndex++;
+                progressBarStep++;
+                showPage(currentPageIndex);
+            }
+        }
 
-    <div class="form-page">
-      <h2>References and Payment Information</h2>
-      <div class="form-group">
-        <label for="references">References</label>
-        <textarea class="form-control" id="references" rows="4" placeholder="Provide references"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="payment">Payment Methods</label>
-        <input type="text" class="form-control" id="payment" placeholder="Enter accepted payment methods">
-      </div>
-    </div>
+        function navigateToNextPage() {
+            if (currentPageIndex < formPages.length - 1) {
+                currentPageIndex++;
+                progressBarStep++;
+                showPage(currentPageIndex);
+                updateProgressBar();
+            }
+        }
 
-    <div class="form-page">
-      <h2>Terms and Conditions</h2>
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="terms">
-        <label class="form-check-label" for="terms">I agree to the terms and conditions</label>
-      </div>
-    </div>
+        function navigateToPreviousPage() {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                progressBarStep--;
+                showPage(currentPageIndex);
+                updateProgressBar();
+            }
+        }
+        $(".get-started-button").on("click", function() {
+            navigateToFirstPage();
+            updateNavButtons();
+        });
+        $(".next-button").on("click", function() {
+            navigateToNextPage();
+            updateNavButtons();
+        });
 
-    <div class="form-page">
-      <h2>Profile Picture</h2>
-      <div class="form-group">
-        <label for="profile-picture">Profile Picture</label>
-        <input type="file" class="form-control-file" id="profile-picture">
-      </div>
-    </div>
+        $(".back-button").on("click", function() {
+            navigateToPreviousPage();
+            updateNavButtons();
+        });
 
-    <div class="form-page">
-      <input type="submit" class="btn btn-primary" value="Submit">
-    </div>
-  </form>
-</div>
+        function updateNavButtons() {
+            if (currentPageIndex === 0) {
+                $(".back-button").prop("disabled", true);
+            } else {
+                $(".back-button").prop("disabled", false);
+            }
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-  const form = document.getElementById("multi-page-form");
-  const progressBar = document.querySelector(".progress-bar");
+            if (currentPageIndex === formPages.length - 1) {
+                $(".next-button").hide();
+                $("#submit-button").show();
+            } else {
+                $(".next-button").show();
+                $("#submit-button").hide();
+            }
+        }
 
-  // Sample categories and subcategories data
-  const categories = [
-    {
-      "name": "Pressure Washing",
-      "subcategories": [
-        "Driveway", "Patio", "Pool Deck", "Sidewalk", "Fence", "House Exterior", "Roof", "Boat Dock"
-      ]
-    },
-    {
-      "name": "Fencing",
-      "subcategories": [
-        "Wooden Fence Installation", "Wooden Fence Repair", "Vinyl Fence Installation", "Vinyl Fence Repair",
-        "Chain Link Fence Installation", "Chain Link Fence Repair", "Wrought Iron Fence Installation", "Wrought Iron Fence Repair",
-        "Aluminum Fence Installation", "Aluminum Fence Repair", "Farm and Ranch Fence Installation", "Farm and Ranch Fence Repair",
-        "Pool Fence Installation", "Pool Fence Repair", "Fence Staining and Painting", "Fence Power Washing"
-      ]
-    }
-  ];
+        // Set up initial state
+        showPage(currentPageIndex);
+        updateProgressBar();
+        updateNavButtons();
+    });
+    </script>
+    <script>
+    const form = document.getElementById("multi-page-form");
+    // Sample categories and subcategories data
+    const categories = [{
+            "name": "Pressure Washing",
+            "subcategories": [
+                "Driveway", "Patio", "Pool Deck", "Sidewalk", "Fence", "House Exterior", "Roof", "Boat Dock"
+            ]
+        },
+        {
+            "name": "Fencing",
+            "subcategories": [
+                "Wooden Fence Installation", "Wooden Fence Repair", "Vinyl Fence Installation", "Vinyl Fence Repair",
+                "Chain Link Fence Installation", "Chain Link Fence Repair", "Wrought Iron Fence Installation", "Wrought Iron Fence Repair",
+                "Aluminum Fence Installation", "Aluminum Fence Repair", "Farm and Ranch Fence Installation", "Farm and Ranch Fence Repair",
+                "Pool Fence Installation", "Pool Fence Repair", "Fence Staining and Painting", "Fence Power Washing"
+            ]
+        }
+    ];
 
-  const mainCategorySelect = document.getElementById("main-category");
-  const subcategoryList = document.getElementById("subcategory-list");
-  const customSubcategoryInput = document.getElementById("custom-subcategory");
+    const mainCategorySelect = document.getElementById("main-category");
+    const subcategoryList = document.getElementById("subcategory-list");
+    const customSubcategoryInput = document.getElementById("custom-subcategory");
 
-  categories.forEach(category => {
-    const option = document.createElement("option");
-    option.text = category.name;
-    mainCategorySelect.appendChild(option);
-  });
+    categories.forEach(category => {
+        const option = document.createElement("option");
+        option.text = category.name;
+        mainCategorySelect.appendChild(option);
+    });
 
-  mainCategorySelect.addEventListener("change", function () {
-    subcategoryList.innerHTML = "";
-    const selectedCategory = categories.find(category => category.name === this.value);
+    mainCategorySelect.addEventListener("change", function() {
+        subcategoryList.innerHTML = "";
+        const selectedCategory = categories.find(category => category.name === this.value);
 
-    if (selectedCategory) {
-      selectedCategory.subcategories.forEach(subcategory => {
-        const listItem = document.createElement("li");
-        listItem.classList.add("list-group-item");
-        listItem.innerHTML = `
+        if (selectedCategory) {
+            selectedCategory.subcategories.forEach(subcategory => {
+                const listItem = document.createElement("li");
+                listItem.classList.add("list-group-item");
+                listItem.innerHTML = `
           <label class="form-check">
             <input type="checkbox" class="form-check-input" name="subcategories" id="${subcategory}" value="${subcategory}">
             ${subcategory}
           </label>
         `;
-        subcategoryList.appendChild(listItem);
-      });
-    }
-  });
+                subcategoryList.appendChild(listItem);
+            });
+        }
+    });
 
-  customSubcategoryInput.addEventListener("input", function () {
-    const inputText = customSubcategoryInput.value.trim();
-    if (inputText.endsWith(",")) {
-      const subcategory = inputText.slice(0, -1); // Remove trailing comma
-      addChip(subcategory, true);
-      customSubcategoryInput.value = ""; // Clear the input
-    }
-  });
+    customSubcategoryInput.addEventListener("input", function() {
+        const inputText = customSubcategoryInput.value.trim();
+        if (inputText.endsWith(",")) {
+            const subcategory = inputText.slice(0, -1); // Remove trailing comma
+            addChip(subcategory, true);
+            customSubcategoryInput.value = ""; // Clear the input
+        }
+    });
 
-  subcategoryList.addEventListener("change", function (event) {
-    if (event.target.type === "checkbox" && event.target.checked) {
-      addChip(event.target.value, false);
-      event.target.disabled = true; // Disable the checkbox
-    } else if (event.target.type === "checkbox" && !event.target.checked) {
-      removeChip(event.target.value);
-      event.target.disabled = false; // Enable the checkbox
-    }
-  });
+    subcategoryList.addEventListener("change", function(event) {
+        if (event.target.type === "checkbox" && event.target.checked) {
+            addChip(event.target.value, false);
+            event.target.disabled = true; // Disable the checkbox
+        } else if (event.target.type === "checkbox" && !event.target.checked) {
+            removeChip(event.target.value);
+            event.target.disabled = false; // Enable the checkbox
+        }
+    });
 
-  subcategoryList.addEventListener("click", function (event) {
-    if (event.target.classList.contains("chip")) {
-      const isFromCheckbox = event.target.getAttribute("from-checkbox") === "true";
-      const subcategory = event.target.textContent.trim();
-      removeChip(subcategory, isFromCheckbox);
-    } else if (event.target.classList.contains("remove-button")) {
-      const checkboxId = event.target.id.replace("-remove", "");
-      const checkbox = document.getElementById(checkboxId);
-      if (checkbox) {
-        checkbox.checked = false;
-        checkbox.disabled = false; // Enable the checkbox
-      }
-      event.target.closest(".chip").remove();
-    }
-  });
+    subcategoryList.addEventListener("click", function(event) {
+        if (event.target.classList.contains("chip")) {
+            const isFromCheckbox = event.target.getAttribute("from-checkbox") === "true";
+            const subcategory = event.target.textContent.trim();
+            removeChip(subcategory, isFromCheckbox);
+        } else if (event.target.classList.contains("remove-button")) {
+            const checkboxId = event.target.id.replace("-remove", "");
+            const checkbox = document.getElementById(checkboxId);
+            if (checkbox) {
+                checkbox.checked = false;
+                checkbox.disabled = false; // Enable the checkbox
+            }
+            event.target.closest(".chip").remove();
+        }
+    });
 
-  function addChip(subcategory, fromCheckbox) {
-    const chip = document.createElement("span");
-    chip.classList.add("badge", "badge-secondary", "chip");
-    chip.textContent = subcategory;
-    
-    if (fromCheckbox) {
-      chip.setAttribute("from-checkbox", "true");
-    }
-    
-    const closeButton = document.createElement("span");
-    closeButton.classList.add("close", "remove-button");
-    closeButton.id = `${subcategory}-remove`;
-    closeButton.innerHTML = "&times;";
-    chip.appendChild(closeButton);
-    subcategoryList.appendChild(chip);
-  }
+    function addChip(subcategory, fromCheckbox) {
+        const chip = document.createElement("span");
+        chip.classList.add("badge", "badge-secondary", "chip");
+        chip.textContent = subcategory;
 
-  function removeChip(subcategory, fromCheckbox) {
-    const chip = Array.from(subcategoryList.querySelectorAll(".chip")).find(ch => ch.textContent === subcategory);
-    if (chip) {
-      chip.remove();
+        if (fromCheckbox) {
+            chip.setAttribute("from-checkbox", "true");
+        }
+
+        const closeButton = document.createElement("span");
+        closeButton.classList.add("close", "remove-button");
+        closeButton.id = `${subcategory}-remove`;
+        closeButton.innerHTML = "&times;";
+        chip.appendChild(closeButton);
+        subcategoryList.appendChild(chip);
     }
 
-    if (fromCheckbox) {
-      const checkbox = Array.from(subcategoryList.querySelectorAll('input[type="checkbox"]'))
-        .find(cb => cb.value === subcategory);
-      if (checkbox) {
-        checkbox.checked = false;
-        checkbox.disabled = false; // Enable the checkbox
-      }
+    function removeChip(subcategory, fromCheckbox) {
+        const chip = Array.from(subcategoryList.querySelectorAll(".chip")).find(ch => ch.textContent === subcategory);
+        if (chip) {
+            chip.remove();
+        }
+
+        if (fromCheckbox) {
+            const checkbox = Array.from(subcategoryList.querySelectorAll('input[type="checkbox"]'))
+                .find(cb => cb.value === subcategory);
+            if (checkbox) {
+                checkbox.checked = false;
+                checkbox.disabled = false; // Enable the checkbox
+            }
+        }
     }
-  }
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    // Handle form submission here
-  });
-</script>
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        // Handle form submission here
+    });
+    const areasServicedInput = document.getElementById("areas-serviced");
+    const areasChips = document.getElementById("areas-chips");
 
+    areasServicedInput.addEventListener("input", function() {
+        const inputText = areasServicedInput.value.trim();
+        if (inputText.endsWith(",")) {
+            const zipCode = inputText.slice(0, -1); // Remove trailing comma
+            addAreaChip(zipCode);
+            areasServicedInput.value = ""; // Clear the input
+        }
+    });
 
+    areasChips.addEventListener("click", function(event) {
+        if (event.target.classList.contains("area-chip")) {
+            const zipCode = event.target.textContent.trim();
+            removeAreaChip(zipCode);
+        } else if (event.target.classList.contains("remove-button")) {
+            const zipCode = event.target.getAttribute("zip-code");
+            if (zipCode) {
+                removeAreaChip(zipCode);
+            }
+        }
+    });
 
+    function addAreaChip(zipCode) {
+        const chip = document.createElement("li");
+        chip.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "area-chip");
+        chip.textContent = zipCode;
 
+        const closeButton = document.createElement("span");
+        closeButton.classList.add("close", "remove-button");
+        closeButton.setAttribute("zip-code", zipCode);
+        closeButton.innerHTML = "&times;";
+        chip.appendChild(closeButton);
 
+        areasChips.appendChild(chip);
+    }
 
+    function removeAreaChip(zipCode) {
+        const chip = Array.from(areasChips.querySelectorAll(".area-chip")).find(ch => ch.textContent === zipCode);
+        if (chip) {
+            chip.remove();
+        }
+    }
+    </script>
 </body>
+
 </html>
