@@ -1,0 +1,27 @@
+<script>
+const latitude = 50.80937216666667; // Replace with the desired latitude
+const longitude = 27.12794903333333; // Replace with the desired longitude
+const radiusKm = 17.60934; // 1 mile in kilometers
+
+fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+  .then(response => response.json())
+  .then(data => {
+    const originZipCode = data.address.postcode;
+
+    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${originZipCode}`)
+      .then(response => response.json())
+      .then(zipCodes => {
+        const zipCodesWithinRadius = zipCodes.filter(zipCode => {
+          const distance = zipCode.distance;
+          return distance <= radiusKm;
+        });
+
+        const zipCodeValues = zipCodesWithinRadius.map(zipCode => zipCode.display_name.split(',')[0]);
+        const zipCodeList = zipCodeValues.join(", ");
+        console.log(`${zipCodeList}`);
+      })
+      .catch(error => console.error("An error occurred:", error));
+  })
+  .catch(error => console.error("An error occurred:", error));
+  
+</script>

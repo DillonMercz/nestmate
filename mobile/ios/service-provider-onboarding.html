@@ -210,7 +210,14 @@ label {
         button:hover {
             background-color: #1e87db;
         }
-
+        .list-group-item:first-child {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+.list-group-item:last-child {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
 
 </style>
 
@@ -223,10 +230,12 @@ label {
                 <p>Nestmate is an innovative home services booking mobile app designed to connect service providers like you with a wide range of customers seeking top-notch services. Whether you're a plumber, electrician, cleaner, landscaper, or offer any other specialized service, Nestmate is your platform to showcase your skills and expand your business reach.</p>
                 <p><strong>Benefits of Joining Nestmate:</strong></p>
                 <ul style="padding: revert; margin: 15px;margin-bottom: 25px;">
-                    <li style="list-style: disc;">Expand Your Reach: Reach a larger customer base and gain exposure in your service area.</li>
+                    <li style="list-style: disc;">Expand Your Reach: Reach a larger customer base and gain exposure in your service area. Our customers are your customers!</li>
                     <li style="list-style: disc;">Efficient Booking: Seamlessly manage appointments and schedules through our user-friendly app.</li>
                     <li style="list-style: disc;">Showcase Your Expertise: Build your portfolio and showcase your past work to potential customers.</li>
+                    <li style="list-style: disc;">Your Own Space: When you signup as a provider, you are given your own space in our app, a place to express your place in the community. On your business page, users can view your information, contact you, and even interact with your business such as giving likes, reviews, and sharing your page to others to grow your customer base.</li>
                     <li style="list-style: disc;">Enhanced Communication: Easily communicate with clients and address their needs using various communication methods including our in-app chat system which aims to help you organize all client communications in one place!</li>
+                    <li style="list-style: disc;">Awesome Tools: Use our wide range of tools such as appointment scheduling, customer management, invoicing, and payment processing. Additionally, tools for tracking job progress, managing employee schedules, and generating reports could help your business as well.</li>
                 </ul>
                 <div class="offer">
                     <p class="offer-title">Our Pre-Launch Offer:</p>
@@ -269,7 +278,7 @@ label {
                         <option disabled selected>Select a main category</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="subcategory-section" style="display: none;">
                     <label>Subcategories</label>
                     <ul id="subcategory-list" class="list-group">
                         <!-- Subcategories checkboxes and custom input will be dynamically added here -->
@@ -286,6 +295,8 @@ label {
                 <div class="form-group">
                     <label for="areas-serviced">Enter Zip Codes</label>
                     <input type="text" class="form-control" id="areas-serviced" placeholder="Enter zip codes separated by commas">
+                    <br>
+                    <a href="https://tools.nest-mate.com/zip/" target="_blank">Click here to automatically find and copy the zip codes for your business.</a>
                 </div>
                 <ul id="areas-chips" class="list-group"></ul>
                 <button class="btn btn-primary back-button">Back</button>
@@ -493,6 +504,7 @@ label {
     const mainCategorySelect = document.getElementById("main-category");
     const subcategoryList = document.getElementById("subcategory-list");
     const customSubcategoryInput = document.getElementById("custom-subcategory");
+    const subcategorySection = document.getElementById("subcategory-section")
 
     categories.forEach(category => {
         const option = document.createElement("option");
@@ -509,15 +521,22 @@ label {
                 const listItem = document.createElement("li");
                 listItem.classList.add("list-group-item");
                 listItem.innerHTML = `
-          <label class="form-check">
-            <input type="checkbox" class="form-check-input" name="subcategories" id="${subcategory}" value="${subcategory}">
-            ${subcategory}
-          </label>
-        `;
+        <label class="form-check">
+          <input type="checkbox" class="form-check-input" name="subcategories" id="${subcategory}" value="${subcategory}">
+          ${subcategory}
+        </label>
+      `;
                 subcategoryList.appendChild(listItem);
             });
+
+            // Show the subcategory input when a main category is selected
+            subcategorySection.style.display = "block";
+        } else {
+            // Hide the subcategory input when no main category is selected
+            subcategorySection.style.display = "none";
         }
     });
+
 
     customSubcategoryInput.addEventListener("input", function() {
         const inputText = customSubcategoryInput.value.trim();
