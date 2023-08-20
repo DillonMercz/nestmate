@@ -218,12 +218,30 @@ label {
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
 }
-
+#timer {
+   font-size: 3em;
+   font-weight: 100;
+   color: white;
+   text-shadow: 0 0 20px darkblue;
+}
+ #timer div {
+   display: inline-block;
+   min-width: 90px;
+}
+ #timer div span {
+   color: #B1CDF1;
+   display: block;
+   font-size: .35em;
+   font-weight: 400;
+}
 </style>
 
 <body>
     <div class="container mt-5" id="main-form">
         <form id="multi-page-form">
+          <center><h2 style="color:grey;">Launching our Service Providers</h2></center>
+            <div id="timer"></div>
+            <center><h3 style="color:grey;">On November 30, 2023</h3></center>
             <div class="form-page" id="start-page">
                 <!-- Contact Information -->
                 <h1>Welcome to the Nestmate Service Provider Pre-Offer Form!</h1>
@@ -654,6 +672,30 @@ label {
             chip.remove();
         }
     }
+
+    function updateTimer() {
+        future = Date.parse("November 20, 2023 11:30:00");
+        now = new Date();
+        diff = future - now;
+
+        days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        hours = Math.floor(diff / (1000 * 60 * 60));
+        mins = Math.floor(diff / (1000 * 60));
+        secs = Math.floor(diff / 1000);
+
+        d = days;
+        h = hours - days * 24;
+        m = mins - hours * 60;
+        s = secs - mins * 60;
+
+        document.getElementById("timer")
+            .innerHTML =
+            '<div>' + d + '<span>Days</span></div>' +
+            '<div>' + h + '<span>Hours</span></div>' +
+            '<div>' + m + '<span>Minutes</span></div>' +
+            '<div>' + s + '<span>Seconds</span></div>';
+    }
+    setInterval('updateTimer()', 1000);
     </script>
 </body>
 
