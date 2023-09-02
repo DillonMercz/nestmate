@@ -88,7 +88,8 @@ label {
 }
 
 .next-button,
-.back-button {
+.back-button,
+.submit-button {
     margin-top: 20px;
 }
 
@@ -162,6 +163,13 @@ label {
 .list-group-item .remove-button {
     cursor: pointer;
 }
+.remove-button{
+  font-size: 24px;
+   display: inline-block;
+    position: relative;
+    left: 40%;
+    top: 2px;
+}
 
 .list-group-item .remove-button:hover {
     color: #fa5853;
@@ -171,11 +179,10 @@ label {
     display: inline-block;
     margin: 4px;
     padding: 8px 16px;
-    background-color: #f0f0f0;
     border-radius: 25px;
     font-size: 14px;
     line-height: 1;
-}
+  }
  h1 {
             text-align: center;
             margin-bottom: 20px;
@@ -223,6 +230,7 @@ label {
    font-weight: 100;
    color: white;
    text-shadow: 0 0 20px darkblue;
+   display:flex;
 }
  #timer div {
    display: inline-block;
@@ -234,17 +242,31 @@ label {
    font-size: .35em;
    font-weight: 400;
 }
+select{
+  padding-left: 20px;
+}
+textarea{
+  border-radius:10px !important
+}
 </style>
 
 <body>
     <div class="container mt-5" id="main-form">
         <form id="multi-page-form">
-          <center><h2 style="color:grey;">Launching our Service Providers</h2></center>
+            <center>
+                <h2 style="color:grey;">Launching our Service Providers</h2>
+            </center>
+            <center>
             <div id="timer"></div>
-            <center><h3 style="color:grey;">On November 30, 2023</h3></center>
+          </center>
+          <br>
+            <center>
+                <h3 style="color:grey;">On November 30, 2023</h3>
+            </center>
+            <br>
             <div class="form-page" id="start-page">
                 <!-- Contact Information -->
-                <h1>Welcome to the Nestmate Service Provider Pre-Offer Form!</h1>
+                <h1>Welcome to the Nestmate Service Provider Signup Form!</h1>
                 <p>Nestmate is an innovative home services booking mobile app designed to connect service providers like you with a wide range of customers seeking top-notch services. Whether you're a plumber, electrician, cleaner, landscaper, or offer any other specialized service, Nestmate is your platform to showcase your skills and expand your business reach.</p>
                 <p><strong>Benefits of Joining Nestmate:</strong></p>
                 <ul style="padding: revert; margin: 15px;margin-bottom: 25px;">
@@ -274,15 +296,15 @@ label {
                 <h2>Contact Information</h2>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                    <input required type="text" class="form-control" id="name" placeholder="Enter your name">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    <input required type="email" class="form-control" id="email" placeholder="Enter your email">
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                    <input required type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
                 </div>
                 <button class="btn btn-primary back-button">Back</button>
                 <button class="btn btn-primary next-button">Next</button>
@@ -312,11 +334,11 @@ label {
                 <h2>Areas Serviced</h2>
                 <div class="form-group">
                     <label for="areas-serviced">Enter Zip Codes</label>
-                    <input type="text" class="form-control" id="areas-serviced" placeholder="Enter zip codes separated by commas">
+                    <input type="text" id="zip-codes-input" class="form-control" placeholder="Enter zip codes separated by commas">
                     <br>
                     <a href="https://tools.nest-mate.com/zip/" target="_blank">Click here to automatically find and copy the zip codes for your business.</a>
                 </div>
-                <ul id="areas-chips" class="list-group"></ul>
+                <div id="zip-codes-pills"></div>
                 <button class="btn btn-primary back-button">Back</button>
                 <button class="btn btn-primary next-button">Next</button>
             </div>
@@ -324,64 +346,112 @@ label {
                 <!-- Pricing and Availability -->
                 <h2>Pricing and Availability</h2>
                 <div class="form-group">
-                    <label for="pricing">Pricing</label>
-                    <input type="text" class="form-control" id="pricing" placeholder="Enter your pricing details">
+                    <label for="pricing">Pricing Structure</label>
+                    <ul>
+                        <li><input type="checkbox" name="pricing" value="Flat Rate"> Flat Rate</li>
+                        <li><input type="checkbox" name="pricing" value="Hourly Rate"> Hourly Rate</li>
+                        <li><input type="checkbox" name="pricing" value="Tiered Pricing"> Tiered Pricing</li>
+                        <li><input type="checkbox" name="pricing" value="Subscription"> Subscription</li>
+                        <li><input type="checkbox" name="pricing" value="Freemium"> Freemium</li>
+                        <li><input type="checkbox" name="pricing" value="Pay-As-You-Go"> Pay-As-You-Go</li>
+                        <li><input type="checkbox" name="pricing" value="Dynamic Pricing"> Dynamic Pricing</li>
+                        <li><input type="checkbox" name="pricing" value="Value-Based"> Value-Based</li>
+                        <li><input type="checkbox" name="pricing" value="Cost-Plus"> Cost-Plus</li>
+                        <li><input type="checkbox" name="pricing" value="Bundling"> Bundling</li>
+                    </ul>
                 </div>
                 <div class="form-group">
                     <label for="availability">Availability</label>
-                    <input type="text" class="form-control" id="availability" placeholder="Enter your availability">
+                    <br>
+                    <label for="startDay">Choose Start Day:</label>
+                    <select id="startDay" name="startDay">
+                        <option value="monday">Monday</option>
+                        <option value="tuesday">Tuesday</option>
+                        <option value="wednesday">Wednesday</option>
+                        <option value="thursday">Thursday</option>
+                        <option value="friday">Friday</option>
+                        <option value="saturday">Saturday</option>
+                        <option value="sunday">Sunday</option>
+                    </select>
+                    <label for="endDay">Choose End Day:</label>
+                    <select id="endDay" name="endDay">
+                        <option value="monday">Monday</option>
+                        <option value="tuesday">Tuesday</option>
+                        <option value="wednesday">Wednesday</option>
+                        <option value="thursday">Thursday</option>
+                        <option value="friday">Friday</option>
+                        <option value="saturday">Saturday</option>
+                        <option value="sunday">Sunday</option>
+                    </select>
+                    <label for="startTime">Choose Start Time:</label>
+                    <select id="startTime" name="startTime">
+                        <option value="08:00 AM">08:00 AM</option>
+                        <option value="09:00 AM">09:00 AM</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <label for="endTime">Choose End Time:</label>
+                    <select id="endTime" name="endTime">
+                        <option value="05:00 PM">05:00 PM</option>
+                        <option value="06:00 PM">06:00 PM</option>
+                        <!-- Add more options as needed -->
+                    </select>
                 </div>
                 <button class="btn btn-primary back-button">Back</button>
                 <button class="btn btn-primary next-button">Next</button>
             </div>
             <div class="form-page" id="experience-page">
-                <!-- Experience and Portfolio -->
-                <h2>Experience and Portfolio</h2>
+                <h2>Business Information</h2>
                 <div class="form-group">
-                    <label for="experience">Years of Experience</label>
-                    <input type="number" class="form-control" id="experience" placeholder="Enter your years of experience">
+                    <label for="businessName">Business Name</label>
+                    <input required type="text" class="form-control" id="businessName" placeholder="Enter your business name">
                 </div>
                 <div class="form-group">
-                    <label for="portfolio">Portfolio</label>
-                    <textarea class="form-control" id="portfolio" rows="4" placeholder="Provide examples of your past work"></textarea>
+                    <label for="b-phone">Business Phone:</label>
+                    <input required type="text" class="form-control" id="b-phone" placeholder="Enter your business phone number">
                 </div>
-                <button class="btn btn-primary back-button">Back</button>
-                <button class="btn btn-primary next-button">Next</button>
-            </div>
-            <div class="form-page" id="insurance-page">
-                <!-- Insurance and Background Check -->
-                <h2>Insurance and Background Check</h2>
                 <div class="form-group">
-                    <label for="insurance">Insurance Information</label>
-                    <textarea class="form-control" id="insurance" rows="4" placeholder="Provide insurance details"></textarea>
+                    <label for="b-phone">Business Email</label>
+                    <input required type="text" class="form-control" id="b-email" placeholder="Enter your business email">
                 </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="background-check">
-                    <label class="form-check-label" for="background-check">I consent to a background check</label>
+                <div class="form-group">
+                    <label for="ein">EIN (Employer Identification Number)</label>
+                    <input required type="text" class="form-control" id="ein" placeholder="Enter your EIN">
+                </div>
+                <div class="form-group">
+                    <label for="yearsOpen">Years Open</label>
+                    <input required type="number" class="form-control" id="yearsOpen" placeholder="Enter the number of years your business has been open">
                 </div>
                 <button class="btn btn-primary back-button">Back</button>
                 <button class="btn btn-primary next-button">Next</button>
             </div>
             <div class="form-page" id="references-page">
-                <!-- References and Payment Information -->
-                <h2>References and Payment Information</h2>
-                <div class="form-group">
-                    <label for="references">References</label>
-                    <textarea class="form-control" id="references" rows="4" placeholder="Provide references"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="payment">Payment Methods</label>
-                    <input type="text" class="form-control" id="payment" placeholder="Enter accepted payment methods">
-                </div>
+                <h2>Accepted Payment Methods</h2>
+                <ul>
+                    <li><input type="checkbox" name="paymentMethod" value="Check"> Check</li>
+                    <li><input type="checkbox" name="paymentMethod" value="Cash"> Cash</li>
+                    <li><input type="checkbox" name="paymentMethod" value="Credit Card"> Credit Card</li>
+                    <li><input type="checkbox" name="paymentMethod" value="Debit Card"> Debit Card</li>
+                    <li><input type="checkbox" name="paymentMethod" value="PayPal"> PayPal</li>
+                    <li><input type="checkbox" name="paymentMethod" value="Zelle"> Zelle</li>
+                    <li><input type="checkbox" name="paymentMethod" value="Venmo"> Venmo</li>
+                    <li><input type="checkbox" name="paymentMethod" value="Square"> Square</li>
+                    <li><input type="checkbox" name="paymentMethod" value="Apple Pay"> Apple Pay</li>
+                    <!-- Add more payment methods as needed -->
+                </ul>
+                <!-- Add more payment methods as needed -->
                 <button class="btn btn-primary back-button">Back</button>
                 <button class="btn btn-primary next-button">Next</button>
             </div>
             <div class="form-page" id="profile-picture-page">
                 <!-- Profile Picture -->
-                <h2>Profile Picture</h2>
+                <h2>Your Profile on Nestmate</h2>
                 <div class="form-group">
-                    <label for="profile-picture">Profile Picture</label>
-                    <input type="file" class="form-control-file" id="profile-picture">
+                    <label for="profile-picture">Profile Picture</label><br>
+                    <input type="file" class="imgur" accept="image/*" data-max-size="5000"/><br>
+                    <label for="bio">Bio</label>
+                    <textarea class="form-control" id="bio" rows="4" placeholder="Tell us about yourself"></textarea>
+                    <label for="website">Website</label>
+                    <input type="url" class="form-control" id="website" placeholder="Enter your website URL">
                 </div>
                 <button class="btn btn-primary back-button">Back</button>
                 <button class="btn btn-primary next-button">Next</button>
@@ -390,114 +460,261 @@ label {
                 <!-- Terms and Conditions -->
                 <h2>Terms and Conditions</h2>
                 <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="terms">
-                    <label class="form-check-label" for="terms">I agree to the terms and conditions</label>
-                    <input type="submit" class="btn btn-primary" value="Submit" id="submit-button">
+                    <input type="checkbox" required name="paymentMethod" value="Check">
+                    <label for="paymentMethod">I agree to the <a href="./terms.html">Terms of Use.</a></label>
                 </div>
                 <button class="btn btn-primary back-button">Back</button>
-                <input type="submit" class="btn btn-primary" value="Submit" id="submit-button">
+                <button class="btn btn-primary next-button">Preview Profile</button>
             </div>
-            <div class="progress">
-                <div class="progress-bar" style="width: 12.5%;"></div>
+            <div class="form-page" id="preview-page">
+              <center><h2>Preview Your Future Profile</h2></center>
+              <a id="preview-profile">Let me see it!</a>
             </div>
-        </form>
+                <div class="progress">
+        <div class="progress-bar" style="width: 12.5%;"></div>
+    </div>
+
+    </div>
+    </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-    $(document).ready(function() {
-        const formPages = [
-            'start-page',
-            'contact-page',
-            'services-page',
-            'areas-page',
-            'pricing-page',
-            'experience-page',
-            'insurance-page',
-            'references-page',
-            'profile-picture-page',
-            'terms-page'
-        ];
+      var profilePicture
+      profilePicture = "https://i.imgur.com/y3bbXbm.png"
+    var responses
+    const formPages = [
+        'start-page',
+        'contact-page',
+        'services-page',
+        'areas-page',
+        'pricing-page',
+        'experience-page',
+        'references-page',
+        'profile-picture-page',
+        'terms-page',
+        'preview-page'
+    ];
 
-        let currentPageIndex = 0;
-        let progressBarStep = 0;
+    let currentPageIndex = 0;
+    let progressBarStep = 0;
 
-        function showPage(pageIndex) {
-            formPages.forEach((page, index) => {
-                if (index === pageIndex) {
-                    $("#" + page).show();
-                } else {
-                    $("#" + page).hide();
-                }
-            });
-        }
-
-        function updateProgressBar() {
-            const progressPercentage = (progressBarStep / (formPages.length - 1)) * 100;
-            $(".progress-bar").css("width", progressPercentage + "%");
-        }
-
-        function navigateToFirstPage() {
-            if (currentPageIndex < formPages.length - 1) {
-                currentPageIndex++;
-                progressBarStep++;
-                showPage(currentPageIndex);
-            }
-        }
-
-        function navigateToNextPage() {
-            if (currentPageIndex < formPages.length - 1) {
-                currentPageIndex++;
-                progressBarStep++;
-                showPage(currentPageIndex);
-                updateProgressBar();
-            }
-        }
-
-        function navigateToPreviousPage() {
-            if (currentPageIndex > 0) {
-                currentPageIndex--;
-                progressBarStep--;
-                showPage(currentPageIndex);
-                updateProgressBar();
-            }
-        }
-        $(".get-started-button").on("click", function() {
-            navigateToFirstPage();
-            updateNavButtons();
-        });
-        $(".next-button").on("click", function() {
-            navigateToNextPage();
-            updateNavButtons();
-        });
-
-        $(".back-button").on("click", function() {
-            navigateToPreviousPage();
-            updateNavButtons();
-        });
-
-        function updateNavButtons() {
-            if (currentPageIndex === 0) {
-                $(".back-button").prop("disabled", true);
+    function showPage(pageIndex) {
+        formPages.forEach((page, index) => {
+            if (index === pageIndex) {
+                $("#" + page).show();
             } else {
-                $(".back-button").prop("disabled", false);
+                $("#" + page).hide();
             }
+        });
+    }
 
-            if (currentPageIndex === formPages.length - 1) {
-                $(".next-button").hide();
-                $("#submit-button").show();
+    function validateCurrentPage() {
+        const currentPageId = formPages[currentPageIndex];
+        const currentPage = document.getElementById(currentPageId);
+        const requiredInputs = currentPage.querySelectorAll("input[required], select[required], textarea[required]");
+        let isValid = true;
+
+        requiredInputs.forEach(input => {
+            if (!input.value.trim()) {
+                isValid = false;
+                input.classList.add("is-invalid");
             } else {
-                $(".next-button").show();
-                $("#submit-button").hide();
+                input.classList.remove("is-invalid");
             }
-        }
+        });
 
-        // Set up initial state
-        showPage(currentPageIndex);
-        updateProgressBar();
+        return isValid;
+    }
+
+    function updateProgressBar() {
+        const progressPercentage = (progressBarStep / (formPages.length - 1)) * 100;
+        $(".progress-bar").css("width", progressPercentage + "%");
+    }
+
+    function navigateToFirstPage() {
+        if (currentPageIndex < formPages.length - 1) {
+            currentPageIndex++;
+            progressBarStep++;
+            showPage(currentPageIndex);
+        }
+    }
+
+    function navigateToNextPage() {
+        if (currentPageIndex < formPages.length - 1) {
+            currentPageIndex++;
+            progressBarStep++;
+            showPage(currentPageIndex);
+            updateProgressBar();
+        }
+    }
+
+    function navigateToPreviousPage() {
+        if (currentPageIndex > 0) {
+            currentPageIndex--;
+            progressBarStep--;
+            showPage(currentPageIndex);
+            updateProgressBar();
+        }
+    }
+    $(".get-started-button").on("click", function() {
+        navigateToFirstPage();
         updateNavButtons();
     });
+    $(".next-button").on("click", function() {
+        //if (validateCurrentPage()) {
+        navigateToNextPage();
+        updateNavButtons();
+        //}
+    });
+
+    $(".back-button").on("click", function() {
+        navigateToPreviousPage();
+        updateNavButtons();
+    });
+
+    function updateNavButtons() {
+        if (currentPageIndex === 0) {
+            $(".back-button").prop("disabled", true);
+        } else {
+            $(".back-button").prop("disabled", false);
+        }
+
+        if (currentPageIndex === formPages.length - 1) {
+            $(".next-button").hide();
+            $("#submit-button").show();
+        } else {
+            $(".next-button").show();
+            $("#submit-button").hide();
+        }
+    }
+
+    // Set up initial state
+    showPage(currentPageIndex);
+    updateProgressBar();
+    updateNavButtons();
+
+    $("#preview-profile").on("click", function() {
+        console.log("Form submitted!");
+
+        // Collect responses from each page
+        responses = {
+            contactInformation: {
+                name: $("#name").val(),
+                email: $("#email").val(),
+                phone: $("#phone").val()
+            },
+            servicesOffered: {
+                mainCategory: $("#main-category").val(),
+                subcategories: getSelectedSubcategories()
+            },
+            areasServiced: {
+                zipCodes: getZipCodes()
+            },
+            pricingAvailability: {
+                pricing: getSelectedPricing(),
+                startDay: $("#startDay").val(),
+                endDay: $("#endDay").val(),
+                startTime: $("#startTime").val(),
+                endTime: $("#endTime").val()
+            },
+            businessInformation: {
+                phone: $("#b-phone").val(),
+                email: $("#b-email").val(),
+                businessName: $("#businessName").val(),
+                ein: $("#ein").val(),
+                yearsOpen: $("#yearsOpen").val()
+            },
+            acceptedPaymentMethods: {
+                paymentMethods: getSelectedPaymentMethods()
+            },
+            profileInformation: {
+                profilePicture: profilePicture, // You may need additional logic to handle file inputs
+                bio: $("#bio").val(),
+                website: $("#website").val()
+            },
+            termsAndConditions: {
+                agreed: $("#paymentMethod").is(":checked")
+            }
+        };
+
+        console.log("Responses:", responses);
+        window.localStorage.setItem("responses", JSON.stringify(responses))
+        window.location.href="./example-company.html"
+        //populateTemplate()
+    });
+
+    function getSelectedPricing() {
+        const selectedPricing = [];
+        $("input[name='pricing']:checked").each(function() {
+            selectedPricing.push($(this).val());
+        });
+        return selectedPricing;
+    }
+
+    function getSelectedPaymentMethods() {
+        const selectedPaymentMethods = [];
+        $("input[name='paymentMethod']:checked").each(function() {
+            selectedPaymentMethods.push($(this).val());
+        });
+        return selectedPaymentMethods;
+    }
+
+    function getSelectedSubcategories() {
+        const selectedSubcategories = [];
+        $("input[name='subcategories']:checked").each(function() {
+            selectedSubcategories.push($(this).val());
+        });
+        return selectedSubcategories;
+    }
+
+    function getZipCodes() {
+        const zipCodesInput = $("#zip-codes-input").val();
+        const zipCodes = zipCodesInput.split(",").map(zip => zip.trim()).filter(zip => zip !== "");
+        return zipCodes;
+    }
+
+    function populateTemplate() {
+        const providerData = {
+            profileImage: profilePicture,
+            name: responses.contactInformation.name,
+            bio: responses.profileInformation.bio,
+            rating: "4.5", // You can set the rating here
+            telephone: responses.contactInformation.phone,
+            email: responses.contactInformation.email,
+            website: responses.profileInformation.website,
+            about: responses.businessInformation.businessName, // For example, use the business name as the "About" content
+            availability: responses.pricingAvailability.startDay + " - " + responses.pricingAvailability.endDay,
+            pricing: responses.pricingAvailability.pricing.join(", "), // Join the selected pricing options
+            areasServiced: responses.areasServiced.zipCodes.join(", "), // Join the selected zip codes
+            companyName: data.businessInformation.businessName,
+            companyPhone: data.businessInformation.phone,
+            // ... other data fields
+        };
+        // Assuming you have an object named 'providerData' containing the relevant data
+
+        // Populate Profile Image
+        $(".media-60 img").attr("src", providerData.profileImage);
+
+        // Populate Name and Bio
+        $(".flex-1 h4").text(providerData.companyName);
+        $(".flex-1 p").text(providerData.bio);
+
+        // Populate Rating
+        //$(".text-warning").text(providerData.rating);
+
+        document.getElementById("background").src = 'https://i.imgur.com/5VBPBMk.png'
+        document.getElementById("profileImage").src = responses.profileInformation.profilePicture;
+        document.getElementById("companyName").textContent = responses.businessInformation.businessName;
+        document.getElementById("phone").textContent = responses.businessInformation.phone;
+        document.getElementById("email").textContent = responses.businessInformation.email;
+        //document.getElementById("bio").textContent = responses.profileInformation.bio;
+        document.getElementById("website").textContent = responses.profileInformation.website;
+        document.getElementById("website").href = responses.profileInformation.website;
+        document.getElementById("main").textContent = responses.servicesOffered.mainCategory;
+        navigateToNextPage()
+    }
     </script>
     <script>
     const form = document.getElementById("multi-page-form");
@@ -628,50 +845,42 @@ label {
         e.preventDefault();
         // Handle form submission here
     });
-    const areasServicedInput = document.getElementById("areas-serviced");
-    const areasChips = document.getElementById("areas-chips");
+    const zipCodesInput = document.getElementById("zip-codes-input");
+    const zipCodesPills = document.getElementById("zip-codes-pills");
 
-    areasServicedInput.addEventListener("input", function() {
-        const inputText = areasServicedInput.value.trim();
-        if (inputText.endsWith(",")) {
-            const zipCode = inputText.slice(0, -1); // Remove trailing comma
-            addAreaChip(zipCode);
-            areasServicedInput.value = ""; // Clear the input
-        }
+    zipCodesInput.addEventListener("input", function() {
+        const inputText = zipCodesInput.value.trim();
+        const zipCodes = inputText.split(",").map(zip => zip.trim()).filter(zip => zip !== "");
+
+        renderPills(zipCodes);
     });
 
-    areasChips.addEventListener("click", function(event) {
-        if (event.target.classList.contains("area-chip")) {
-            const zipCode = event.target.textContent.trim();
-            removeAreaChip(zipCode);
-        } else if (event.target.classList.contains("remove-button")) {
-            const zipCode = event.target.getAttribute("zip-code");
-            if (zipCode) {
-                removeAreaChip(zipCode);
-            }
-        }
-    });
+    function renderPills(zipCodes) {
+        zipCodesPills.innerHTML = ""; // Clear existing pills
 
-    function addAreaChip(zipCode) {
-        const chip = document.createElement("li");
-        chip.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "area-chip");
-        chip.textContent = zipCode;
+        zipCodes.forEach(zipCode => {
+            const pill = document.createElement("div");
+            pill.className = "chip";
+            pill.textContent = zipCode;
 
-        const closeButton = document.createElement("span");
-        closeButton.classList.add("close", "remove-button");
-        closeButton.setAttribute("zip-code", zipCode);
-        closeButton.innerHTML = "&times;";
-        chip.appendChild(closeButton);
+            const closeButton = document.createElement("span");
+            closeButton.className = "close-button";
+            closeButton.innerHTML = "&times;";
+            closeButton.addEventListener("click", function() {
+                removePill(zipCode);
+            });
 
-        areasChips.appendChild(chip);
+            pill.appendChild(closeButton);
+            zipCodesPills.appendChild(pill);
+        });
     }
 
-    function removeAreaChip(zipCode) {
-        const chip = Array.from(areasChips.querySelectorAll(".area-chip")).find(ch => ch.textContent === zipCode);
-        if (chip) {
-            chip.remove();
-        }
+    function removePill(zipCode) {
+        const updatedPills = Array.from(zipCodesPills.children).filter(pill => pill.textContent !== zipCode);
+        zipCodesPills.innerHTML = "";
+        updatedPills.forEach(pill => zipCodesPills.appendChild(pill));
     }
+
 
     function updateTimer() {
         future = Date.parse("November 20, 2023 11:30:00");
@@ -696,6 +905,123 @@ label {
             '<div>' + s + '<span>Seconds</span></div>';
     }
     setInterval('updateTimer()', 1000);
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      $("document").ready(function() {
+
+  $('input[type=file]').on("change", function() {
+
+    var $files = $(this).get(0).files;
+
+    if ($files.length) {
+
+      // Reject big files
+      if ($files[0].size > $(this).data("max-size") * 1024) {
+        console.log("Please select a smaller file");
+        return false;
+      }
+
+      // Begin file upload
+      console.log("Uploading file to Imgur..");
+
+      // Replace ctrlq with your own API key
+      var apiUrl = 'https://api.imgur.com/3/image';
+     var apiKey =  '73e4c7f692666ac'; //key not working
+      var settings = {
+        async: false,
+        crossDomain: true,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        url: apiUrl,
+        headers: {
+          Authorization: 'Client-ID ' + apiKey,
+          Accept: 'application/json'
+        },
+        mimeType: 'multipart/form-data'
+      };
+
+      var formData = new FormData();
+      formData.append("image", $files[0]);
+      settings.data = formData;
+
+      // Response contains stringified JSON
+      // Image URL available at response.data.link
+      $.ajax(settings).done(function(response) {
+        console.log(JSON.parse(response));
+        profilePicture= JSON.parse(response).data.link
+        console.log()
+
+      });
+
+    }
+  });
+});
+
+
+
+  // Check if the 'responses' object exists in local storage
+if (localStorage.getItem("responses")) {
+  // Parse the 'responses' object from local storage
+  var responses = JSON.parse(localStorage.getItem("responses"));
+
+  // Autofill the form with the values from 'responses'
+  $("#name").val(responses.contactInformation.name);
+  $("#email").val(responses.contactInformation.email);
+  $("#phone").val(responses.contactInformation.phone);
+
+  $("#main-category").val(responses.servicesOffered.mainCategory);
+  // Assuming getSelectedSubcategories() returns an array of selected subcategories, you can populate them like this:
+  var selectedSubcategories = responses.servicesOffered.subcategories;
+  selectedSubcategories.forEach(function(subcategory) {
+    // Code to select the subcategory option based on its value
+    $("#subcategories option[value='" + subcategory + "']").prop("selected", true);
+  });
+
+  // Assuming getZipCodes() returns an array of selected zip codes, you can populate them like this:
+  var selectedZipCodes = responses.areasServiced.zipCodes;
+  selectedZipCodes.forEach(function(zipCode) {
+    // Code to select the zip code option based on its value
+    $("#zipCodes option[value='" + zipCode + "']").prop("selected", true);
+  });
+
+  // Populate pricing and availability fields using responses.pricingAvailability values
+    var pricingStructure = responses.acceptedPaymentMethods.paymentMethods;
+  selectedPaymentMethods.forEach(function(paymentMethod) {
+    // Code to check the payment method checkbox based on its value
+    $("input[name='paymentMethod'][value='" + paymentMethod + "']").prop("checked", true);
+  });
+  $("#startDay").val(responses.pricingAvailability.startDay);
+  $("#endDay").val(responses.pricingAvailability.endDay);
+  $("#startTime").val(responses.pricingAvailability.startTime);
+  $("#endTime").val(responses.pricingAvailability.endTime);
+
+  $("#b-phone").val(responses.businessInformation.phone);
+  $("#b-email").val(responses.businessInformation.email);
+  $("#businessName").val(responses.businessInformation.businessName);
+  $("#ein").val(responses.businessInformation.ein);
+  $("#yearsOpen").val(responses.businessInformation.yearsOpen);
+
+  // Assuming getSelectedPaymentMethods() returns an array of selected payment methods, you can populate them like this:
+  var selectedPaymentMethods = responses.acceptedPaymentMethods.paymentMethods;
+  selectedPaymentMethods.forEach(function(paymentMethod) {
+    // Code to check the payment method checkbox based on its value
+    $("input[name='paymentMethod'][value='" + paymentMethod + "']").prop("checked", true);
+  });
+
+  // Populate profile picture (assuming 'profilePicture' is a global variable)
+  profilePicture = responses.profileInformation.profilePicture;
+  // Populate bio and website fields using responses.profileInformation values
+  $("#bio").val(responses.profileInformation.bio);
+  $("#website").val(responses.profileInformation.website);
+
+  // Check the terms and conditions checkbox if agreed
+  if (responses.termsAndConditions.agreed) {
+    $("#paymentMethod").prop("checked", true);
+  }
+}
+
     </script>
 </body>
 
