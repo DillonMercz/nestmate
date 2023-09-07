@@ -982,13 +982,23 @@ hr{
         .fb{
             padding-top:0px;
         }
-        .btn{
-            padding: 5px 35px 5px 35px;
+        .add-task{
+            padding: 10px 35px 10px 35px;
             background-color:white;
             color: var(--primary) !important;
+            margin-right:15px;
+        }
+        .get-started{
+            border:none;
+            padding: 10px 35px 10px 35px;
+            background: linear-gradient(#fa5853, #f46692 52%, #ffc444);
+            color: white !important;
         }
         .project-column{
             width:100%;
+        }
+        .plus{
+            margin-right:10px;
         }
 </style>
 
@@ -3150,9 +3160,9 @@ hr{
                       <h4>${data[i].subcategories[n].name}</h4>
                       <p>${data[i].subcategories[n].description}</p>
                         <div class="task__stats" style="display:flex;text-align:center">
-                      <button class="btn btn-primary task__tag--${category.replace(/ +/g, '-')}">Add Task</button>
+                      <button class="btn btn-primary add-task task__tag--${category.replace(/ +/g, '-')}"><i class="fas fa-plus fa-lg plus"></i>      Add Task</button>
                       <br>
-                      <button class="btn btn-primary task__tag--${category.replace(/ +/g, '-')}">Get Started</button>
+                      <button class="btn btn-primary get-started task__tag--${category.replace(/ +/g, '-')}">Get Started</button>
                   </div>
               </div>
                       `
