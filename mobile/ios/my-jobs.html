@@ -447,7 +447,6 @@ h1 {
 }
 
 .project {
-    padding: 2rem;
     max-width: 75%;
     width: 100%;
     display: inline-block;
@@ -987,6 +986,9 @@ hr{
             padding: 5px 35px 5px 35px;
             background-color:white;
             color: var(--primary) !important;
+        }
+        .project-column{
+            width:100%;
         }
 </style>
 
@@ -3149,6 +3151,7 @@ hr{
                       <p>${data[i].subcategories[n].description}</p>
                         <div class="task__stats" style="display:flex;text-align:center">
                       <button class="btn btn-primary task__tag--${category.replace(/ +/g, '-')}">Add Task</button>
+                      <br>
                       <button class="btn btn-primary task__tag--${category.replace(/ +/g, '-')}">Get Started</button>
                   </div>
               </div>
