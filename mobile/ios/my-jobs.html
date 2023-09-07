@@ -984,7 +984,7 @@ hr{
             padding-top:0px;
         }
         .btn{
-            padding: 5px 15px 5px 15px;
+            padding: 5px 35px 5px 35px;
             background-color:white;
             color: var(--primary) !important;
         }
@@ -1062,10 +1062,10 @@ hr{
                                     <h1>Your to-do list</h1>
                                     <h4>Upgrade your nest</h4>
                                     <br>
-                                        <div class="custom-input-container">
-                                            <input type="text" id="searchInput" class="custom-input" placeholder="Find the perfect tasks" oninput="searchTasks()">
-                                            <i class="fas fa-search fa-lg"></i> <!-- Font Awesome magnifying glass icon -->
-                                        </div>
+                                    <div class="custom-input-container">
+                                        <input type="text" id="searchInput" class="custom-input" placeholder="Find the perfect tasks" oninput="searchTasks()">
+                                        <i class="fas fa-search fa-lg"></i> <!-- Font Awesome magnifying glass icon -->
+                                    </div>
                                     <br>
                                     <br>
                                     <hr>
@@ -1152,23 +1152,23 @@ hr{
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        // JavaScript in your HTML file or an external script file
-var stickyTabs = document.getElementById('stickyTabs');
-var isSticky = false; // Variable to track if the element is sticky
+    // JavaScript in your HTML file or an external script file
+    var stickyTabs = document.getElementById('stickyTabs');
+    var isSticky = false; // Variable to track if the element is sticky
 
-window.addEventListener('scroll', function() {
-    var scrollY = window.scrollY || window.pageYOffset;
+    window.addEventListener('scroll', function() {
+        var scrollY = window.scrollY || window.pageYOffset;
 
-    if (scrollY > 0 && !isSticky) {
-        // Add padding when the element becomes sticky
-        stickyTabs.style.paddingTop = '30px'; // Add your desired padding value
-        isSticky = true;
-    } else if (scrollY === 0 && isSticky) {
-        // Remove padding when the element is no longer sticky
-        stickyTabs.style.paddingTop = '0';
-        isSticky = false;
-    }
-});
+        if (scrollY > 0 && !isSticky) {
+            // Add padding when the element becomes sticky
+            stickyTabs.style.paddingTop = '30px'; // Add your desired padding value
+            isSticky = true;
+        } else if (scrollY === 0 && isSticky) {
+            // Remove padding when the element is no longer sticky
+            stickyTabs.style.paddingTop = '0';
+            isSticky = false;
+        }
+    });
 
     //console.log(activeBookingsSection)
     var guest
@@ -3147,8 +3147,9 @@ window.addEventListener('scroll', function() {
                   <div class="task__tags"><span class="task__tag task__tag--${editedCategory.replace(/ +/g, '-')}">${category}</span><button class="task__options"><i class="fas fa-close"></i></button></div>
                       <h4>${data[i].subcategories[n].name}</h4>
                       <p>${data[i].subcategories[n].description}</p>
-                        <div class="task__stats">
+                        <div class="task__stats" style="display:flex;text-align:center">
                       <button class="btn btn-primary task__tag--${category.replace(/ +/g, '-')}">Add Task</button>
+                      <button class="btn btn-primary task__tag--${category.replace(/ +/g, '-')}">Get Started</button>
                   </div>
               </div>
                       `
