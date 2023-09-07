@@ -991,7 +991,7 @@ hr{
         .get-started{
             border:none;
             padding: 10px 35px 10px 35px;
-            background: linear-gradient(#fa5853, #f46692 52%, #ffc444);
+            background-color:seagreen;
             color: white !important;
         }
         .project-column{
@@ -999,6 +999,9 @@ hr{
         }
         .plus{
             margin-right:10px;
+        }
+        .darkgray{
+            color:darkgray;
         }
 </style>
 
@@ -1173,7 +1176,7 @@ hr{
 
         if (scrollY > 0 && !isSticky) {
             // Add padding when the element becomes sticky
-            stickyTabs.style.paddingTop = '30px'; // Add your desired padding value
+            stickyTabs.style.paddingTop = '60px'; // Add your desired padding value
             isSticky = true;
         } else if (scrollY === 0 && isSticky) {
             // Remove padding when the element is no longer sticky
@@ -3157,7 +3160,7 @@ hr{
             var preTaskItem = preTask += `
               <div class="task" draggable="false">
                   <div class="task__tags"><span class="task__tag task__tag--${editedCategory.replace(/ +/g, '-')}">${category}</span><button class="task__options"><i class="fas fa-close"></i></button></div>
-                      <h4>${data[i].subcategories[n].name}</h4>
+                      <h4 class="darkgray">${data[i].subcategories[n].name}</h4>
                       <p>${data[i].subcategories[n].description}</p>
                         <div class="task__stats" style="display:flex;text-align:center">
                       <button class="btn btn-primary add-task task__tag--${category.replace(/ +/g, '-')}"><i class="fas fa-plus fa-lg plus"></i>      Add Task</button>
