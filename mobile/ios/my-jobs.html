@@ -983,6 +983,7 @@ hr{
             padding-top:0px;
         }
         .add-task{
+            border-color:darkgray;
             padding: 10px 35px 10px 35px;
             background-color:white;
             color: var(--primary) !important;
@@ -1083,6 +1084,7 @@ hr{
                                     </div>
                                     <br>
                                     <br>
+                                    <div id="myTasks"></div>
                                     <hr>
                                     <div class="app">
                                         <main class="project">
@@ -3150,6 +3152,7 @@ hr{
     ]
     var categoryList = []
     var preTask = ""
+    var taskItem=""
     for (var i in data) {
         var category = data[i].name
         var editedCategory = category.toLowerCase()
@@ -3163,7 +3166,7 @@ hr{
                       <h4 class="darkgray">${data[i].subcategories[n].name}</h4>
                       <p>${data[i].subcategories[n].description}</p>
                         <div class="task__stats" style="display:flex;text-align:center">
-                      <button class="btn btn-primary add-task task__tag--${category.replace(/ +/g, '-')}"><i class="fas fa-plus fa-lg plus"></i>      Add Task</button>
+                      <button class="btn btn-primary add-task task__tag--${category.replace(/ +/g, '-')}" onclick="addTask('${category.replace(/ +/g, '-')+'$$&'+data[i].subcategories[n].name}')"><i class="fas fa-circle-plus fa-lg plus"></i>      Add Task</button>
                       <br>
                       <button class="btn btn-primary get-started task__tag--${category.replace(/ +/g, '-')}">Get Started</button>
                   </div>
@@ -3191,6 +3194,30 @@ hr{
             }
         }
     }
+    function addTask(task){
+        console.log(task)
+        var taskSplit = task.split('$$&')
+        console.log(taskSplit)
+        var taskCategory = taskSplit[0].replace(/-/g, ' ')
+        var taskSubcategory = taskSplit[1]
+        console.log(taskCategory)
+        console.log(taskSubcategory)
+        var editedTaskCategory = taskCategory.toLowerCase()
+         var myTaskItem = taskItem += `
+              <div class="task" draggable="false">
+                  <div class="task__tags"><span class="task__tag task__tag--${editedTaskCategory.replace(/ +/g, '-')}">${category}</span><button class="task__options"><i class="fas fa-close"></i></button></div>
+                      <h4 class="darkgray">${taskSubcategory}</h4>
+                      <p>${data[i].subcategories[n].description}</p>
+                        <div class="task__stats" style="display:flex;text-align:center">
+                      <button class="btn btn-primary add-task task__tag--${taskCategory.replace(/ +/g, '-')}" onclick="addTask('${taskCategory.replace(/ +/g, '-')+'$$&'+taskSubcategory}')"><i class="fas fa-circle-check fa-lg plus"></i>Complete</button>
+                      <br>
+                      <button class="btn btn-primary get-started task__tag--${category.replace(/ +/g, '-')}">Get Started</button>
+                  </div>
+              </div>
+                      `
+            document.getElementById("myTasks").innerHTML = taskItem
+
+        }
     </script>
     </script>
 </body>
