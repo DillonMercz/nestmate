@@ -730,71 +730,80 @@
     Scripts
 ***********************************-->
     <script>
-var data;
+    var data;
 
-var requestOptions = {
-    method: 'GET',
-    redirect: 'follow'
-};
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
 
-fetch("https://script.google.com/macros/s/AKfycbw808HY6kIjzMbeqLKW5fEKrewKSMtm9VIxUspDNmflUwMWvKxkSx5cXptQ2nJrQiLkig/exec", requestOptions)
-    .then(response => response.text())
-    .then(result => {
-        data = JSON.parse(result); // Assign the response to the "data" variable
-        // Call a function to handle the data once it's available
-        handleData();
-    })
-    .catch(error => console.log('error', error));
+    fetch("https://script.google.com/macros/s/AKfycbw808HY6kIjzMbeqLKW5fEKrewKSMtm9VIxUspDNmflUwMWvKxkSx5cXptQ2nJrQiLkig/exec", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            data = JSON.parse(result); // Assign the response to the "data" variable
+            // Call a function to handle the data once it's available
+            handleData();
+        })
+        .catch(error => console.log('error', error));
 
-function handleData() {
-    var template = "";
+    function handleData() {
+        var template = "";
 
-    function getQueryParam(name) {
-        const params = new URLSearchParams(window.location.search);
-        return params.get(name);
-    }
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
 
-    var category = getQueryParam('category');
-    if (category == null) {
-        category = "";
-    }
-    var subcategory = getQueryParam('subcategory');
-    if (subcategory == null) {
-        subcategory = "";
-    }
-    category = window.atob(category);
-    document.getElementById("category").innerHTML = category;
-    console.log(category);
-    subcategory = window.atob(subcategory);
-    console.log(subcategory);
-    var obj = data.find(json => json.name === category);
-    if (obj) {
-        var price = obj["subcategories"].find(sub => sub.name === subcategory).price;
-        var description = obj["subcategories"].find(sub => sub.name === subcategory).description;
-        console.log(price);
-        window.localStorage.setItem("fee", price);
-        console.log(obj);
-        console.log(obj["subcategories"]);
-        for (var i in obj["subcategories"]) {
-            template = template + `<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="margin-right: 10px;">
-                                        <a href="?category=${window.btoa(category)}&subcategory=${window.btoa(obj["subcategories"][i].name)}" class="tag-btn" id="${obj["subcategories"][i].name}">${obj["subcategories"][i].name}</a>
-                                    </div>`;
+        var category = getQueryParam('category');
+        if (category == null) {
+            category = "";
+        }
+        var subcategory = getQueryParam('subcategory');
+        if (subcategory == null) {
+            subcategory = "";
+        }
+        category = window.atob(category);
+        document.getElementById("category").innerHTML = category;
+        console.log(category);
+        subcategory = window.atob(subcategory);
+        console.log(subcategory);
+        var obj = data.find(json => json.name === category);
+        if (obj) {
+            var price = obj["subcategories"].find(sub => sub.name === subcategory).price;
+            var description = obj["subcategories"].find(sub => sub.name === subcategory).description;
+            console.log(price);
+            window.localStorage.setItem("fee", price);
+            console.log(obj);
+            console.log(obj["subcategories"]);
+            for (var i in obj["subcategories"]) {
+                template = template + `<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6" style="margin-right: 10px;">
+                                    <a href="?category=${window.btoa(category)}&subcategory=${window.btoa(obj["subcategories"][i].name)}" class="tag-btn" id="${obj["subcategories"][i].name}">${obj["subcategories"][i].name}</a>
+                                </div>`;
+            }
+            document.getElementById("swiper-wrapper-714760010fb1034ea4").innerHTML = template;
+
+            // Initialize Swiper only if the element exists
+                new Swiper(".swiper-container", {
+                    slidesPerView: 'auto',
+                    freeMode: true,
+                    spaceBetween: 16,
+                    touchRatio: 1,
+                    scrollbar: {
+                        el: '.swiper-scrollbar',
+                        hide: false,
+                    },
+                });
+  
+
+            document.getElementById("price").innerHTML = price;
+            document.getElementById("description").innerHTML = description;
+            document.getElementById(`${subcategory}`).classList.add('active');
         }
     }
-    document.getElementById("swiper-wrapper-714760010fb1034ea4").innerHTML = template;
-    document.getElementById("price").innerHTML = price;
-    document.getElementById("description").innerHTML = description;
-    document.getElementById(`${subcategory}`).classList.add('active');
-}
-
 
     function book() {
-        location.href = `./book.html?subcategory=${subcategory}&category=${category}`
+        location.href = `./book.html?subcategory=${subcategory}&category=${category}`;
     }
-
-
-
-
 
     const progressDone = document.querySelectorAll('.progress-done');
 
