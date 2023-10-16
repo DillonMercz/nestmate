@@ -224,8 +224,8 @@ ul.ui-autocomplete {
                 "name": category.name,
                 "subcategories": category.subcategories.map(subcategory => subcategory.name)
             }));
-            console.log(categories);
-            mapCategories() // You can log it to verify
+            mapData(categories) // You can log it to verify
+            console.log(categories)
         })
         .catch(error => console.log('error', error));
 
@@ -253,75 +253,75 @@ ul.ui-autocomplete {
         return results.slice(0, 10);
     }
 
-    function mapCategories() {
-    var results = [];
+    function mapData(categories) {
+        var results = [];
 
-    categories.forEach(function(category) {
-        var categoryMatches = [];
+        categories.forEach(function(category) {
+            var categoryMatches = [];
 
-        category.subcategories.forEach(function(subcategory) {
-            categoryMatches.push(subcategory);
+            category.subcategories.forEach(function(subcategory) {
+                categoryMatches.push(subcategory);
+            });
+
+            if (categoryMatches.length > 0) {
+                results.push({
+                    category: category.name,
+                    subcategories: categoryMatches
+                });
+            }
         });
 
-        if (categoryMatches.length > 0) {
-            results.push({
-                category: category.name,
-                subcategories: categoryMatches
-            });
-        }
-    });
+        var autocompleteVisible = false;
+        var recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+        var dashboardArea = document.getElementById("dashboard-area");
 
-    var autocompleteVisible = false;
-    var recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
-    var dashboardArea = document.getElementById("dashboard-area");
+        results.forEach(function(result) {
+            var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category).attr('id', result.category.toLowerCase());
+            var subcategoryContainer = $('<div>').addClass('swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events')
+            var subcategoryList = $('<ul>').addClass('swiper-wrapper');
+            subcategoryList.attr("id", result.category.replace(/ /g, "-") + "-swiper");
 
-    results.forEach(function(result) {
-        var categoryHeader = $('<h3>').addClass('autocomplete-header').text(result.category).attr('id', result.category.toLowerCase());
-        var subcategoryContainer = $('<div>').addClass('swiper-container tag-group my-4 team-swiper-4 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events')
-        var subcategoryList = $('<ul>').addClass('swiper-wrapper');
-        subcategoryList.attr("id", result.category.replace(/ /g, "-") + "-swiper");
-
-        result.subcategories.forEach(function(subcategory) {
-            var subcategoryItem = `<div class="swiper-slide" role="group" aria-label="2 / 6" style="margin-right: 10px;">
+            result.subcategories.forEach(function(subcategory) {
+                var subcategoryItem = `<div class="swiper-slide" role="group" aria-label="2 / 6" style="margin-right: 10px;">
                                         <a href="./job-detail.html?category=${window.btoa(result.category)}&subcategory=${window.btoa(subcategory)}" class="tag-btn" id="${subcategory}">${subcategory}</a>
                                     </div>`
-            subcategoryList.append(subcategoryItem);
-            subcategoryContainer.append(subcategoryList)
+                subcategoryList.append(subcategoryItem);
+                subcategoryContainer.append(subcategoryList)
+            });
+
+            categoryHeader.data('category', result.category);
+            $('#dashboard-area').append(categoryHeader).append(subcategoryContainer)
+        });
+        // Initialize Swiper on each subcategory list
+        var subcategoryLists = document.querySelectorAll('.subcategory-list');
+        console.log(subcategoryLists)
+        subcategoryLists.forEach(function(list) {
+            console.log(list)
+            new Swiper(list, {
+                slidesPerView: 'auto',
+                freeMode: true,
+                spaceBetween: 16,
+                touchRatio: 1,
+                scrollbar: {
+                    el: '.swiper-scrollbar',
+                    hide: false,
+                },
+            });
         });
 
-        categoryHeader.data('category', result.category);
-        $('#dashboard-area').append(categoryHeader).append(subcategoryContainer)
-    });
-    // Initialize Swiper on each subcategory list
-    var subcategoryLists = document.querySelectorAll('.subcategory-list');
+        // add click handlers for category headers and subcategory items
+        $('.autocomplete-header, .autocomplete-item').on('click', function() {
+            var category = $(this).data('category');
+            var subcategory = $(this).hasClass('autocomplete-item') ? $(this).text() : null;
 
-    subcategoryLists.forEach(function(list) {
-        new Swiper(list, {
-            slidesPerView: 'auto',
-            freeMode: true,
-            spaceBetween: 16,
-            touchRatio: 1,
-            scrollbar: {
-                el: '.swiper-scrollbar',
-                hide: false,
-            },
+            // store the search in recent searches
+            recentSearches.unshift({ category, subcategory });
+            localStorage.setItem('recentSearches', JSON.stringify(recentSearches.slice(0, 10)));
+
+            location.href = "./job-detail.html?category=" + window.btoa(category) + (subcategory ? '&subcategory=' + window.btoa(subcategory) : '');
         });
-    });
 
-    // add click handlers for category headers and subcategory items
-    $('.autocomplete-header, .autocomplete-item').on('click', function() {
-        var category = $(this).data('category');
-        var subcategory = $(this).hasClass('autocomplete-item') ? $(this).text() : null;
-
-        // store the search in recent searches
-        recentSearches.unshift({ category, subcategory });
-        localStorage.setItem('recentSearches', JSON.stringify(recentSearches.slice(0, 10)));
-
-        location.href = "./job-detail.html?category=" + window.btoa(category) + (subcategory ? '&subcategory=' + window.btoa(subcategory) : '');
-    });
-
-}
-
+    }
 
 
     $('#search').on('input', function() {
