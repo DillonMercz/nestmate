@@ -87,9 +87,18 @@ ul.ui-autocomplete {
 .swiper-container-pointer-events {
     touch-action: pan-x !important;
 }
-    #autocomplete-results{
+#autocomplete-results{
         display: none;
-    }
+}
+
+.fa-search {
+    position: absolute;
+    right: 0px;
+    padding-top: 23px !important;
+    color: #555;
+    cursor: pointer;
+    top: 25px;
+}
 </style>
 </head>
 
@@ -133,6 +142,7 @@ ul.ui-autocomplete {
                         <div class="serach-area">
                             <div class="input-group search-input" style="margin-bottom:0px">
                                 <input type="text" placeholder="Search services here..." style="margin-top:25px; border-radius: 5px !important;box-shadow: 0 2px 4px #e9eced ;" id="search" onclick="mapAutocomplete()" class="form-control style-1 main-in">
+                                <i class="fas fa-search fa-lg"></i>
                                 <a href="javascript:void(0);" class="btn-close"><i class="fa-solid fa-xmark"></i></a>
                             </div>
                             <center>
