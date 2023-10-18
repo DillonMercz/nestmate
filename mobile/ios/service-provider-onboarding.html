@@ -719,22 +719,25 @@ textarea{
     <script>
     const form = document.getElementById("multi-page-form");
     // Sample categories and subcategories data
-    const categories = [{
-            "name": "Pressure Washing",
-            "subcategories": [
-                "Driveway", "Patio", "Pool Deck", "Sidewalk", "Fence", "House Exterior", "Roof", "Boat Dock"
-            ]
-        },
-        {
-            "name": "Fencing",
-            "subcategories": [
-                "Wooden Fence Installation", "Wooden Fence Repair", "Vinyl Fence Installation", "Vinyl Fence Repair",
-                "Chain Link Fence Installation", "Chain Link Fence Repair", "Wrought Iron Fence Installation", "Wrought Iron Fence Repair",
-                "Aluminum Fence Installation", "Aluminum Fence Repair", "Farm and Ranch Fence Installation", "Farm and Ranch Fence Repair",
-                "Pool Fence Installation", "Pool Fence Repair", "Fence Staining and Painting", "Fence Power Washing"
-            ]
-        }
-    ];
+    var categories;
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbw808HY6kIjzMbeqLKW5fEKrewKSMtm9VIxUspDNmflUwMWvKxkSx5cXptQ2nJrQiLkig/exec", requestOptions)
+        .then(response => response.json()) // Assuming the API response is in JSON format
+        .then(data => {
+            // Transform the data to match the desired format
+            categories = data.map(category => ({
+                "name": category.name,
+                "subcategories": category.subcategories.map(subcategory => subcategory.name)
+            }));
+            console.log(categories)
+            mapData(categories) // You can log it to verify
+            
+        })
+        .catch(error => console.log('error', error));
 
     const mainCategorySelect = document.getElementById("main-category");
     const subcategoryList = document.getElementById("subcategory-list");
