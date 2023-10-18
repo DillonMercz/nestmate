@@ -739,6 +739,7 @@ textarea{
         })
         .catch(error => console.log('error', error));
 
+    function mapData(categories) {
     const mainCategorySelect = document.getElementById("main-category");
     const subcategoryList = document.getElementById("subcategory-list");
     const customSubcategoryInput = document.getElementById("custom-subcategory");
@@ -810,6 +811,7 @@ textarea{
             event.target.closest(".chip").remove();
         }
     });
+}
 
     function addChip(subcategory, fromCheckbox) {
         const chip = document.createElement("span");
